@@ -247,10 +247,12 @@
         <p>Reorder List<br>Given a singly linked list L: L0→L1→…→Ln-1→Ln,<br>reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
 <p>You must do this in-place without altering the nodes’ values.</p>
 <p>For example,<br>Given {1,2,3,4}, reorder it to {1,4,2,3}.</p>
-<p>想法：<br>    1：找到中点；<br>    <em>：把中点后面的所有点：
-        </em>：存到stack里面<br>        <em>：反转
-    </em>：merge两个链表在一起    </p>
-<h2 id="记得吧中点的后面一个设置成null"><strong>记得吧中点的后面一个设置成null</strong></h2><pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+<p>想法：<br>    1：找到中点；</p>
+<pre><code><span class="keyword">*</span> 把中点后面的所有点：
+    <span class="keyword">*</span> 存到stack里面
+    <span class="keyword">*</span> 反转
+<span class="keyword">*</span> merge两个链表在一起    
+</code></pre><h2 id="记得吧中点的后面一个设置成null"><strong>记得吧中点的后面一个设置成null</strong></h2><pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
     <span class="keyword">public</span> <span class="keyword">void</span> reorderList(ListNode head) {
 
             <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span>;
