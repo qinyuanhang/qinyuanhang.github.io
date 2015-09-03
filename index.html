@@ -87,40 +87,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Rotate_List">Rotate List</h1><h2 id="用k_=_k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以">用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以</h2><pre><code>public class Solution {
-        public ListNode rotateRight(ListNode head, <span class="built_in">int</span> k) {
+        <h1 id="Rotate_List">Rotate List</h1><p> 用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以<br>    public class Solution {<br>            public ListNode rotateRight(ListNode head, int k) {</p>
+<pre><code>            <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span><span class="comment">;</span>
 
-            <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span><span class="comment">;</span>
-          //<span class="keyword">if</span>(k == <span class="number">0</span> || head.<span class="keyword">next</span> == <span class="literal">null</span>) <span class="keyword">return</span> head<span class="comment">;</span>
-
-        <span class="built_in">int</span> tot = <span class="number">1</span><span class="comment">;</span>
-        ListNode head_1 = head<span class="comment">;</span>
-        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="literal">null</span>){
+            <span class="built_in">int</span> tot = <span class="number">1</span><span class="comment">;</span>
+            ListNode head_1 = head<span class="comment">;</span>
+            <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="literal">null</span>){
                 tot++<span class="comment">;</span>
                 head_1 = head_1.<span class="keyword">next</span><span class="comment">;</span>
-        }
-        ListNode newEnd = head<span class="comment">;</span>
-        k = k % tot<span class="comment">;</span>
-        <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> head<span class="comment">;     </span>
-        k = tot - k<span class="comment">;</span>
+            }
+            ListNode newEnd = head<span class="comment">;</span>
+            k = k % tot<span class="comment">;</span>
+            <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> head<span class="comment">;     </span>
+            k = tot - k<span class="comment">;</span>
 
-        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">1</span><span class="comment">; i &lt; k; i++){</span>
+            <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">1</span><span class="comment">; i &lt; k; i++){</span>
                 newEnd = newEnd.<span class="keyword">next</span><span class="comment">;</span>
+            }
+            ListNode newHead = newEnd.<span class="keyword">next</span><span class="comment">;</span>
+            head_1.<span class="keyword">next</span> = head<span class="comment">;</span>
+            newEnd.<span class="keyword">next</span> = <span class="literal">null</span><span class="comment">;</span>
+            <span class="keyword">return</span> newHead<span class="comment">;</span>
         }
-        ListNode newHead = newEnd.<span class="keyword">next</span><span class="comment">;</span>
-        head_1.<span class="keyword">next</span> = head<span class="comment">;</span>
-        newEnd.<span class="keyword">next</span> = <span class="literal">null</span><span class="comment">;</span>
-        <span class="keyword">return</span> newHead<span class="comment">;</span>
 }
-</code></pre><p>}</p>
-
+</code></pre>
       
     </div>
     <footer class="article-footer">
       <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cie3xk8o600008v1ursd0ntc6" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeedCode-java/">LeedCode java</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 
     </footer>
   </div>
@@ -147,7 +144,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeedCode-java/">LeedCode java</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -156,7 +153,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/LeedCode-java/" style="font-size: 10px;">LeedCode java</a>
+      <a href="/tags/java/" style="font-size: 10px;">java</a>
     </div>
   </div>
 
