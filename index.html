@@ -111,36 +111,37 @@
 <p>Remove Duplicates from Sorted List II<br>Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.</p>
 <p>For example,<br>Given 1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5, return 1-&gt;2-&gt;5.<br>Given 1-&gt;1-&gt;1-&gt;2-&gt;3, return 2-&gt;3.</p>
 <ul>
-<li><p>思路：</p>
-<ul>
+<li>思路：<ul>
 <li>用dummy note</li>
 <li>一次检查后两个的val，因为是sorted的，要有重复只能是相邻</li>
 <li>用一个int来存已经重复的val</li>
 <li>用一个while一直找到下一个不是重复的值为止</li>
-<li><p>要注意检查是不是null，因为检查的是下两个</p>
-<p>public class Solution {<br>  public ListNode deleteDuplicates(ListNode head) {</p>
-<pre><code>ListNode dummy = <span class="keyword">new</span> ListNode(Integer.MAX_VALUE);
-dummy.<span class="keyword">next</span> = head;
-head = dummy;
+<li>要注意检查是不是null，因为检查的是下两个</li>
+</ul>
+</li>
+</ul>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> ListNode deleteDuplicates(ListNode head) {
+        ListNode dummy = <span class="keyword">new</span> ListNode(Integer.MAX_VALUE);
+        dummy.<span class="keyword">next</span> = head;
+        head = dummy;
 
-<span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; head.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
-    <span class="keyword">if</span>(head.<span class="keyword">next</span>.val == head.<span class="keyword">next</span>.<span class="keyword">next</span>.val){
-        <span class="keyword">int</span> same = head.<span class="keyword">next</span>.val;
-        ListNode <span class="keyword">next</span> = head.<span class="keyword">next</span>;
-        <span class="keyword">while</span>(<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; <span class="keyword">next</span>.val == same){
-            <span class="keyword">next</span> = <span class="keyword">next</span>.<span class="keyword">next</span>;
+        <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; head.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            <span class="keyword">if</span>(head.<span class="keyword">next</span>.val == head.<span class="keyword">next</span>.<span class="keyword">next</span>.val){
+                <span class="keyword">int</span> same = head.<span class="keyword">next</span>.val;
+                ListNode <span class="keyword">next</span> = head.<span class="keyword">next</span>;
+                <span class="keyword">while</span>(<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; <span class="keyword">next</span>.val == same){
+                    <span class="keyword">next</span> = <span class="keyword">next</span>.<span class="keyword">next</span>;
+                }
+                head.<span class="keyword">next</span> = <span class="keyword">next</span>;
+            }<span class="keyword">else</span>{
+                head = head.<span class="keyword">next</span>;
+            }
         }
-        head.<span class="keyword">next</span> = <span class="keyword">next</span>;
-    }<span class="keyword">else</span>{
-        head = head.<span class="keyword">next</span>;
+    <span class="keyword">return</span> dummy.<span class="keyword">next</span>;
     }
 }
-</code></pre><p>  return dummy.next;<br>  }<br>}</p>
-</li>
-</ul>
-</li>
-</ul>
-
+</code></pre>
       
     </div>
     <footer class="article-footer">
