@@ -87,19 +87,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Given_a_list,_rotate_the_list_to_the_right_by_k_places,_where_k_is_non-negative-">Given a list, rotate the list to the right by k places, where k is non-negative.</h3><h4 id="For_example:">For example:</h4><pre><code><span class="preprocessor">####Given <span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">5</span>-&gt;NULL and k = <span class="number">2</span>,</span>
-<span class="preprocessor">####return <span class="number">4</span>-&gt;<span class="number">5</span>-&gt;<span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;NULL.</span>
+        <h3 id="Given_a_list,_rotate_the_list_to_the_right_by_k_places,_where_k_is_non-negative-">Given a list, rotate the list to the right by k places, where k is non-negative.</h3><h4 id="For_example:">For example:</h4><h4 id="Given_1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL_and_k_=_2,">Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2,</h4><h4 id="return_4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL-">return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</h4><pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> ListNode rotateRight(ListNode head, <span class="keyword">int</span> k) {
 
-<span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="function"><span class="keyword">public</span> ListNode <span class="title">rotateRight</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>{
-
-        <span class="keyword">if</span>(head == null) <span class="keyword">return</span> null;
+        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
 
         <span class="keyword">int</span> tot = <span class="number">1</span>;
         ListNode head_1 = head;
-        <span class="keyword">while</span>(head_1.next != null){
+        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="keyword">null</span>){
             tot++;
-            head_1 = head_1.next;
+            head_1 = head_1.<span class="keyword">next</span>;
         }
         ListNode newEnd = head;
         k = k % tot;
@@ -107,11 +104,11 @@
         k = tot - k;
 
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; i++){
-            newEnd = newEnd.next;
+            newEnd = newEnd.<span class="keyword">next</span>;
         }
-        ListNode newHead = newEnd.next;
-        head_1.next = head;
-        newEnd.next = null;
+        ListNode newHead = newEnd.<span class="keyword">next</span>;
+        head_1.<span class="keyword">next</span> = head;
+        newEnd.<span class="keyword">next</span> = <span class="keyword">null</span>;
         <span class="keyword">return</span> newHead;
     }
 }
