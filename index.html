@@ -61,6 +61,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Reverse-Linked-List-1-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/03/Reverse-Linked-List-1-2/" class="article-date">
+  <time datetime="2015-09-03T20:13:36.000Z" itemprop="datePublished">2015-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/03/Reverse-Linked-List-1-2/">Reverse Linked List 1&amp;2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>‘’’java<br>Reverse Linked List 1<br>Reverse a singly linked list.</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> ListNode reverseList(ListNode head) {
+
+    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
+    <span class="keyword">if</span>(head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> head;
+
+    ListNode pre = head, cur = pre.<span class="keyword">next</span>, nex;
+    <span class="comment">//这句话很重要，没有就会死循环：</span>
+    pre.<span class="keyword">next</span> = <span class="keyword">null</span>;
+
+        <span class="keyword">while</span>(cur.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            nex = cur.<span class="keyword">next</span>;
+            cur.<span class="keyword">next</span> = pre;
+            pre = cur;
+            cur = nex;
+        }
+        cur.<span class="keyword">next</span> = pre;
+        <span class="keyword">return</span> cur;
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cie4nmcm2000bsz1ukr8unszo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Linked-List-Cycle-I-II" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/03/Linked-List-Cycle-I-II/" class="article-date">
@@ -142,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cie4n4dtt000fr61uh0ltmr3z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cie4nmcm8000jsz1uesmgsz0q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -222,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cie4n4dtq000br61u7yxxulab" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cie4nmcm5000fsz1uef5vy95e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -326,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cie4n4dsl0000r61u073n4d9f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cie4nmck90000sz1ugl09j3x6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -396,7 +459,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cie4n4dtn0007r61u9csvu2se" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cie4nmclt0007sz1ubqvqim5w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -417,7 +480,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">4</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -426,7 +489,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -444,7 +507,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -454,6 +517,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/03/Reverse-Linked-List-1-2/">Reverse Linked List 1&amp;2</a>
+          </li>
         
           <li>
             <a href="/2015/09/03/Linked-List-Cycle-I-II/">Linked List Cycle I&amp;II</a>

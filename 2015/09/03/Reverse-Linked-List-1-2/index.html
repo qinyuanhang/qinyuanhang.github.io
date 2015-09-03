@@ -3,17 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: LinkedList | Wondering Doggy</title>
+  <title>Reverse Linked List 1&amp;2 | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="really?!! like really?!!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wondering Doggy">
-<meta property="og:url" content="http://yoursite.com/tags/LinkedList/index.html">
+  <meta name="description" content="‘’’javaReverse Linked List 1Reverse a singly linked list.
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+
+    if(head == null) return null;
+    if(head.next == null) return h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reverse Linked List 1&2">
+<meta property="og:url" content="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="really?!! like really?!!">
+<meta property="og:description" content="‘’’javaReverse Linked List 1Reverse a singly linked list.
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+
+    if(head == null) return null;
+    if(head.next == null) return h">
+<meta property="og:updated_time" content="2015-09-03T20:17:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wondering Doggy">
-<meta name="twitter:description" content="really?!! like really?!!">
+<meta name="twitter:title" content="Reverse Linked List 1&2">
+<meta name="twitter:description" content="‘’’javaReverse Linked List 1Reverse a singly linked list.
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+
+    if(head == null) return null;
+    if(head.next == null) return h">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -59,115 +75,79 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/03/Reverse-Linked-List-1-2/" class="archive-article-date">
-  <time datetime="2015-09-03T20:13:36.000Z" itemprop="datePublished">Sep 3</time>
+        <section id="main"><article id="post-Reverse-Linked-List-1-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/03/Reverse-Linked-List-1-2/" class="article-date">
+  <time datetime="2015-09-03T20:13:36.000Z" itemprop="datePublished">2015-09-03</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/03/Reverse-Linked-List-1-2/">Reverse Linked List 1&amp;2</a>
+    <h1 class="article-title" itemprop="name">
+      Reverse Linked List 1&amp;2
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/03/Linked-List-Cycle-I-II/" class="archive-article-date">
-  <time datetime="2015-09-03T19:56:16.000Z" itemprop="datePublished">Sep 3</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/03/Linked-List-Cycle-I-II/">Linked List Cycle I&amp;II</a>
-    </h1>
-  
+        <p>‘’’java<br>Reverse Linked List 1<br>Reverse a singly linked list.</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> ListNode reverseList(ListNode head) {
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/03/Reorder-List/" class="archive-article-date">
-  <time datetime="2015-09-03T19:41:43.000Z" itemprop="datePublished">Sep 3</time>
-</a>
+    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
+    <span class="keyword">if</span>(head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> head;
+
+    ListNode pre = head, cur = pre.<span class="keyword">next</span>, nex;
+    <span class="comment">//这句话很重要，没有就会死循环：</span>
+    pre.<span class="keyword">next</span> = <span class="keyword">null</span>;
+
+        <span class="keyword">while</span>(cur.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            nex = cur.<span class="keyword">next</span>;
+            cur.<span class="keyword">next</span> = pre;
+            pre = cur;
+            cur = nex;
+        }
+        cur.<span class="keyword">next</span> = pre;
+        <span class="keyword">return</span> cur;
+    }
+}
+</code></pre>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/03/Reorder-List/">Reorder List</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/03/Add-Two-Numbers/" class="archive-article-date">
-  <time datetime="2015-09-03T19:08:52.000Z" itemprop="datePublished">Sep 3</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cie4nmcm2000bsz1ukr8unszo" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/03/Add-Two-Numbers/">Add Two Numbers</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/03/Rotate-List/" class="archive-article-date">
-  <time datetime="2015-09-03T07:57:21.000Z" itemprop="datePublished">Sep 3</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/03/Rotate-List/">Rotate List</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/09/03/Linked-List-Cycle-I-II/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linked List Cycle I&amp;II</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">
