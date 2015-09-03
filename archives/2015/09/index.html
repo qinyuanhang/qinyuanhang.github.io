@@ -45,6 +45,35 @@
 
 
     <div class="post box nocover">
+      <em class="date"><span>03</span>Sep</em>
+      <h2 class="post-title"><a href="/2015/09/03/Rotate-List/">Rotate List</a></h2>
+      <div class="post-content">#Rotate List 
+##用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以    public class Solution {            public ListNode rotateRight(ListNode head, int k) {
+            if(head == null) return null;
+          //if(k == 0 || head.next == null) return head;
+
+        int tot = 1;
+        ListNode head_1 = head;
+        while(head_1.next != null){
+                tot++;
+                head_1 = head_1.next;
+   
+      </div>
+
+      <div class="bottom-panel">
+        <ul class="social-likes" data-url="http://yoursite.com/2015/09/03/Rotate-List/">
+          <li class="facebook" title="like"></li>
+          <li class="twitter" title="twitte"></li>
+          <li class="plusone" title="google"></li>
+        </ul>
+        <a href="http://yoursite.com/2015/09/03/Rotate-List/#disqus_thread" class="btn-comment">Comments</a>
+      </div>
+    </div>
+
+
+
+
+    <div class="post box nocover">
       <em class="date"><span>02</span>Sep</em>
       <h2 class="post-title"><a href="/2015/09/02/hello-world/">Hello World</a></h2>
       <div class="post-content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
@@ -81,8 +110,18 @@ Deploy to remote sites1$ hexo
 
     
     
+<div class="tags widget">
+  <h3 class="title">Tags</h3>
+  <div style="text-align:center">
+    
+    <a class="button" href="/tags/LeedCode-java/">LeedCode java</a>
+    
+  </div>
+  
+</div>
 
-<div class="tagcloud" id="fbox-tagcloud" style="margin:10px; display:none; overflow: hidden"></div>
+
+<div class="tagcloud" id="fbox-tagcloud" style="margin:10px; display:none; overflow: hidden"><a href="/tags/LeedCode-java/" style="font-size: 12px;">LeedCode java</a></div>
 
     
 
@@ -91,6 +130,15 @@ Deploy to remote sites1$ hexo
 
 <ul class="widget blogroll">
   <h3 class="title">Recent Post</h3>
+  
+    
+    <li>
+      <div class="text-holder">
+        <h3 class="link-title"><a href="/2015/09/03/Rotate-List/">Rotate List</a></h3>
+        <p>#Rotate List 
+##用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，</p>
+      </div>
+    </li>
   
     
     <li>

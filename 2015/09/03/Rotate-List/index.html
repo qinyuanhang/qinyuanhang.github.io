@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=932" >
   <meta name="MobileOptimized" content="932" >
   <meta name="generator" content="Wondering Doggy">
-  <title>Archives</title>
+  <title>Rotate List</title>
 
   <link rel="stylesheet" type="text/css" href="/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="/css/awe.css">
@@ -38,72 +38,48 @@
 </div>
 
     
-<div class="two-columns">
+<div class="two-columns post-page">
   <div class="content">
-
-
-
 
     <div class="post box nocover">
       <em class="date"><span>03</span>Sep</em>
       <h2 class="post-title"><a href="/2015/09/03/Rotate-List/">Rotate List</a></h2>
-      <div class="post-content">#Rotate List 
-##用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以    public class Solution {            public ListNode rotateRight(ListNode head, int k) {
-            if(head == null) return null;
-          //if(k == 0 || head.next == null) return head;
+      <div class="post-content"><p>#Rotate List </p>
+<p>##用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以<br>    public class Solution {<br>            public ListNode rotateRight(ListNode head, int k) {</p>
+<pre><code>            <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span><span class="comment">;</span>
+          //<span class="keyword">if</span>(k == <span class="number">0</span> || head.<span class="keyword">next</span> == <span class="literal">null</span>) <span class="keyword">return</span> head<span class="comment">;</span>
 
-        int tot = 1;
-        ListNode head_1 = head;
-        while(head_1.next != null){
-                tot++;
-                head_1 = head_1.next;
-   
-      </div>
+        <span class="built_in">int</span> tot = <span class="number">1</span><span class="comment">;</span>
+        ListNode head_1 = head<span class="comment">;</span>
+        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="literal">null</span>){
+                tot++<span class="comment">;</span>
+                head_1 = head_1.<span class="keyword">next</span><span class="comment">;</span>
+        }
+        ListNode newEnd = head<span class="comment">;</span>
+        k = k % tot<span class="comment">;</span>
+        <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> head<span class="comment">;     </span>
+        k = tot - k<span class="comment">;</span>
+
+        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">1</span><span class="comment">; i &lt; k; i++){</span>
+                newEnd = newEnd.<span class="keyword">next</span><span class="comment">;</span>
+        }
+        ListNode newHead = newEnd.<span class="keyword">next</span><span class="comment">;</span>
+        head_1.<span class="keyword">next</span> = head<span class="comment">;</span>
+        newEnd.<span class="keyword">next</span> = <span class="literal">null</span><span class="comment">;</span>
+        <span class="keyword">return</span> newHead<span class="comment">;</span>
+}
+</code></pre><p>}</p>
+</div>
 
       <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://yoursite.com/2015/09/03/Rotate-List/">
+        <ul class="social-likes" data-url="/2015/09/03/Rotate-List/">
           <li class="facebook" title="like"></li>
           <li class="twitter" title="twitte"></li>
           <li class="plusone" title="google"></li>
         </ul>
-        <a href="http://yoursite.com/2015/09/03/Rotate-List/#disqus_thread" class="btn-comment">Comments</a>
       </div>
     </div>
-
-
-
-
-    <div class="post box nocover">
-      <em class="date"><span>02</span>Sep</em>
-      <h2 class="post-title"><a href="/2015/09/02/hello-world/">Hello World</a></h2>
-      <div class="post-content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-More info: Writing
-Run server1$ hexo server
-More info: Server
-Generate static files1$ hexo generate
-More info: Generating
-Deploy to remote sites1$ hexo
-      </div>
-
-      <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://yoursite.com/2015/09/02/hello-world/">
-          <li class="facebook" title="like"></li>
-          <li class="twitter" title="twitte"></li>
-          <li class="plusone" title="google"></li>
-        </ul>
-        <a href="http://yoursite.com/2015/09/02/hello-world/#disqus_thread" class="btn-comment">Comments</a>
-      </div>
-    </div>
-
     
-
-<ul class="paging box">
-  
-  <span class="page-number">Page 1 of 1</span>
-  
-</ul>
-
   </div>
 
   <div class="widgetarea">
