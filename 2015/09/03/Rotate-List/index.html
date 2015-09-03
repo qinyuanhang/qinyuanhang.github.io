@@ -5,32 +5,25 @@
   
   <title>Rotate List | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Jane Eyre is not just Jane Eyre
-Rotate List 用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以
-public class Solution {
-    public ListNode rotateRight(ListNode head, int k) {
+  <meta name="description" content="Given a list, rotate the list to the right by k places, where k is non-negative.For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,
+return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.
 
-        if(head == null) return nu">
+public class">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rotate List">
 <meta property="og:url" content="http://yoursite.com/2015/09/03/Rotate-List/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Jane Eyre is not just Jane Eyre
-Rotate List 用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以
-public class Solution {
-    public ListNode rotateRight(ListNode head, int k) {
+<meta property="og:description" content="Given a list, rotate the list to the right by k places, where k is non-negative.For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,
+return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.
 
-        if(head == null) return nu">
-<meta property="og:image" content="http://img3.douban.com/mpic/s1108264.jpg">
-<meta property="og:updated_time" content="2015-09-03T15:45:49.000Z">
+public class">
+<meta property="og:updated_time" content="2015-09-03T17:55:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rotate List">
-<meta name="twitter:description" content="Jane Eyre is not just Jane Eyre
-Rotate List 用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以
-public class Solution {
-    public ListNode rotateRight(ListNode head, int k) {
+<meta name="twitter:description" content="Given a list, rotate the list to the right by k places, where k is non-negative.For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,
+return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.
 
-        if(head == null) return nu">
+public class">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -102,18 +95,19 @@ public class Solution {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://book.douban.com/subject/1141406/" target="_blank" rel="external"><strong><em>Jane Eyre</em></strong></a> is not just <strong><em>Jane Eyre</em></strong><br><img src="http://img3.douban.com/mpic/s1108264.jpg" alt=""></p>
-<h1 id="Rotate_List">Rotate List</h1><p> 用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode rotateRight(ListNode head, <span class="keyword">int</span> k) {
+        <h3 id="Given_a_list,_rotate_the_list_to_the_right_by_k_places,_where_k_is_non-negative-">Given a list, rotate the list to the right by k places, where k is non-negative.</h3><h4 id="For_example:">For example:</h4><pre><code>Given <span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">5</span>-&gt;<span class="literal">NULL</span> and k = <span class="number">2</span>,
+<span class="keyword">return</span> <span class="number">4</span>-&gt;<span class="number">5</span>-&gt;<span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="literal">NULL</span>.
 
-        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
+<span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="function"><span class="keyword">public</span> ListNode <span class="title">rotateRight</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>{
+
+        <span class="keyword">if</span>(head == null) <span class="keyword">return</span> null;
 
         <span class="keyword">int</span> tot = <span class="number">1</span>;
         ListNode head_1 = head;
-        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="keyword">null</span>){
+        <span class="keyword">while</span>(head_1.next != null){
             tot++;
-            head_1 = head_1.<span class="keyword">next</span>;
+            head_1 = head_1.next;
         }
         ListNode newEnd = head;
         k = k % tot;
@@ -121,11 +115,11 @@ public class Solution {
         k = tot - k;
 
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; i++){
-            newEnd = newEnd.<span class="keyword">next</span>;
+            newEnd = newEnd.next;
         }
-        ListNode newHead = newEnd.<span class="keyword">next</span>;
-        head_1.<span class="keyword">next</span> = head;
-        newEnd.<span class="keyword">next</span> = <span class="keyword">null</span>;
+        ListNode newHead = newEnd.next;
+        head_1.next = head;
+        newEnd.next = null;
         <span class="keyword">return</span> newHead;
     }
 }
