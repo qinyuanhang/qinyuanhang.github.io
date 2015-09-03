@@ -61,6 +61,118 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Merge-Two-Sorted-Lists" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/03/Merge-Two-Sorted-Lists/" class="article-date">
+  <time datetime="2015-09-03T20:59:36.000Z" itemprop="datePublished">2015-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/03/Merge-Two-Sorted-Lists/">Merge Sorted Lists</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Merge Two Sorted Lists<br>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p>
+<pre><code>    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+        <span class="keyword">public</span> ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        <span class="keyword">if</span>(l1 == <span class="literal">null</span>) <span class="keyword">return</span> l2;
+        <span class="keyword">if</span>(l2 == <span class="literal">null</span>) <span class="keyword">return</span> l1;
+        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        ListNode res = dummy;
+
+        <span class="keyword">while</span>(l1 != <span class="literal">null</span> &amp;&amp; l2 != <span class="literal">null</span>){
+            <span class="keyword">if</span>(l1.val &lt;= l2.val){
+                dummy.<span class="keyword">next</span> = l1;
+                l1 = l1.<span class="keyword">next</span>;
+            }<span class="keyword">else</span>{
+                dummy.<span class="keyword">next</span> = l2;
+                l2 = l2.<span class="keyword">next</span>;
+            }
+            dummy = dummy.<span class="keyword">next</span>;
+        }
+
+        <span class="keyword">if</span>(l1 == <span class="literal">null</span>){
+            dummy.<span class="keyword">next</span> = l2;
+        }<span class="keyword">else</span>{
+            dummy.<span class="keyword">next</span> = l1;
+        }
+
+        <span class="keyword">return</span> res.<span class="keyword">next</span>;
+    }
+}
+</code></pre><hr>
+<p>Merge k Sorted Lists<br>Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.</p>
+<ul>
+<li>想法：<ul>
+<li>用PriorityQueue，取queue中最小的那个<br>*记得要改写Comparator</li>
+</ul>
+</li>
+</ul>
+<p>##用法示范:</p>
+<h4 id="PriorityQueue_queue_=_new_PriorityQueue(‘queue的size’,_new_Comparator(){">PriorityQueue<listnode> queue = new PriorityQueue<listnode>(‘queue的size’, new Comparator(){</listnode></listnode></h4><pre><code><span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(ListNode l1, ListNode l2)</span></span>{
+    <span class="keyword">return</span> l1.val - l2.val;
+}
+});
+</code></pre><hr>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span><span class="params">(ListNode[] lists)</span> </span>{
+        <span class="keyword">if</span>(lists.length == <span class="number">0</span>) <span class="keyword">return</span> null;
+
+        PriorityQueue&lt;ListNode&gt; <span class="built_in">queue</span> = <span class="keyword">new</span> PriorityQueue&lt;ListNode&gt;(lists.length, <span class="keyword">new</span> Comparator&lt;ListNode&gt;(){
+                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(ListNode l1, ListNode l2)</span></span>{
+                    <span class="keyword">return</span> l1.val - l2.val;
+                }
+        });
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lists.length; i++){
+            <span class="keyword">if</span>(lists[i] != null) <span class="built_in">queue</span>.add(lists[i]);
+        }
+
+        ListNode head = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        ListNode p = head;
+
+        <span class="keyword">while</span>(!<span class="built_in">queue</span>.isEmpty()){
+            ListNode temp = <span class="built_in">queue</span>.poll();
+            p.next = temp;
+            <span class="keyword">if</span>(temp.next != null){
+                <span class="built_in">queue</span>.add(temp.next);
+            }
+            p = p.next;
+        }
+    <span class="keyword">return</span> head.next;
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cie4quayo000jx31uf3n87icl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Reverse-Linked-List-1-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/03/Reverse-Linked-List-1-2/" class="article-date">
@@ -153,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cie4nmcm2000bsz1ukr8unszo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cie4quayi000bx31u1ht4pm0j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -246,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cie4nmcm8000jsz1uesmgsz0q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cie4quays000nx31ujmghs7s5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -336,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cie4nmcm5000fsz1uef5vy95e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cie4quayl000fx31utp12t5jn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -440,7 +552,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cie4nmck90000sz1ugl09j3x6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cie4quax70000x31uuopo45f9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -510,7 +622,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cie4nmclt0007sz1ubqvqim5w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cie4quay90007x31uswqap8un" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -531,7 +643,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">5</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -540,7 +652,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">5</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -558,7 +670,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -568,6 +680,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/03/Merge-Two-Sorted-Lists/">Merge Sorted Lists</a>
+          </li>
         
           <li>
             <a href="/2015/09/03/Reverse-Linked-List-1-2/">Reverse Linked List 1&amp;2</a>
@@ -583,10 +699,6 @@
         
           <li>
             <a href="/2015/09/03/Add-Two-Numbers/">Add Two Numbers</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/03/Rotate-List/">Rotate List</a>
           </li>
         
       </ul>

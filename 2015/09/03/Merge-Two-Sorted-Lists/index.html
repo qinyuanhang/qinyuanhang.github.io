@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Add Two Numbers | Wondering Doggy</title>
+  <title>Merge Sorted Lists | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question SolutionYou are given two linked lists representing two non-negative numbers. The digits are stored in reverse o">
+  <meta name="description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+    public class Solution {">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Add Two Numbers">
-<meta property="og:url" content="http://yoursite.com/2015/09/03/Add-Two-Numbers/index.html">
+<meta property="og:title" content="Merge Sorted Lists">
+<meta property="og:url" content="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question SolutionYou are given two linked lists representing two non-negative numbers. The digits are stored in reverse o">
-<meta property="og:updated_time" content="2015-09-03T19:16:11.000Z">
+<meta property="og:description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+    public class Solution {">
+<meta property="og:updated_time" content="2015-09-03T21:47:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Add Two Numbers">
-<meta name="twitter:description" content="Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question SolutionYou are given two linked lists representing two non-negative numbers. The digits are stored in reverse o">
+<meta name="twitter:title" content="Merge Sorted Lists">
+<meta name="twitter:description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+    public class Solution {">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -60,10 +63,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Add-Two-Numbers" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Merge-Two-Sorted-Lists" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/03/Add-Two-Numbers/" class="article-date">
-  <time datetime="2015-09-03T19:08:52.000Z" itemprop="datePublished">2015-09-03</time>
+    <a href="/2015/09/03/Merge-Two-Sorted-Lists/" class="article-date">
+  <time datetime="2015-09-03T20:59:36.000Z" itemprop="datePublished">2015-09-03</time>
 </a>
     
   <div class="article-category">
@@ -78,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Add Two Numbers
+      Merge Sorted Lists
     </h1>
   
 
@@ -86,73 +89,81 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question Solution<br>You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
-<p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8</p>
-<p>想法：<br>    1：类似两个字符串相加那道题；<br>    2：注意每一次指针的移动；<br>    3：判断是否有进位；<br>    4：最后一个一个进位要记得考虑；</p>
-<hr>
-<pre><code><span class="keyword">public</span> class Solution {
-    <span class="keyword">public</span> ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        <span class="keyword">if</span>(l1 == <span class="keyword">null</span>) <span class="keyword">return</span> l2;
-        <span class="keyword">if</span>(l2 == <span class="keyword">null</span>) <span class="keyword">return</span> l1;
-
-
-        <span class="built_in">int</span> carry = <span class="number">0</span>, <span class="built_in">add</span> = <span class="number">0</span>;
+        <p>Merge Two Sorted Lists<br>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p>
+<pre><code>    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+        <span class="keyword">public</span> ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        <span class="keyword">if</span>(l1 == <span class="literal">null</span>) <span class="keyword">return</span> l2;
+        <span class="keyword">if</span>(l2 == <span class="literal">null</span>) <span class="keyword">return</span> l1;
         ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        ListNode head = dummy;
+        ListNode res = dummy;
 
+        <span class="keyword">while</span>(l1 != <span class="literal">null</span> &amp;&amp; l2 != <span class="literal">null</span>){
+            <span class="keyword">if</span>(l1.val &lt;= l2.val){
+                dummy.<span class="keyword">next</span> = l1;
+                l1 = l1.<span class="keyword">next</span>;
+            }<span class="keyword">else</span>{
+                dummy.<span class="keyword">next</span> = l2;
+                l2 = l2.<span class="keyword">next</span>;
+            }
+            dummy = dummy.<span class="keyword">next</span>;
+        }
 
-    <span class="keyword">while</span>(l1 != <span class="keyword">null</span> &amp;&amp; l2 != <span class="keyword">null</span>){
-        <span class="built_in">add</span> = l1.val + l2.val + carry;
-        <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
-            carry = <span class="number">1</span>;
-            <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
+        <span class="keyword">if</span>(l1 == <span class="literal">null</span>){
+            dummy.<span class="keyword">next</span> = l2;
         }<span class="keyword">else</span>{
-            carry = <span class="number">0</span>;
+            dummy.<span class="keyword">next</span> = l1;
         }
 
-        head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
-        head = head.next;
-        l1 = l1.next;
-        l2 = l2.next;
+        <span class="keyword">return</span> res.<span class="keyword">next</span>;
     }
+}
+</code></pre><hr>
+<p>Merge k Sorted Lists<br>Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.</p>
+<ul>
+<li>想法：<ul>
+<li>用PriorityQueue，取queue中最小的那个<br>*记得要改写Comparator</li>
+</ul>
+</li>
+</ul>
+<p>##用法示范:</p>
+<h4 id="PriorityQueue_queue_=_new_PriorityQueue(‘queue的size’,_new_Comparator(){">PriorityQueue<listnode> queue = new PriorityQueue<listnode>(‘queue的size’, new Comparator(){</listnode></listnode></h4><pre><code><span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(ListNode l1, ListNode l2)</span></span>{
+    <span class="keyword">return</span> l1.val - l2.val;
+}
+});
+</code></pre><hr>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span><span class="params">(ListNode[] lists)</span> </span>{
+        <span class="keyword">if</span>(lists.length == <span class="number">0</span>) <span class="keyword">return</span> null;
 
-    <span class="keyword">if</span>(l1 == <span class="keyword">null</span>){
-        <span class="keyword">while</span>(l2 != <span class="keyword">null</span>){
-            <span class="built_in">add</span> = l2.val + carry;
-            <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
-                carry = <span class="number">1</span>;
-                <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
-            }<span class="keyword">else</span>{
-                carry = <span class="number">0</span>;
-            }
-            head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
-            head = head.next;
-            l2 = l2.next;
-        }
-    }<span class="keyword">else</span>{
-         <span class="keyword">while</span>(l1 != <span class="keyword">null</span>){
-            <span class="built_in">add</span> = l1.val + carry;
-            <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
-                carry = <span class="number">1</span>;
-                <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
-            }<span class="keyword">else</span>{
-                carry = <span class="number">0</span>;
-            }
-            head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
-            head = head.next;
-            l1 = l1.next;
-        }
-    }
+        PriorityQueue&lt;ListNode&gt; <span class="built_in">queue</span> = <span class="keyword">new</span> PriorityQueue&lt;ListNode&gt;(lists.length, <span class="keyword">new</span> Comparator&lt;ListNode&gt;(){
+                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(ListNode l1, ListNode l2)</span></span>{
+                    <span class="keyword">return</span> l1.val - l2.val;
+                }
+        });
 
-    <span class="keyword">if</span>(carry == <span class="number">1</span>) head.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);        
-    <span class="keyword">return</span> dummy.next;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lists.length; i++){
+            <span class="keyword">if</span>(lists[i] != null) <span class="built_in">queue</span>.add(lists[i]);
+        }
+
+        ListNode head = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        ListNode p = head;
+
+        <span class="keyword">while</span>(!<span class="built_in">queue</span>.isEmpty()){
+            ListNode temp = <span class="built_in">queue</span>.poll();
+            p.next = temp;
+            <span class="keyword">if</span>(temp.next != null){
+                <span class="built_in">queue</span>.add(temp.next);
+            }
+            p = p.next;
+        }
+    <span class="keyword">return</span> head.next;
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cie4quax70000x31uuopo45f9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cie4quayo000jx31uf3n87icl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -163,19 +174,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/09/03/Reorder-List/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Reorder List
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/03/Rotate-List/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/09/03/Reverse-Linked-List-1-2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Rotate List</div>
+      <div class="article-nav-title">Reverse Linked List 1&amp;2</div>
     </a>
   
 </nav>
