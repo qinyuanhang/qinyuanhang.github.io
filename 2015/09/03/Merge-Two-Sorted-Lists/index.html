@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Wondering Doggy">
 <meta property="og:description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
     public class Solution {">
-<meta property="og:updated_time" content="2015-09-03T21:47:28.000Z">
+<meta property="og:updated_time" content="2015-09-03T21:48:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Merge Sorted Lists">
 <meta name="twitter:description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
@@ -125,10 +125,10 @@
 </ul>
 </li>
 </ul>
-<p>##用法示范:</p>
-<h4 id="PriorityQueue_queue_=_new_PriorityQueue(‘queue的size’,_new_Comparator(){">PriorityQueue<listnode> queue = new PriorityQueue<listnode>(‘queue的size’, new Comparator(){</listnode></listnode></h4><pre><code><span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(ListNode l1, ListNode l2)</span></span>{
-    <span class="keyword">return</span> l1.val - l2.val;
-}
+<h4 id="用法示范:">用法示范:</h4><pre><code><span class="type">PriorityQueue</span>&lt;<span class="type">ListNode</span>&gt; queue = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;<span class="type">ListNode</span>&gt;(<span class="symbol">'queue</span>的size', <span class="keyword">new</span> <span class="type">Comparator</span><span class="literal">()</span>{
+    public <span class="built_in">int</span> compare(<span class="type">ListNode</span> l1, <span class="type">ListNode</span> l2){
+        return l1.<span class="keyword">val</span> - l2.<span class="keyword">val</span>;
+    }
 });
 </code></pre><hr>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
