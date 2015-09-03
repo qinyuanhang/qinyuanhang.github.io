@@ -89,9 +89,8 @@
       
         <p>Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question Solution<br>You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
 <p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8</p>
-<p>想法：<br>    1：类似两个字符串相加那道题；<br>    2：注意每一次指针的移动；<br>    3：判断是否有进位；</p>
-<pre><code><span class="number">3</span>：最后一个一个进位要记得考虑；
-</code></pre><hr>
+<p>想法：<br>    1：类似两个字符串相加那道题；<br>    2：注意每一次指针的移动；<br>    3：判断是否有进位；<br>    4：最后一个一个进位要记得考虑；</p>
+<hr>
 <pre><code><span class="keyword">public</span> class Solution {
     <span class="keyword">public</span> ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         <span class="keyword">if</span>(l1 == <span class="keyword">null</span>) <span class="keyword">return</span> l2;
@@ -192,9 +191,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Given_a_list,_rotate_the_list_to_the_right_by_k_places,_where_k_is_non-negative-">Given a list, rotate the list to the right by k places, where k is non-negative.</h3><p>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2,return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
-<hr>
+        <p>Given a list, rotate the list to the right by k places, where k is non-negative.<br>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2,return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
 <p>思路：<br>    1，找到新的头；<br>    2，找到新的结尾；<br>    3，一前一后接在一起；</p>
+<hr>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
     <span class="keyword">public</span> ListNode rotateRight(ListNode head, <span class="keyword">int</span> k) {
 

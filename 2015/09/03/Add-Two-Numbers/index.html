@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/09/03/Add-Two-Numbers/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
 <meta property="og:description" content="Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question SolutionYou are given two linked lists representing two non-negative numbers. The digits are stored in reverse o">
-<meta property="og:updated_time" content="2015-09-03T19:14:32.000Z">
+<meta property="og:updated_time" content="2015-09-03T19:15:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Add Two Numbers">
 <meta name="twitter:description" content="Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question SolutionYou are given two linked lists representing two non-negative numbers. The digits are stored in reverse o">
@@ -88,9 +88,8 @@
       
         <p>Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question Solution<br>You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
 <p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8</p>
-<p>想法：<br>    1：类似两个字符串相加那道题；<br>    2：注意每一次指针的移动；<br>    3：判断是否有进位；</p>
-<pre><code><span class="number">3</span>：最后一个一个进位要记得考虑；
-</code></pre><hr>
+<p>想法：<br>    1：类似两个字符串相加那道题；<br>    2：注意每一次指针的移动；<br>    3：判断是否有进位；<br>    4：最后一个一个进位要记得考虑；</p>
+<hr>
 <pre><code><span class="keyword">public</span> class Solution {
     <span class="keyword">public</span> ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         <span class="keyword">if</span>(l1 == <span class="keyword">null</span>) <span class="keyword">return</span> l2;
