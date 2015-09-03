@@ -3,21 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Rotate List | Wondering Doggy</title>
+  <title>Linked List Cycle I&amp;II | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given a list, rotate the list to the right by k places, where k is non-negative.For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.
-思路：    1，找到新的头">
+  <meta name="description" content="Linked List CycleGiven a linked list, determine if it has a cycle in it.
+Follow up:Can you solve it without using extra space?
+Linked List Cycle IIGiven a linked list, return the node where the cycle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rotate List">
-<meta property="og:url" content="http://yoursite.com/2015/09/03/Rotate-List/index.html">
+<meta property="og:title" content="Linked List Cycle I&II">
+<meta property="og:url" content="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Given a list, rotate the list to the right by k places, where k is non-negative.For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.
-思路：    1，找到新的头">
-<meta property="og:updated_time" content="2015-09-03T19:16:24.000Z">
+<meta property="og:description" content="Linked List CycleGiven a linked list, determine if it has a cycle in it.
+Follow up:Can you solve it without using extra space?
+Linked List Cycle IIGiven a linked list, return the node where the cycle">
+<meta property="og:updated_time" content="2015-09-03T20:03:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rotate List">
-<meta name="twitter:description" content="Given a list, rotate the list to the right by k places, where k is non-negative.For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.
-思路：    1，找到新的头">
+<meta name="twitter:title" content="Linked List Cycle I&II">
+<meta name="twitter:description" content="Linked List CycleGiven a linked list, determine if it has a cycle in it.
+Follow up:Can you solve it without using extra space?
+Linked List Cycle IIGiven a linked list, return the node where the cycle">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -63,10 +66,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Rotate-List" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Linked-List-Cycle-I-II" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/03/Rotate-List/" class="article-date">
-  <time datetime="2015-09-03T07:57:21.000Z" itemprop="datePublished">2015-09-03</time>
+    <a href="/2015/09/03/Linked-List-Cycle-I-II/" class="article-date">
+  <time datetime="2015-09-03T19:56:16.000Z" itemprop="datePublished">2015-09-03</time>
 </a>
     
   <div class="article-category">
@@ -81,7 +84,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Rotate List
+      Linked List Cycle I&amp;II
     </h1>
   
 
@@ -89,39 +92,62 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given a list, rotate the list to the right by k places, where k is non-negative.<br>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2,return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
-<p>思路：<br>    1，找到新的头；<br>    2，找到新的结尾；<br>    3，一前一后接在一起；</p>
+        <p>Linked List Cycle<br>Given a linked list, determine if it has a cycle in it.</p>
+<p>Follow up:<br>Can you solve it without using extra space?</p>
+<p>Linked List Cycle II<br>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
+<p>Note: Do not modify the linked list.</p>
+<p>Follow up:<br>Can you solve it without using extra space?</p>
+<p>想法：<br>    1：用快慢指针判断是否有将连接的点；（I 解决）<br>    2：如果有连接的点，把快指针放回开头，快慢指针一步一步走，相遇的点就是开始的点</p>
 <hr>
+<p><strong><em>I</em></strong></p>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode rotateRight(ListNode head, <span class="keyword">int</span> k) {
+    <span class="keyword">public</span> <span class="keyword">boolean</span> hasCycle(ListNode head) {
+        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;
 
-        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
+        ListNode fast = head;
+        ListNode slow = head;
 
-        <span class="keyword">int</span> tot = <span class="number">1</span>;
-        ListNode head_1 = head;
-        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            tot++;
-            head_1 = head_1.<span class="keyword">next</span>;
+        <span class="keyword">while</span>(fast.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
+            slow = slow.<span class="keyword">next</span>;
+
+            <span class="keyword">if</span>(fast == slow) <span class="keyword">return</span> <span class="keyword">true</span>;
         }
-        ListNode newEnd = head;
-        k = k % tot;
-        <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> head;     
-        k = tot - k;
+            <span class="keyword">return</span> <span class="keyword">false</span>;
+    }
+}
+</code></pre><hr>
+<p><strong><em>II</em></strong></p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> ListNode detectCycle(ListNode head) {
 
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; i++){
-            newEnd = newEnd.<span class="keyword">next</span>;
+        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
+        ListNode fast = head;
+        ListNode slow = head;
+
+        <span class="keyword">while</span>(fast.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
+            slow = slow.<span class="keyword">next</span>;
+            <span class="keyword">if</span>(fast == slow) <span class="keyword">break</span>;
         }
-        ListNode newHead = newEnd.<span class="keyword">next</span>;
-        head_1.<span class="keyword">next</span> = head;
-        newEnd.<span class="keyword">next</span> = <span class="keyword">null</span>;
-        <span class="keyword">return</span> newHead;
+
+        <span class="keyword">if</span>(fast.<span class="keyword">next</span> == <span class="keyword">null</span> || fast.<span class="keyword">next</span>.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
+
+        fast = head;
+
+        <span class="keyword">while</span>(fast != slow){
+            fast = fast.<span class="keyword">next</span>;
+            slow = slow.<span class="keyword">next</span>;
+        }
+
+        <span class="keyword">return</span> fast;
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cie4n4dtn0007r61u9csvu2se" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cie4n4dtt000fr61uh0ltmr3z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -132,15 +158,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/09/03/Add-Two-Numbers/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Add Two Numbers
-        
-      </div>
-    </a>
   
+    <a href="/2015/09/03/Reorder-List/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Reorder List</div>
+    </a>
   
 </nav>
 
