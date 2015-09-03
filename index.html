@@ -87,27 +87,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Rotate_List">Rotate List</h1><p> 用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以<br>        public class Solution {<br>            public ListNode rotateRight(ListNode head, int k) {</p>
-<pre><code>        <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span><span class="comment">;</span>
+        <h1 id="Rotate_List">Rotate List</h1><p> 用k = k%node的总数，在吧新的头，新的尾，链表的开头和结尾，在整合就可以</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> ListNode rotateRight(ListNode head, <span class="keyword">int</span> k) {
 
-        <span class="built_in">int</span> tot = <span class="number">1</span><span class="comment">;</span>
-        ListNode head_1 = head<span class="comment">;</span>
-        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="literal">null</span>){
-            tot++<span class="comment">;</span>
-            head_1 = head_1.<span class="keyword">next</span><span class="comment">;</span>
-        }
-        ListNode newEnd = head<span class="comment">;</span>
-        k = k % tot<span class="comment">;</span>
-        <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> head<span class="comment">;     </span>
-        k = tot - k<span class="comment">;</span>
+        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
 
-        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">1</span><span class="comment">; i &lt; k; i++){</span>
-            newEnd = newEnd.<span class="keyword">next</span><span class="comment">;</span>
+        <span class="keyword">int</span> tot = <span class="number">1</span>;
+        ListNode head_1 = head;
+        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            tot++;
+            head_1 = head_1.<span class="keyword">next</span>;
         }
-        ListNode newHead = newEnd.<span class="keyword">next</span><span class="comment">;</span>
-        head_1.<span class="keyword">next</span> = head<span class="comment">;</span>
-        newEnd.<span class="keyword">next</span> = <span class="literal">null</span><span class="comment">;</span>
-        <span class="keyword">return</span> newHead<span class="comment">;</span>
+        ListNode newEnd = head;
+        k = k % tot;
+        <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> head;     
+        k = tot - k;
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; i++){
+            newEnd = newEnd.<span class="keyword">next</span>;
+        }
+        ListNode newHead = newEnd.<span class="keyword">next</span>;
+        head_1.<span class="keyword">next</span> = head;
+        newEnd.<span class="keyword">next</span> = <span class="keyword">null</span>;
+        <span class="keyword">return</span> newHead;
     }
 }
 </code></pre>
