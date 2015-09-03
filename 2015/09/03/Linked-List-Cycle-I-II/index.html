@@ -15,7 +15,7 @@ Linked List Cycle IIGiven a linked list, return the node where the cycle">
 <meta property="og:description" content="Linked List CycleGiven a linked list, determine if it has a cycle in it.
 Follow up:Can you solve it without using extra space?
 Linked List Cycle IIGiven a linked list, return the node where the cycle">
-<meta property="og:updated_time" content="2015-09-03T20:03:19.000Z">
+<meta property="og:updated_time" content="2015-09-03T20:05:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linked List Cycle I&II">
 <meta name="twitter:description" content="Linked List CycleGiven a linked list, determine if it has a cycle in it.
@@ -99,7 +99,7 @@ Linked List Cycle IIGiven a linked list, return the node where the cycle">
 <p>Follow up:<br>Can you solve it without using extra space?</p>
 <p>想法：<br>    1：用快慢指针判断是否有将连接的点；（I 解决）<br>    2：如果有连接的点，把快指针放回开头，快慢指针一步一步走，相遇的点就是开始的点</p>
 <hr>
-<p><strong><em>I</em></strong></p>
+<p><strong><em> 1 </em></strong></p>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
     <span class="keyword">public</span> <span class="keyword">boolean</span> hasCycle(ListNode head) {
         <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;
@@ -117,7 +117,7 @@ Linked List Cycle IIGiven a linked list, return the node where the cycle">
     }
 }
 </code></pre><hr>
-<p><strong><em>II</em></strong></p>
+<p><strong><em> 2 </em></strong></p>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
     <span class="keyword">public</span> ListNode detectCycle(ListNode head) {
 
