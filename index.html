@@ -61,6 +61,101 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Remove-Duplicates-from-Sorted-List-1-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" class="article-date">
+  <time datetime="2015-09-03T21:55:51.000Z" itemprop="datePublished">2015-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/">Remove Duplicates from Sorted List 1&amp;2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Remove Duplicates from Sorted List<br>Given a sorted linked list, delete all duplicates such that each element appear only once.</p>
+<p>For example,<br>Given 1-&gt;1-&gt;2, return 1-&gt;2.<br>Given 1-&gt;1-&gt;2-&gt;3-&gt;3, return 1-&gt;2-&gt;3.</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+    <span class="keyword">public</span> ListNode deleteDuplicates(ListNode head) {
+
+    <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;
+
+    ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+    dummy.<span class="keyword">next</span> = head;
+
+    <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="literal">null</span>){
+        <span class="keyword">if</span>(head.<span class="keyword">next</span>.val == head.val){
+            head.<span class="keyword">next</span> = head.<span class="keyword">next</span>.<span class="keyword">next</span>;
+        }<span class="keyword">else</span>{
+            head = head.<span class="keyword">next</span>;
+        }
+    }
+    <span class="keyword">return</span> dummy.<span class="keyword">next</span>;
+    }
+}
+</code></pre><hr>
+<p>Remove Duplicates from Sorted List II<br>Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.</p>
+<p>For example,<br>Given 1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5, return 1-&gt;2-&gt;5.<br>Given 1-&gt;1-&gt;1-&gt;2-&gt;3, return 2-&gt;3.</p>
+<ul>
+<li><p>思路：</p>
+<ul>
+<li>用dummy note</li>
+<li>一次检查后两个的val，因为是sorted的，要有重复只能是相邻</li>
+<li>用一个int来存已经重复的val</li>
+<li>用一个while一直找到下一个不是重复的值为止</li>
+<li><p>要注意检查是不是null，因为检查的是下两个</p>
+<p>public class Solution {<br>  public ListNode deleteDuplicates(ListNode head) {</p>
+<pre><code>ListNode dummy = <span class="keyword">new</span> ListNode(Integer.MAX_VALUE);
+dummy.<span class="keyword">next</span> = head;
+head = dummy;
+
+<span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; head.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
+    <span class="keyword">if</span>(head.<span class="keyword">next</span>.val == head.<span class="keyword">next</span>.<span class="keyword">next</span>.val){
+        <span class="keyword">int</span> same = head.<span class="keyword">next</span>.val;
+        ListNode <span class="keyword">next</span> = head.<span class="keyword">next</span>;
+        <span class="keyword">while</span>(<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; <span class="keyword">next</span>.val == same){
+            <span class="keyword">next</span> = <span class="keyword">next</span>.<span class="keyword">next</span>;
+        }
+        head.<span class="keyword">next</span> = <span class="keyword">next</span>;
+    }<span class="keyword">else</span>{
+        head = head.<span class="keyword">next</span>;
+    }
+}
+</code></pre><p>  return dummy.next;<br>  }<br>}</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="cie4s8jlj000jzg1umjjnm79d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Merge-Two-Sorted-Lists" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/03/Merge-Two-Sorted-Lists/" class="article-date">
@@ -161,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cie4quayo000jx31uf3n87icl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cie4s8jln000nzg1uy9ll7dx3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -265,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cie4quayi000bx31u1ht4pm0j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cie4s8jld000bzg1uigu6vwov" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -358,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cie4quays000nx31ujmghs7s5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cie4s8jlq000rzg1uwurg8c1x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -448,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cie4quayl000fx31utp12t5jn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cie4s8jlg000fzg1uzlbvaq8h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -552,7 +647,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cie4quax70000x31uuopo45f9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cie4s8jjz0000zg1u8o0yjzmq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -622,7 +717,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cie4quay90007x31uswqap8un" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cie4s8jl40007zg1u8lzqtaw9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -643,7 +738,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -652,7 +747,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -670,7 +765,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">6</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -680,6 +775,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/">Remove Duplicates from Sorted List 1&amp;2</a>
+          </li>
         
           <li>
             <a href="/2015/09/03/Merge-Two-Sorted-Lists/">Merge Sorted Lists</a>
@@ -695,10 +794,6 @@
         
           <li>
             <a href="/2015/09/03/Reorder-List/">Reorder List</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/03/Add-Two-Numbers/">Add Two Numbers</a>
           </li>
         
       </ul>
