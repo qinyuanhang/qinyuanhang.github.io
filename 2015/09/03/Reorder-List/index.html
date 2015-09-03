@@ -15,7 +15,7 @@ For example,Given {1,2,3,4}, reorder it t">
 <meta property="og:description" content="Reorder ListGiven a singly linked list L: L0→L1→…→Ln-1→Ln,reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
 You must do this in-place without altering the nodes’ values.
 For example,Given {1,2,3,4}, reorder it t">
-<meta property="og:updated_time" content="2015-09-03T19:53:46.000Z">
+<meta property="og:updated_time" content="2015-09-03T20:25:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reorder List">
 <meta name="twitter:description" content="Reorder ListGiven a singly linked list L: L0→L1→…→Ln-1→Ln,reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
@@ -95,7 +95,9 @@ For example,Given {1,2,3,4}, reorder it t">
         <p>Reorder List<br>Given a singly linked list L: L0→L1→…→Ln-1→Ln,<br>reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
 <p>You must do this in-place without altering the nodes’ values.</p>
 <p>For example,<br>Given {1,2,3,4}, reorder it to {1,4,2,3}.</p>
-<p>想法：<br>    1：找到中点；<br>    2：把中点后面的所有点：<br>        1：存到stack里面<br>        2：反转<br>    3：merge两个链表在一起    </p>
+<p>想法：<br>    1：找到中点；<br>    <em>：把中点后面的所有点：
+        </em>：存到stack里面<br>        <em>：反转
+    </em>：merge两个链表在一起    </p>
 <h2 id="记得吧中点的后面一个设置成null"><strong>记得吧中点的后面一个设置成null</strong></h2><pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
     <span class="keyword">public</span> <span class="keyword">void</span> reorderList(ListNode head) {
 
