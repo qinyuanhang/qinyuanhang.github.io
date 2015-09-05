@@ -61,6 +61,129 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Partition-List" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/04/Partition-List/" class="article-date">
+  <time datetime="2015-09-05T00:16:44.000Z" itemprop="datePublished">2015-09-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/04/Partition-List/">Partition List</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Partition List Total<br>Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.</p>
+<p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
+<p>For example,<br>Given 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2 and x = 3,<br>return 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5.</p>
+<p>想法：</p>
+<pre><code>* 一个简单的问题是用两个<span class="built_in">queue</span>来分别装合适的node，最后在从小接到大（空间不够）
+* 开另外一个<span class="built_in">list</span>，把大的接到这个<span class="built_in">list</span>里面，最后把剩下的两端接起来。
+</code></pre><hr>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> ListNode partition(ListNode head, <span class="keyword">int</span> x) {
+
+        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> head;
+
+        ListNode big = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        ListNode dummy_big = big;
+
+        ListNode dummy_small = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        dummy_small.<span class="keyword">next</span> = head;
+
+        head = dummy_small;
+
+        <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            <span class="keyword">if</span>(head.<span class="keyword">next</span>.val &gt;= x){
+                big.<span class="keyword">next</span> = head.<span class="keyword">next</span>;
+                head.<span class="keyword">next</span> = head.<span class="keyword">next</span>.<span class="keyword">next</span>;
+                big = big.<span class="keyword">next</span>;
+                big.<span class="keyword">next</span> = <span class="keyword">null</span>;<span class="comment">//这一步很重要，第二个list的最后一个一定是null'</span>
+            }<span class="keyword">else</span>{
+                head = head.<span class="keyword">next</span>;
+            }    
+        }
+
+        head.<span class="keyword">next</span> = dummy_big.<span class="keyword">next</span>;
+        <span class="keyword">return</span> dummy_small.<span class="keyword">next</span>;
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cie6bte5c000nnt1u2jjixw0v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Palindrome-Linked-List" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/03/Palindrome-Linked-List/" class="article-date">
+  <time datetime="2015-09-04T00:59:43.000Z" itemprop="datePublished">2015-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/03/Palindrome-Linked-List/">Palindrome Linked List</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Palindrome Linked List<br>Given a singly linked list, determine if it is a palindrome.</p>
+<p>Follow up:<br>Could you do it in O(n) time and O(1) space?</p>
+<p>想法：<br>    <em>简单的算法是用stack重头到尾存一遍，再从头到尾和stack里面pop出来的对比，都相等就可以，空间O（n） 和 时间O（n）
+    </em>复杂的是快慢指针找中点，后半段反过来，前半段和后半段一个一个对。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="cie6bte5g000rnt1udevpeuti" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Remove-Duplicates-from-Sorted-List-1-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" class="article-date">
@@ -145,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="cie4s8jlj000jzg1umjjnm79d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="cie6bte57000jnt1upymyzuds" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -257,7 +380,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cie4s8jln000nzg1uy9ll7dx3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cie6bte5l000vnt1uoqrtfa1n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -361,7 +484,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cie4s8jld000bzg1uigu6vwov" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cie6bte4z000bnt1uydvifls9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -454,7 +577,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cie4s8jlq000rzg1uwurg8c1x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cie6bte5o000znt1u6gs3awv2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -544,7 +667,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cie4s8jlg000fzg1uzlbvaq8h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cie6bte53000fnt1uyorsym3c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -648,7 +771,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cie4s8jjz0000zg1u8o0yjzmq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cie6bte340000nt1upe7y2qi2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -718,7 +841,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cie4s8jl40007zg1u8lzqtaw9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cie6bte4q0007nt1ubpup4qal" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -739,7 +862,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -748,7 +871,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">7</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -766,7 +889,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -778,6 +901,14 @@
       <ul>
         
           <li>
+            <a href="/2015/09/04/Partition-List/">Partition List</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/03/Palindrome-Linked-List/">Palindrome Linked List</a>
+          </li>
+        
+          <li>
             <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/">Remove Duplicates from Sorted List 1&amp;2</a>
           </li>
         
@@ -787,14 +918,6 @@
         
           <li>
             <a href="/2015/09/03/Reverse-Linked-List-1-2/">Reverse Linked List 1&amp;2</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/03/Linked-List-Cycle-I-II/">Linked List Cycle I&amp;II</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/03/Reorder-List/">Reorder List</a>
           </li>
         
       </ul>

@@ -3,33 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Reverse Linked List 1&amp;2 | Wondering Doggy</title>
+  <title>Partition List | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Reverse Linked List 1Reverse a singly linked list.
-public class Solution {
-    public ListNode reverseList(ListNode head) {
-
-    if(head == null) return null;
-    if(head.next == null) return head;">
+  <meta name="description" content="Partition List TotalGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+You should preserve the original relative order of the">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Reverse Linked List 1&2">
-<meta property="og:url" content="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/index.html">
+<meta property="og:title" content="Partition List">
+<meta property="og:url" content="http://yoursite.com/2015/09/04/Partition-List/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Reverse Linked List 1Reverse a singly linked list.
-public class Solution {
-    public ListNode reverseList(ListNode head) {
-
-    if(head == null) return null;
-    if(head.next == null) return head;">
-<meta property="og:updated_time" content="2015-09-03T20:51:25.000Z">
+<meta property="og:description" content="Partition List TotalGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+You should preserve the original relative order of the">
+<meta property="og:updated_time" content="2015-09-05T00:22:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reverse Linked List 1&2">
-<meta name="twitter:description" content="Reverse Linked List 1Reverse a singly linked list.
-public class Solution {
-    public ListNode reverseList(ListNode head) {
-
-    if(head == null) return null;
-    if(head.next == null) return head;">
+<meta name="twitter:title" content="Partition List">
+<meta name="twitter:description" content="Partition List TotalGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+You should preserve the original relative order of the">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -75,10 +63,10 @@ public class Solution {
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Reverse-Linked-List-1-2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Partition-List" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/03/Reverse-Linked-List-1-2/" class="article-date">
-  <time datetime="2015-09-03T20:13:36.000Z" itemprop="datePublished">2015-09-03</time>
+    <a href="/2015/09/04/Partition-List/" class="article-date">
+  <time datetime="2015-09-05T00:16:44.000Z" itemprop="datePublished">2015-09-04</time>
 </a>
     
   <div class="article-category">
@@ -93,7 +81,7 @@ public class Solution {
         
   
     <h1 class="article-title" itemprop="name">
-      Reverse Linked List 1&amp;2
+      Partition List
     </h1>
   
 
@@ -101,73 +89,46 @@ public class Solution {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Reverse Linked List 1<br>Reverse a singly linked list.</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode reverseList(ListNode head) {
-
-    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
-    <span class="keyword">if</span>(head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> head;
-
-    ListNode pre = head, cur = pre.<span class="keyword">next</span>, nex;
-    <span class="comment">//这句话很重要，没有就会死循环：</span>
-    pre.<span class="keyword">next</span> = <span class="keyword">null</span>;
-
-        <span class="keyword">while</span>(cur.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            nex = cur.<span class="keyword">next</span>;
-            cur.<span class="keyword">next</span> = pre;
-            pre = cur;
-            cur = nex;
-        }
-        cur.<span class="keyword">next</span> = pre;
-        <span class="keyword">return</span> cur;
-    }
-}
-</code></pre><hr>
-<p>Reverse Linked List II<br>Reverse a linked list from position m to n. Do it in-place and in one-pass.</p>
-<p>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, m = 2 and n = 4,</p>
-<p>return 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;NULL.</p>
+        <p>Partition List Total<br>Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.</p>
+<p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
+<p>For example,<br>Given 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2 and x = 3,<br>return 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5.</p>
 <p>想法：</p>
-<ul>
-<li>找到m前一个位置</li>
-<li>把他之后的n - m + 1 个node存到stack里面</li>
-<li>再一个一个pop出来，有反转的效果</li>
-</ul>
-<p>Note:<br>Given m, n satisfy the following condition:<br>1 ≤ m ≤ n ≤ length of list.</p>
-<pre><code>    <span class="keyword">public</span> <span class="keyword">class</span> Solution {
-        <span class="keyword">public</span> ListNode reverseBetween(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n) {
+<pre><code>* 一个简单的问题是用两个<span class="built_in">queue</span>来分别装合适的node，最后在从小接到大（空间不够）
+* 开另外一个<span class="built_in">list</span>，把大的接到这个<span class="built_in">list</span>里面，最后把剩下的两端接起来。
+</code></pre><hr>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> ListNode partition(ListNode head, <span class="keyword">int</span> x) {
 
-        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
-        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        dummy.<span class="keyword">next</span> = head;
-        ListNode start = dummy;
-        Stack&lt;ListNode&gt; stack = <span class="keyword">new</span> Stack&lt;ListNode&gt;();
+        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> head;
 
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m - <span class="number">1</span>; i++){
-            start = start.<span class="keyword">next</span>;
+        ListNode big = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        ListNode dummy_big = big;
+
+        ListNode dummy_small = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        dummy_small.<span class="keyword">next</span> = head;
+
+        head = dummy_small;
+
+        <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            <span class="keyword">if</span>(head.<span class="keyword">next</span>.val &gt;= x){
+                big.<span class="keyword">next</span> = head.<span class="keyword">next</span>;
+                head.<span class="keyword">next</span> = head.<span class="keyword">next</span>.<span class="keyword">next</span>;
+                big = big.<span class="keyword">next</span>;
+                big.<span class="keyword">next</span> = <span class="keyword">null</span>;<span class="comment">//这一步很重要，第二个list的最后一个一定是null'</span>
+            }<span class="keyword">else</span>{
+                head = head.<span class="keyword">next</span>;
+            }    
         }
 
-        ListNode toPush = start.<span class="keyword">next</span>;
-
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - m + <span class="number">1</span>; i++){
-            stack.<span class="keyword">push</span>(toPush);
-            toPush = toPush.<span class="keyword">next</span>;
-        }
-
-        <span class="keyword">while</span>(!stack.empty()){
-            ListNode temp = stack.<span class="keyword">pop</span>();
-            start.<span class="keyword">next</span> = temp;
-            start = temp;
-        }
-
-        start.<span class="keyword">next</span> = toPush;
-        <span class="keyword">return</span> dummy.<span class="keyword">next</span>;   
+        head.<span class="keyword">next</span> = dummy_big.<span class="keyword">next</span>;
+        <span class="keyword">return</span> dummy_small.<span class="keyword">next</span>;
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cie6bte4z000bnt1uydvifls9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cie6bte5c000nnt1u2jjixw0v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -178,19 +139,10 @@ public class Solution {
     
 <nav id="article-nav">
   
-    <a href="/2015/09/03/Merge-Two-Sorted-Lists/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Merge Sorted Lists
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/03/Linked-List-Cycle-I-II/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/09/03/Palindrome-Linked-List/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Linked List Cycle I&amp;II</div>
+      <div class="article-nav-title">Palindrome Linked List</div>
     </a>
   
 </nav>
