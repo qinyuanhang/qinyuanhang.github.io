@@ -91,9 +91,11 @@
 <p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
 <p>For example,<br>Given 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2 and x = 3,<br>return 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5.</p>
 <p>想法：</p>
-<pre><code>* 一个简单的问题是用两个<span class="built_in">queue</span>来分别装合适的node，最后在从小接到大（空间不够）
-* 开另外一个<span class="built_in">list</span>，把大的接到这个<span class="built_in">list</span>里面，最后把剩下的两端接起来。
-</code></pre><hr>
+<ul>
+<li>一个简单的问题是用两个queue来分别装合适的node，最后在从小接到大（空间不够）</li>
+<li>开另外一个list，把大的接到这个list里面，最后把剩下的两端接起来。</li>
+</ul>
+<hr>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
     <span class="keyword">public</span> ListNode partition(ListNode head, <span class="keyword">int</span> x) {
 
