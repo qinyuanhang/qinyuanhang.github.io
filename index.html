@@ -168,9 +168,59 @@
       
         <p>Palindrome Linked List<br>Given a singly linked list, determine if it is a palindrome.</p>
 <p>Follow up:<br>Could you do it in O(n) time and O(1) space?</p>
-<p>想法：<br>    <em>简单的算法是用stack重头到尾存一遍，再从头到尾和stack里面pop出来的对比，都相等就可以，空间O（n） 和 时间O（n）
-    </em>复杂的是快慢指针找中点，后半段反过来，前半段和后半段一个一个对。</p>
+<p>想法：</p>
+<ul>
+<li>简单的算法是用stack重头到尾存一遍，再从头到尾和stack里面pop出来的对比，都相等就可以，空间O（n） 和 时间O（n）</li>
+<li>复杂的是快慢指针找中点，后半段反过来，前半段和后半段一个一个对。</li>
+</ul>
+<hr>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> <span class="keyword">boolean</span> isPalindrome(ListNode head) {
 
+        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span>==<span class="keyword">null</span>)
+            <span class="keyword">return</span> <span class="keyword">true</span>;
+
+        <span class="comment">//find list center</span>
+        ListNode fast = head;
+        ListNode slow = head;
+
+        <span class="keyword">while</span>(fast.<span class="keyword">next</span>!=<span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span>.<span class="keyword">next</span>!=<span class="keyword">null</span>){
+            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
+            slow = slow.<span class="keyword">next</span>;
+        }
+
+        ListNode secondHead = slow.<span class="keyword">next</span>;
+        slow.<span class="keyword">next</span> = <span class="keyword">null</span>;
+
+        <span class="comment">//reverse second part of the list</span>
+        ListNode p1 = secondHead;
+        ListNode p2 = p1.<span class="keyword">next</span>;
+
+        <span class="keyword">while</span>(p1!=<span class="keyword">null</span> &amp;&amp; p2!=<span class="keyword">null</span>){
+            ListNode temp = p2.<span class="keyword">next</span>;
+            p2.<span class="keyword">next</span> = p1;
+            p1 = p2;
+            p2 = temp;
+        }
+
+        secondHead.<span class="keyword">next</span> = <span class="keyword">null</span>;
+
+        <span class="comment">//compare two sublists now</span>
+        ListNode p = (p2==<span class="keyword">null</span>?p1:p2);
+        ListNode q = head;
+        <span class="keyword">while</span>(p!=<span class="keyword">null</span>){
+            <span class="keyword">if</span>(p.val != q.val)
+            <span class="keyword">return</span> <span class="keyword">false</span>;
+
+            p = p.<span class="keyword">next</span>;
+            q = q.<span class="keyword">next</span>;
+        }
+
+        <span class="keyword">return</span> <span class="keyword">true</span>;
+
+    }
+}
+</code></pre>
       
     </div>
     <footer class="article-footer">
