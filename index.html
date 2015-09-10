@@ -83,11 +83,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>tags:</p>
+<ul>
+<li>Coding Interview<br>category: Interview<br>lang:java</li>
+</ul>
+<hr>
+<p>/**</p>
+<ul>
+<li>对角线打印二维数组，</li>
+<li>例子： 1 2  3  4</li>
+<li>5 6  7  8</li>
+<li>9 10 11 12</li>
+<li></li>
+<li>打印：</li>
+<li>1</li>
+<li>2 5</li>
+<li>3 6 9</li>
+<li>4 7 10</li>
+<li>8 11</li>
+<li>12<br><em>想法：
+</em>发现打印的规律是：</li>
+<li>给一个坐标 x,y,往他的左下方打印</li>
+<li>打印（x-1,y+1），（x-2,y+2）,….<br>*注意边界条件就行：比0大和小于y的最大值</li>
+<li>*/</li>
+</ul>
+<p>public class PrintDia {<br>public static void main(String[] args) {<br>// TODO Auto-generated method stub<br>int[][] r = {<br>{1,2,3},<br>{4,5,6},<br>{7,8,9},<br>};<br>printDia(r);<br>}</p>
+<p>public static void printDia(int[][] matrix){<br>//first line<br>for(int i = 0; i &lt; matrix[0].length; i++){<br>helpPrint(0,i, matrix);<br>}<br>//last collon<br>for(int j = 1; j &lt; matrix.length;j++){<br>helpPrint(j, matrix[0].length - 1, matrix);<br>}<br>}</p>
+<p>public static void helpPrint(int i, int j, int[][] matrix){<br>int tot = i + j;<br>while(i &gt;= 0 &amp;&amp; j &gt;= 0 &amp;&amp; i &lt; matrix.length){<br>System.out.print(matrix[i][j]);<br>j–;<br>i++;<br>}<br>}</p>
+<p>}</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/10/print-diagnanal-1/" data-id="cieeurorx0007md1umpgdhiqp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/10/print-diagnanal-1/" data-id="cieeusuc10007n61uhi8j2p5y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -217,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/09/strstr/" data-id="cieeuroqx0000md1ub2udddxc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/09/strstr/" data-id="cieeusuam0000n61uj76r8124" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -296,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cieeurosf000pmd1uojobhekx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cieeusuck000pn61udryxzl7a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -392,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="cieeurosi000tmd1uzx53sg5r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="cieeusucn000tn61uvw8ihve0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -488,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="cieeurosa000lmd1urbrgkub5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="cieeusucf000ln61uuj1x0oes" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -600,7 +628,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cieeurosk000xmd1ux0ue9ja0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cieeusucp000xn61ud55c6ipl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -704,7 +732,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cieeuros3000dmd1u2dxbrjos" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cieeusuc9000dn61u0tcyxapl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -797,7 +825,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cieeurosn0011md1u04rrf169" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cieeusucr0011n61ud4zht12e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -887,7 +915,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cieeuros6000hmd1ujp2jlmmn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cieeusucb000hn61u2ptfbr6o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -991,7 +1019,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cieeurosu0015md1u91cg81tm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cieeusucz0015n61uqcvyyo4y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>

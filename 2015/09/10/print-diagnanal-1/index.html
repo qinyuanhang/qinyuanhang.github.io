@@ -5,16 +5,79 @@
   
   <title>print diagnanal | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="really?!! like really?!!">
+  <meta name="description" content="tags:
+
+Coding Interviewcategory: Interviewlang:java
+
+
+/**
+
+对角线打印二维数组，
+例子： 1 2  3  4
+5 6  7  8
+9 10 11 12
+
+打印：
+1
+2 5
+3 6 9
+4 7 10
+8 11
+12想法：
+发现打印的规律是：
+给一个坐标 x,y,往他的左下方打印
+打印（x-1,y+1），（x-2,y+2）,….*注意边界条件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="print diagnanal">
 <meta property="og:url" content="http://yoursite.com/2015/09/10/print-diagnanal-1/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="really?!! like really?!!">
-<meta property="og:updated_time" content="2015-09-10T23:35:09.000Z">
+<meta property="og:description" content="tags:
+
+Coding Interviewcategory: Interviewlang:java
+
+
+/**
+
+对角线打印二维数组，
+例子： 1 2  3  4
+5 6  7  8
+9 10 11 12
+
+打印：
+1
+2 5
+3 6 9
+4 7 10
+8 11
+12想法：
+发现打印的规律是：
+给一个坐标 x,y,往他的左下方打印
+打印（x-1,y+1），（x-2,y+2）,….*注意边界条件">
+<meta property="og:updated_time" content="2015-09-10T23:35:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="print diagnanal">
-<meta name="twitter:description" content="really?!! like really?!!">
+<meta name="twitter:description" content="tags:
+
+Coding Interviewcategory: Interviewlang:java
+
+
+/**
+
+对角线打印二维数组，
+例子： 1 2  3  4
+5 6  7  8
+9 10 11 12
+
+打印：
+1
+2 5
+3 6 9
+4 7 10
+8 11
+12想法：
+发现打印的规律是：
+给一个坐标 x,y,往他的左下方打印
+打印（x-1,y+1），（x-2,y+2）,….*注意边界条件">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -82,11 +145,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>tags:</p>
+<ul>
+<li>Coding Interview<br>category: Interview<br>lang:java</li>
+</ul>
+<hr>
+<p>/**</p>
+<ul>
+<li>对角线打印二维数组，</li>
+<li>例子： 1 2  3  4</li>
+<li>5 6  7  8</li>
+<li>9 10 11 12</li>
+<li></li>
+<li>打印：</li>
+<li>1</li>
+<li>2 5</li>
+<li>3 6 9</li>
+<li>4 7 10</li>
+<li>8 11</li>
+<li>12<br><em>想法：
+</em>发现打印的规律是：</li>
+<li>给一个坐标 x,y,往他的左下方打印</li>
+<li>打印（x-1,y+1），（x-2,y+2）,….<br>*注意边界条件就行：比0大和小于y的最大值</li>
+<li>*/</li>
+</ul>
+<p>public class PrintDia {<br>public static void main(String[] args) {<br>// TODO Auto-generated method stub<br>int[][] r = {<br>{1,2,3},<br>{4,5,6},<br>{7,8,9},<br>};<br>printDia(r);<br>}</p>
+<p>public static void printDia(int[][] matrix){<br>//first line<br>for(int i = 0; i &lt; matrix[0].length; i++){<br>helpPrint(0,i, matrix);<br>}<br>//last collon<br>for(int j = 1; j &lt; matrix.length;j++){<br>helpPrint(j, matrix[0].length - 1, matrix);<br>}<br>}</p>
+<p>public static void helpPrint(int i, int j, int[][] matrix){<br>int tot = i + j;<br>while(i &gt;= 0 &amp;&amp; j &gt;= 0 &amp;&amp; i &lt; matrix.length){<br>System.out.print(matrix[i][j]);<br>j–;<br>i++;<br>}<br>}</p>
+<p>}</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/10/print-diagnanal-1/" data-id="cieeurorx0007md1umpgdhiqp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/10/print-diagnanal-1/" data-id="cieeusuc10007n61uhi8j2p5y" class="article-share-link">Share</a>
       
       
     </footer>
