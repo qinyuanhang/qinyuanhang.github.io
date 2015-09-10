@@ -13,7 +13,7 @@ Returns the index of the first occurrence of needle in haystack, or -1 if needle
 <meta property="og:site_name" content="Wondering Doggy">
 <meta property="og:description" content="Implement strStr() Total Accepted: 67940 Total Submissions: 301586 My Submissions Question SolutionImplement strStr().
 Returns the index of the first occurrence of needle in haystack, or -1 if needle">
-<meta property="og:updated_time" content="2015-09-10T17:33:26.000Z">
+<meta property="og:updated_time" content="2015-09-10T17:34:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="strstr">
 <meta name="twitter:description" content="Implement strStr() Total Accepted: 67940 Total Submissions: 301586 My Submissions Question SolutionImplement strStr().
@@ -97,8 +97,30 @@ Returns the index of the first occurrence of needle in haystack, or -1 if needle
 <li>有一些变态的公司，某pock..不让用substring，就用复杂的方法，N^2的复杂度</li>
 <li>想要高端一点，就用kmp算法</li>
 </ul>
-<p>一般方法：<br>    public class Solution {<br>        public int strStr(String haystack, String needle) {<br>            if(needle.length() == 0) return 0;<br>            for(int i = 0; i &lt; haystack.length(); i ++){<br>                if(i + needle.length() &gt; haystack.length()) break;//容易忘记这个判断，超出范围<br>                if(haystack.charAt(i) == needle.charAt(0)){<br>                    int sp = i;<br>                    for(int j = 0; j &lt; needle.length(); j++){<br>                        if(needle.charAt(j) == haystack.charAt(sp)){<br>                            sp++;<br>                            if(j == needle.length() - 1){<br>                                return i;<br>                            }<br>                        }else{<br>                            break;<br>                        }<br>                    }<br>                }<br>            }<br>                return -1;<br>        }<br>    }</p>
-<hr>
+<p>一般方法：</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>{
+        <span class="keyword">if</span>(needle.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; haystack.length(); i ++){
+            <span class="keyword">if</span>(i + needle.length() &gt; haystack.length()) <span class="keyword">break</span>;<span class="comment">//容易忘记这个判断，超出范围</span>
+            <span class="keyword">if</span>(haystack.charAt(i) == needle.charAt(<span class="number">0</span>)){
+                <span class="keyword">int</span> sp = i;                    
+                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; needle.length(); j++){
+                    <span class="keyword">if</span>(needle.charAt(j) == haystack.charAt(sp)){
+                        sp++;
+                        <span class="keyword">if</span>(j == needle.length() - <span class="number">1</span>){
+                            <span class="keyword">return</span> i;
+                        }
+                    }<span class="keyword">else</span>{
+                        <span class="keyword">break</span>;
+                    }
+                }
+            }
+        }
+            <span class="keyword">return</span> -<span class="number">1</span>;
+    }
+}
+</code></pre><hr>
 <p>KMP 方法：</p>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> KMP {
     <span class="comment">//test cases</span>
