@@ -61,42 +61,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-print-diagnanal" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/10/print-diagnanal/" class="article-date">
-  <time datetime="2015-09-10T23:29:53.000Z" itemprop="datePublished">2015-09-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/10/print-diagnanal/">print diagnanal</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/10/print-diagnanal/" data-id="cieeukwsl0007kl1upin0edou" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-strstr" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/09/strstr/" class="article-date">
@@ -1003,10 +967,76 @@
 
 
   
+    <article id="post-Rotate-List" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/03/Rotate-List/" class="article-date">
+  <time datetime="2015-09-03T07:57:21.000Z" itemprop="datePublished">2015-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/03/Rotate-List/">Rotate List</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a list, rotate the list to the right by k places, where k is non-negative.<br>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2,return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
+<p>思路：<br>    1，找到新的头；<br>    2，找到新的结尾；<br>    3，一前一后接在一起；</p>
+<hr>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> ListNode rotateRight(ListNode head, <span class="keyword">int</span> k) {
+
+        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
+
+        <span class="keyword">int</span> tot = <span class="number">1</span>;
+        ListNode head_1 = head;
+        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            tot++;
+            head_1 = head_1.<span class="keyword">next</span>;
+        }
+        ListNode newEnd = head;
+        k = k % tot;
+        <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> head;     
+        k = tot - k;
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; i++){
+            newEnd = newEnd.<span class="keyword">next</span>;
+        }
+        ListNode newHead = newEnd.<span class="keyword">next</span>;
+        head_1.<span class="keyword">next</span> = head;
+        newEnd.<span class="keyword">next</span> = <span class="keyword">null</span>;
+        <span class="keyword">return</span> newHead;
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cieeukwso0008kl1u8xzwx62s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
   
 </section>
         
@@ -1043,7 +1073,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">11</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">10</span></li></ul>
     </div>
   </div>
 
@@ -1053,10 +1083,6 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2015/09/10/print-diagnanal/">print diagnanal</a>
-          </li>
         
           <li>
             <a href="/2015/09/09/strstr/">strstr</a>
@@ -1072,6 +1098,10 @@
         
           <li>
             <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/">Remove Duplicates from Sorted List 1&amp;2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/03/Merge-Two-Sorted-Lists/">Merge Sorted Lists</a>
           </li>
         
       </ul>
