@@ -61,6 +61,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-print-matrix-diagnanally" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/10/print-matrix-diagnanally/" class="article-date">
+  <time datetime="2015-09-10T23:44:18.000Z" itemprop="datePublished">2015-09-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/10/print-matrix-diagnanally/">print matrix diagnanally</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>tags:</p>
+<ul>
+<li>Coding Interview<br>category: Interview<br>lang:java</li>
+</ul>
+<hr>
+<ul>
+<li>对角线打印二维数组，</li>
+<li>例子： 1 2  3  4</li>
+<li>5 6  7  8</li>
+<li>9 10 11 12</li>
+<li></li>
+<li>打印：</li>
+<li>1</li>
+<li>2 5</li>
+<li>3 6 9</li>
+<li>4 7 10</li>
+<li>8 11</li>
+<li>12<br><em>想法：
+</em>发现打印的规律是：</li>
+<li>给一个坐标 x,y,往他的左下方打印</li>
+<li>打印（x-1,y+1），（x-2,y+2）,….<br>*注意边界条件就行：比0大和小于y的最大值</li>
+</ul>
+<pre><code>public class <span class="type">PrintDia</span> {
+    public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) {
+    // <span class="type">TODO</span> <span class="type">Auto</span>-generated <span class="keyword">method</span> stub        
+    <span class="type">int</span>[][] r = {
+        {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>},
+</code></pre><p>{4,5,6},<br>{7,8,9},<br>};<br>printDia(r);<br>}</p>
+<p>public static void printDia(int[][] matrix){<br>//first line<br>for(int i = 0; i &lt; matrix[0].length; i++){<br>helpPrint(0,i, matrix);<br>}<br>//last collon<br>for(int j = 1; j &lt; matrix.length;j++){<br>helpPrint(j, matrix[0].length - 1, matrix);<br>}<br>}</p>
+<p>public static void helpPrint(int i, int j, int[][] matrix){<br>int tot = i + j;<br>while(i &gt;= 0 &amp;&amp; j &gt;= 0 &amp;&amp; i &lt; matrix.length){<br>System.out.print(matrix[i][j]);<br>j–;<br>i++;<br>}<br>}</p>
+<p>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/10/print-matrix-diagnanally/" data-id="cieev492g0007q31ulbnghzkc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-strstr" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/09/strstr/" class="article-date">
@@ -181,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/09/strstr/" data-id="cieev29ds0000pg1ub4ysi9kd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/09/strstr/" data-id="cieev491m0000q31u9g1qnkfx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -260,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cieev29f9000opg1ulgpcyi0o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cieev492x000pq31uh4ebqvh8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -356,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="cieev29fd000spg1udsem4wn5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="cieev4930000tq31ua2lj9udr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -452,7 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="cieev29f3000kpg1u4tx16dgo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="cieev492r000lq31ukdm9koha" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -564,7 +631,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cieev29ff000wpg1u4mwtcf55" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cieev4932000xq31uy93ctr8c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -668,7 +735,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cieev29ex000cpg1ucv7j4u8n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cieev492m000dq31uleoti00o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -761,7 +828,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cieev29fh0010pg1uc9bgaoxn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cieev49340011q31ul3kghs2i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -851,7 +918,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cieev29f0000gpg1u6kaoo848" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cieev492o000hq31u7urev0i9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -955,7 +1022,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cieev29fk0014pg1u25gre6uv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cieev493a0015q31ui4licbt9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -967,76 +1034,10 @@
 
 
   
-    <article id="post-Rotate-List" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/03/Rotate-List/" class="article-date">
-  <time datetime="2015-09-03T07:57:21.000Z" itemprop="datePublished">2015-09-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Rotate-List/">Rotate List</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a list, rotate the list to the right by k places, where k is non-negative.<br>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2,return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
-<p>思路：<br>    1，找到新的头；<br>    2，找到新的结尾；<br>    3，一前一后接在一起；</p>
-<hr>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode rotateRight(ListNode head, <span class="keyword">int</span> k) {
-
-        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
-
-        <span class="keyword">int</span> tot = <span class="number">1</span>;
-        ListNode head_1 = head;
-        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            tot++;
-            head_1 = head_1.<span class="keyword">next</span>;
-        }
-        ListNode newEnd = head;
-        k = k % tot;
-        <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> head;     
-        k = tot - k;
-
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; i++){
-            newEnd = newEnd.<span class="keyword">next</span>;
-        }
-        ListNode newHead = newEnd.<span class="keyword">next</span>;
-        head_1.<span class="keyword">next</span> = head;
-        newEnd.<span class="keyword">next</span> = <span class="keyword">null</span>;
-        <span class="keyword">return</span> newHead;
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cieev29eu0007pg1uedcmetkm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </section>
         
@@ -1073,7 +1074,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -1083,6 +1084,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/10/print-matrix-diagnanally/">print matrix diagnanally</a>
+          </li>
         
           <li>
             <a href="/2015/09/09/strstr/">strstr</a>
@@ -1098,10 +1103,6 @@
         
           <li>
             <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/">Remove Duplicates from Sorted List 1&amp;2</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/03/Merge-Two-Sorted-Lists/">Merge Sorted Lists</a>
           </li>
         
       </ul>
