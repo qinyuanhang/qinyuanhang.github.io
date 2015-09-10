@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Partition List | Wondering Doggy</title>
+  <title>print diagnanal | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Partition List TotalGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
-You should preserve the original relative order of the">
+  <meta name="description" content="really?!! like really?!!">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Partition List">
-<meta property="og:url" content="http://yoursite.com/2015/09/04/Partition-List/index.html">
+<meta property="og:title" content="print diagnanal">
+<meta property="og:url" content="http://yoursite.com/2015/09/10/print-diagnanal/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Partition List TotalGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
-You should preserve the original relative order of the">
-<meta property="og:updated_time" content="2015-09-05T00:23:14.000Z">
+<meta property="og:description" content="really?!! like really?!!">
+<meta property="og:updated_time" content="2015-09-10T23:29:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Partition List">
-<meta name="twitter:description" content="Partition List TotalGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
-You should preserve the original relative order of the">
+<meta name="twitter:title" content="print diagnanal">
+<meta name="twitter:description" content="really?!! like really?!!">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -63,16 +60,12 @@ You should preserve the original relative order of the">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Partition-List" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-print-diagnanal" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/04/Partition-List/" class="article-date">
-  <time datetime="2015-09-05T00:16:44.000Z" itemprop="datePublished">2015-09-04</time>
+    <a href="/2015/09/10/print-diagnanal/" class="article-date">
+  <time datetime="2015-09-10T23:29:53.000Z" itemprop="datePublished">2015-09-10</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -81,7 +74,7 @@ You should preserve the original relative order of the">
         
   
     <h1 class="article-title" itemprop="name">
-      Partition List
+      print diagnanal
     </h1>
   
 
@@ -89,71 +82,23 @@ You should preserve the original relative order of the">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Partition List Total<br>Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.</p>
-<p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
-<p>For example,<br>Given 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2 and x = 3,<br>return 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5.</p>
-<p>想法：</p>
-<ul>
-<li>一个简单的问题是用两个queue来分别装合适的node，最后在从小接到大（空间不够）</li>
-<li>开另外一个list，把大的接到这个list里面，最后把剩下的两端接起来。</li>
-</ul>
-<hr>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode partition(ListNode head, <span class="keyword">int</span> x) {
-
-        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> head;
-
-        ListNode big = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        ListNode dummy_big = big;
-
-        ListNode dummy_small = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        dummy_small.<span class="keyword">next</span> = head;
-
-        head = dummy_small;
-
-        <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            <span class="keyword">if</span>(head.<span class="keyword">next</span>.val &gt;= x){
-                big.<span class="keyword">next</span> = head.<span class="keyword">next</span>;
-                head.<span class="keyword">next</span> = head.<span class="keyword">next</span>.<span class="keyword">next</span>;
-                big = big.<span class="keyword">next</span>;
-                big.<span class="keyword">next</span> = <span class="keyword">null</span>;<span class="comment">//这一步很重要，第二个list的最后一个一定是null'</span>
-            }<span class="keyword">else</span>{
-                head = head.<span class="keyword">next</span>;
-            }    
-        }
-
-        head.<span class="keyword">next</span> = dummy_big.<span class="keyword">next</span>;
-        <span class="keyword">return</span> dummy_small.<span class="keyword">next</span>;
-    }
-}
-</code></pre>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cieeukwt4000pkl1uh10l8p91" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/10/print-diagnanal/" data-id="cieeukwsl0007kl1upin0edou" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2015/09/09/strstr/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          strstr
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/03/Palindrome-Linked-List/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/09/09/strstr/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Palindrome Linked List</div>
+      <div class="article-nav-title">strstr</div>
     </a>
   
 </nav>
