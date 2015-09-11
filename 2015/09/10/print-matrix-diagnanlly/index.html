@@ -3,30 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Palindrome Linked List | Wondering Doggy</title>
+  <title>print matrix diagnanlly | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Palindrome Linked ListGiven a singly linked list, determine if it is a palindrome.
-Follow up:Could you do it in O(n) time and O(1) space?
-想法：
+  <meta name="description" content="对角线打印二维数组，  例子： 1 2  3  4           5 6  7  8           9 10 11 12
+  打印：  1  2 5  3 6 9  4 7 10  8 11  12 
+public class PrintDia {
 
-简单的算法是用stack重头到尾存一遍，再从头到尾和stack里面pop出来的对比，都相等就可以，空间O（n） 和">
+    public static void main(String[] args) {
+    // TODO Auto-genera">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Palindrome Linked List">
-<meta property="og:url" content="http://yoursite.com/2015/09/03/Palindrome-Linked-List/index.html">
+<meta property="og:title" content="print matrix diagnanlly">
+<meta property="og:url" content="http://yoursite.com/2015/09/10/print-matrix-diagnanlly/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Palindrome Linked ListGiven a singly linked list, determine if it is a palindrome.
-Follow up:Could you do it in O(n) time and O(1) space?
-想法：
+<meta property="og:description" content="对角线打印二维数组，  例子： 1 2  3  4           5 6  7  8           9 10 11 12
+  打印：  1  2 5  3 6 9  4 7 10  8 11  12 
+public class PrintDia {
 
-简单的算法是用stack重头到尾存一遍，再从头到尾和stack里面pop出来的对比，都相等就可以，空间O（n） 和">
-<meta property="og:updated_time" content="2015-09-05T00:27:25.000Z">
+    public static void main(String[] args) {
+    // TODO Auto-genera">
+<meta property="og:updated_time" content="2015-09-11T00:03:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Palindrome Linked List">
-<meta name="twitter:description" content="Palindrome Linked ListGiven a singly linked list, determine if it is a palindrome.
-Follow up:Could you do it in O(n) time and O(1) space?
-想法：
+<meta name="twitter:title" content="print matrix diagnanlly">
+<meta name="twitter:description" content="对角线打印二维数组，  例子： 1 2  3  4           5 6  7  8           9 10 11 12
+  打印：  1  2 5  3 6 9  4 7 10  8 11  12 
+public class PrintDia {
 
-简单的算法是用stack重头到尾存一遍，再从头到尾和stack里面pop出来的对比，都相等就可以，空间O（n） 和">
+    public static void main(String[] args) {
+    // TODO Auto-genera">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -72,10 +75,10 @@ Follow up:Could you do it in O(n) time and O(1) space?
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Palindrome-Linked-List" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-print-matrix-diagnanlly" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/03/Palindrome-Linked-List/" class="article-date">
-  <time datetime="2015-09-04T00:59:43.000Z" itemprop="datePublished">2015-09-03</time>
+    <a href="/2015/09/10/print-matrix-diagnanlly/" class="article-date">
+  <time datetime="2015-09-11T00:00:44.000Z" itemprop="datePublished">2015-09-10</time>
 </a>
     
   <div class="article-category">
@@ -90,7 +93,7 @@ Follow up:Could you do it in O(n) time and O(1) space?
         
   
     <h1 class="article-title" itemprop="name">
-      Palindrome Linked List
+      print matrix diagnanlly
     </h1>
   
 
@@ -98,68 +101,48 @@ Follow up:Could you do it in O(n) time and O(1) space?
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Palindrome Linked List<br>Given a singly linked list, determine if it is a palindrome.</p>
-<p>Follow up:<br>Could you do it in O(n) time and O(1) space?</p>
-<p>想法：</p>
-<ul>
-<li>简单的算法是用stack重头到尾存一遍，再从头到尾和stack里面pop出来的对比，都相等就可以，空间O（n） 和 时间O（n）</li>
-<li>复杂的是快慢指针找中点，后半段反过来，前半段和后半段一个一个对。</li>
-</ul>
-<hr>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> <span class="keyword">boolean</span> isPalindrome(ListNode head) {
+        <p>  对角线打印二维数组，<br>  例子： 1 2  3  4<br>           5 6  7  8<br>           9 10 11 12</p>
+<p>  打印：<br>  1<br>  2 5<br>  3 6 9<br>  4 7 10<br>  8 11<br>  12 </p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> PrintDia {
 
-        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span>==<span class="keyword">null</span>)
-            <span class="keyword">return</span> <span class="keyword">true</span>;
-
-        <span class="comment">//find list center</span>
-        ListNode fast = head;
-        ListNode slow = head;
-
-        <span class="keyword">while</span>(fast.<span class="keyword">next</span>!=<span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span>.<span class="keyword">next</span>!=<span class="keyword">null</span>){
-            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
-            slow = slow.<span class="keyword">next</span>;
-        }
-
-        ListNode secondHead = slow.<span class="keyword">next</span>;
-        slow.<span class="keyword">next</span> = <span class="keyword">null</span>;
-
-        <span class="comment">//reverse second part of the list</span>
-        ListNode p1 = secondHead;
-        ListNode p2 = p1.<span class="keyword">next</span>;
-
-        <span class="keyword">while</span>(p1!=<span class="keyword">null</span> &amp;&amp; p2!=<span class="keyword">null</span>){
-            ListNode temp = p2.<span class="keyword">next</span>;
-            p2.<span class="keyword">next</span> = p1;
-            p1 = p2;
-            p2 = temp;
-        }
-
-        secondHead.<span class="keyword">next</span> = <span class="keyword">null</span>;
-
-        <span class="comment">//compare two sublists now</span>
-        ListNode p = (p2==<span class="keyword">null</span>?p1:p2);
-        ListNode q = head;
-        <span class="keyword">while</span>(p!=<span class="keyword">null</span>){
-            <span class="keyword">if</span>(p.val != q.val)
-            <span class="keyword">return</span> <span class="keyword">false</span>;
-
-            p = p.<span class="keyword">next</span>;
-            q = q.<span class="keyword">next</span>;
-        }
-
-        <span class="keyword">return</span> <span class="keyword">true</span>;
-
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+    <span class="comment">// TODO Auto-generated method stub        </span>
+        <span class="keyword">int</span>[][] r = {
+                {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>},
+                {<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>},
+                {<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>},
+                        };
+        printDia(r);
     }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDia</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span></span>{
+    <span class="comment">//first line</span>
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix[<span class="number">0</span>].length; i++){
+            helpPrint(<span class="number">0</span>,i, matrix);
+        }
+    <span class="comment">//last collon</span>
+        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; matrix.length;j++){
+            helpPrint(j, matrix[<span class="number">0</span>].length - <span class="number">1</span>, matrix);
+        }        
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">helpPrint</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span>[][] matrix)</span></span>{
+        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; i &lt; matrix.length){
+            System.out.print(matrix[i][j]);
+            j--;
+            i++;
+        }        
+    }
+
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="cieevrjvy000wvr1umxc7qi5r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/10/print-matrix-diagnanlly/" data-id="cieevrjve0007vr1um1bdepw7" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li></ul>
 
     </footer>
   </div>
@@ -167,19 +150,10 @@ Follow up:Could you do it in O(n) time and O(1) space?
     
 <nav id="article-nav">
   
-    <a href="/2015/09/04/Partition-List/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Partition List
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/09/09/strstr/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Remove Duplicates from Sorted List 1&amp;2</div>
+      <div class="article-nav-title">strstr</div>
     </a>
   
 </nav>
