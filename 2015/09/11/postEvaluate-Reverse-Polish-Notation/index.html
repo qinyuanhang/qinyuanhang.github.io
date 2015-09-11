@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Add Two Numbers | Wondering Doggy</title>
+  <title>postEvaluate Reverse Polish Notation | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question SolutionYou are given two linked lists representing two non-negative numbers. The digits are stored in reverse o">
+  <meta name="description" content="Evaluate Reverse Polish NotationEvaluate the value of an arithmetic expression in Reverse Polish Notation.Valid operators are +, -, *, /. Each operand may be an integer or another expression.
+Some exa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Add Two Numbers">
-<meta property="og:url" content="http://yoursite.com/2015/09/03/Add-Two-Numbers/index.html">
+<meta property="og:title" content="postEvaluate Reverse Polish Notation">
+<meta property="og:url" content="http://yoursite.com/2015/09/11/postEvaluate-Reverse-Polish-Notation/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question SolutionYou are given two linked lists representing two non-negative numbers. The digits are stored in reverse o">
-<meta property="og:updated_time" content="2015-09-03T19:16:11.000Z">
+<meta property="og:description" content="Evaluate Reverse Polish NotationEvaluate the value of an arithmetic expression in Reverse Polish Notation.Valid operators are +, -, *, /. Each operand may be an integer or another expression.
+Some exa">
+<meta property="og:updated_time" content="2015-09-11T20:41:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Add Two Numbers">
-<meta name="twitter:description" content="Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question SolutionYou are given two linked lists representing two non-negative numbers. The digits are stored in reverse o">
+<meta name="twitter:title" content="postEvaluate Reverse Polish Notation">
+<meta name="twitter:description" content="Evaluate Reverse Polish NotationEvaluate the value of an arithmetic expression in Reverse Polish Notation.Valid operators are +, -, *, /. Each operand may be an integer or another expression.
+Some exa">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -60,10 +63,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Add-Two-Numbers" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-postEvaluate-Reverse-Polish-Notation" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/03/Add-Two-Numbers/" class="article-date">
-  <time datetime="2015-09-03T19:08:52.000Z" itemprop="datePublished">2015-09-03</time>
+    <a href="/2015/09/11/postEvaluate-Reverse-Polish-Notation/" class="article-date">
+  <time datetime="2015-09-11T20:32:41.000Z" itemprop="datePublished">2015-09-11</time>
 </a>
     
   <div class="article-category">
@@ -78,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Add Two Numbers
+      postEvaluate Reverse Polish Notation
     </h1>
   
 
@@ -86,76 +89,53 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question Solution<br>You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
-<p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8</p>
-<p>想法：<br>    1：类似两个字符串相加那道题；<br>    2：注意每一次指针的移动；<br>    3：判断是否有进位；<br>    4：最后一个一个进位要记得考虑；</p>
-<hr>
-<pre><code><span class="keyword">public</span> class Solution {
-    <span class="keyword">public</span> ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        <span class="keyword">if</span>(l1 == <span class="keyword">null</span>) <span class="keyword">return</span> l2;
-        <span class="keyword">if</span>(l2 == <span class="keyword">null</span>) <span class="keyword">return</span> l1;
+        <p>Evaluate Reverse Polish Notation<br>Evaluate the value of an arithmetic expression in Reverse Polish Notation.<br>Valid operators are +, -, *, /. Each operand may be an integer or another expression.</p>
+<p>Some examples:<br>[“2”, “1”, “+”, “3”, “<em>“] -&gt; ((2 + 1) </em> 3) -&gt; 9<br>[“4”, “13”, “5”, “/“, “+”] -&gt; (4 + (13 / 5)) -&gt; 6</p>
+<p>想法：<br><em>用栈的方法从前到后
+</em>注意string 和 int时间的转换</p>
+<pre><code>public class <span class="type">Solution</span> {
+    public <span class="type">int</span> evalRPN(<span class="type">String</span>[] tokens) {
+        <span class="keyword">if</span>(tokens.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;
 
+        <span class="type">Stack</span>&lt;<span class="type">String</span>&gt; stack = new <span class="type">Stack</span>&lt;<span class="type">String</span>&gt;();
 
-        <span class="built_in">int</span> carry = <span class="number">0</span>, <span class="built_in">add</span> = <span class="number">0</span>;
-        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        ListNode head = dummy;
+        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; tokens.length; i++){
 
-
-    <span class="keyword">while</span>(l1 != <span class="keyword">null</span> &amp;&amp; l2 != <span class="keyword">null</span>){
-        <span class="built_in">add</span> = l1.val + l2.val + carry;
-        <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
-            carry = <span class="number">1</span>;
-            <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
-        }<span class="keyword">else</span>{
-            carry = <span class="number">0</span>;
-        }
-
-        head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
-        head = head.next;
-        l1 = l1.next;
-        l2 = l2.next;
-    }
-
-    <span class="keyword">if</span>(l1 == <span class="keyword">null</span>){
-        <span class="keyword">while</span>(l2 != <span class="keyword">null</span>){
-            <span class="built_in">add</span> = l2.val + carry;
-            <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
-                carry = <span class="number">1</span>;
-                <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
+            <span class="keyword">if</span>(!tokens[i].equals(<span class="string">"+"</span>) &amp;&amp; !tokens[i].equals(<span class="string">"-"</span>) &amp;&amp; !tokens[i].equals(<span class="string">"*"</span>) &amp;&amp; !tokens[i].equals(<span class="string">"/"</span>) ){
+                    stack.push(tokens[i]);
             }<span class="keyword">else</span>{
-                carry = <span class="number">0</span>;
-            }
-            head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
-            head = head.next;
-            l2 = l2.next;
-        }
-    }<span class="keyword">else</span>{
-         <span class="keyword">while</span>(l1 != <span class="keyword">null</span>){
-            <span class="built_in">add</span> = l1.val + carry;
-            <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
-                carry = <span class="number">1</span>;
-                <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
-            }<span class="keyword">else</span>{
-                carry = <span class="number">0</span>;
-            }
-            head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
-            head = head.next;
-            l1 = l1.next;
-        }
-    }
+                <span class="type">int</span> post = <span class="type">Integer</span>.parseInt(stack.pop());
+                <span class="type">int</span> pre = <span class="type">Integer</span>.parseInt(stack.pop());
+                <span class="type">int</span> <span class="literal">result</span> = <span class="number">0</span>;
+            switch(tokens[i]){
 
-    <span class="keyword">if</span>(carry == <span class="number">1</span>) head.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);        
-    <span class="keyword">return</span> dummy.next;
+                <span class="keyword">case</span> <span class="string">"+"</span>: <span class="literal">result</span> = post+pre;
+                        <span class="keyword">break</span>;
+
+                <span class="keyword">case</span> <span class="string">"-"</span>: <span class="literal">result</span> = pre-post;
+                        <span class="keyword">break</span>;
+
+                <span class="keyword">case</span> <span class="string">"*"</span>: <span class="literal">result</span> = post*pre;
+                        <span class="keyword">break</span>;             
+
+                <span class="keyword">case</span> <span class="string">"/"</span>: <span class="literal">result</span> = pre/post;
+                        <span class="keyword">break</span>;             
+            }
+
+            stack.push(<span class="literal">result</span>+<span class="string">""</span>);
+            }
+        }    
+        <span class="keyword">return</span> <span class="type">Integer</span>.parseInt(stack.pop());
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cieg3zrvm001egj1ua0ylfgoe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/11/postEvaluate-Reverse-Polish-Notation/" data-id="cieg3zruq000cgj1uj0k9vcyp" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 
     </footer>
   </div>
@@ -163,19 +143,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/09/03/Reorder-List/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Reorder List
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/03/Rotate-List/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/09/10/print-matrix-diagnanlly/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Rotate List</div>
+      <div class="article-nav-title">print matrix diagnanlly</div>
     </a>
   
 </nav>

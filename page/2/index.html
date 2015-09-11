@@ -61,6 +61,110 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Add-Two-Numbers" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/03/Add-Two-Numbers/" class="article-date">
+  <time datetime="2015-09-03T19:08:52.000Z" itemprop="datePublished">2015-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/03/Add-Two-Numbers/">Add Two Numbers</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question Solution<br>You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8</p>
+<p>想法：<br>    1：类似两个字符串相加那道题；<br>    2：注意每一次指针的移动；<br>    3：判断是否有进位；<br>    4：最后一个一个进位要记得考虑；</p>
+<hr>
+<pre><code><span class="keyword">public</span> class Solution {
+    <span class="keyword">public</span> ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        <span class="keyword">if</span>(l1 == <span class="keyword">null</span>) <span class="keyword">return</span> l2;
+        <span class="keyword">if</span>(l2 == <span class="keyword">null</span>) <span class="keyword">return</span> l1;
+
+
+        <span class="built_in">int</span> carry = <span class="number">0</span>, <span class="built_in">add</span> = <span class="number">0</span>;
+        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        ListNode head = dummy;
+
+
+    <span class="keyword">while</span>(l1 != <span class="keyword">null</span> &amp;&amp; l2 != <span class="keyword">null</span>){
+        <span class="built_in">add</span> = l1.val + l2.val + carry;
+        <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
+            carry = <span class="number">1</span>;
+            <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
+        }<span class="keyword">else</span>{
+            carry = <span class="number">0</span>;
+        }
+
+        head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
+        head = head.next;
+        l1 = l1.next;
+        l2 = l2.next;
+    }
+
+    <span class="keyword">if</span>(l1 == <span class="keyword">null</span>){
+        <span class="keyword">while</span>(l2 != <span class="keyword">null</span>){
+            <span class="built_in">add</span> = l2.val + carry;
+            <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
+                carry = <span class="number">1</span>;
+                <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
+            }<span class="keyword">else</span>{
+                carry = <span class="number">0</span>;
+            }
+            head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
+            head = head.next;
+            l2 = l2.next;
+        }
+    }<span class="keyword">else</span>{
+         <span class="keyword">while</span>(l1 != <span class="keyword">null</span>){
+            <span class="built_in">add</span> = l1.val + carry;
+            <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
+                carry = <span class="number">1</span>;
+                <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
+            }<span class="keyword">else</span>{
+                carry = <span class="number">0</span>;
+            }
+            head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
+            head = head.next;
+            l1 = l1.next;
+        }
+    }
+
+    <span class="keyword">if</span>(carry == <span class="number">1</span>) head.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);        
+    <span class="keyword">return</span> dummy.next;
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cieg3zrvm001egj1ua0ylfgoe" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Rotate-List" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/03/Rotate-List/" class="article-date">
@@ -119,7 +223,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cieg3ucca000cfq1ukk5y39cc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cieg3zrus000hgj1ur1sx9hx4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -144,7 +248,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -153,7 +257,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -162,7 +266,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LinkedList/" style="font-size: 15px;">LinkedList</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/java/" style="font-size: 20px;">java</a>
+      <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LinkedList/" style="font-size: 15px;">LinkedList</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/java/" style="font-size: 20px;">java</a>
     </div>
   </div>
 
@@ -171,7 +275,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">11</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -181,6 +285,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/11/postEvaluate-Reverse-Polish-Notation/">postEvaluate Reverse Polish Notation</a>
+          </li>
         
           <li>
             <a href="/2015/09/10/print-matrix-diagnanlly/">print matrix diagnanlly</a>
@@ -196,10 +304,6 @@
         
           <li>
             <a href="/2015/09/03/Palindrome-Linked-List/">Palindrome Linked List</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/">Remove Duplicates from Sorted List 1&amp;2</a>
           </li>
         
       </ul>
