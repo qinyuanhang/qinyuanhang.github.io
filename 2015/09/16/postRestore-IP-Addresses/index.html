@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Partition List | Wondering Doggy</title>
+  <title>postRestore IP Addresses | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Partition List TotalGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
-You should preserve the original relative order of the">
+  <meta name="description" content="Restore IP Addresses My Submissions Question SolutionDifficulty: MediumGiven a string containing only digits, restore it by returning all possible valid IP address combinations.
+For example:Given “255">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Partition List">
-<meta property="og:url" content="http://yoursite.com/2015/09/04/Partition-List/index.html">
+<meta property="og:title" content="postRestore IP Addresses">
+<meta property="og:url" content="http://yoursite.com/2015/09/16/postRestore-IP-Addresses/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Partition List TotalGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
-You should preserve the original relative order of the">
-<meta property="og:updated_time" content="2015-09-05T00:23:14.000Z">
+<meta property="og:description" content="Restore IP Addresses My Submissions Question SolutionDifficulty: MediumGiven a string containing only digits, restore it by returning all possible valid IP address combinations.
+For example:Given “255">
+<meta property="og:updated_time" content="2015-09-16T21:32:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Partition List">
-<meta name="twitter:description" content="Partition List TotalGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
-You should preserve the original relative order of the">
+<meta name="twitter:title" content="postRestore IP Addresses">
+<meta name="twitter:description" content="Restore IP Addresses My Submissions Question SolutionDifficulty: MediumGiven a string containing only digits, restore it by returning all possible valid IP address combinations.
+For example:Given “255">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -63,10 +63,10 @@ You should preserve the original relative order of the">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Partition-List" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-postRestore-IP-Addresses" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/04/Partition-List/" class="article-date">
-  <time datetime="2015-09-05T00:16:44.000Z" itemprop="datePublished">2015-09-04</time>
+    <a href="/2015/09/16/postRestore-IP-Addresses/" class="article-date">
+  <time datetime="2015-09-16T20:24:10.000Z" itemprop="datePublished">2015-09-16</time>
 </a>
     
   <div class="article-category">
@@ -81,7 +81,7 @@ You should preserve the original relative order of the">
         
   
     <h1 class="article-title" itemprop="name">
-      Partition List
+      postRestore IP Addresses
     </h1>
   
 
@@ -89,51 +89,62 @@ You should preserve the original relative order of the">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Partition List Total<br>Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.</p>
-<p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
-<p>For example,<br>Given 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2 and x = 3,<br>return 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5.</p>
-<p>想法：</p>
-<ul>
-<li>一个简单的问题是用两个queue来分别装合适的node，最后在从小接到大（空间不够）</li>
-<li>开另外一个list，把大的接到这个list里面，最后把剩下的两端接起来。</li>
-</ul>
-<hr>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode partition(ListNode head, <span class="keyword">int</span> x) {
+        <p>Restore IP Addresses My Submissions Question Solution<br>Difficulty: Medium<br>Given a string containing only digits, restore it by returning all possible valid IP address combinations.</p>
+<p>For example:<br>Given “25525511135”,</p>
+<p>return [“255.255.11.135”, “255.255.111.35”]. (Order does not matter)<br>想法：<br>要自己的help方法，每次取一个数字，两个数字和三个数字，<br>记得判断：不是0开始的，并且小于255的数字</p>
+<h2 id="当有四个数段并且原来的字符串也分割完了就是一个合法的ip">当有四个数段并且原来的字符串也分割完了就是一个合法的ip</h2><pre><code><span class="keyword">public</span> class Solution {
+    <span class="keyword">public</span> List&lt;<span class="keyword">String</span>&gt; restoreIpAddresses(<span class="keyword">String</span> s) {
+        ArrayList&lt;<span class="keyword">String</span>&gt; res = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;();
+         ArrayList&lt;<span class="keyword">String</span>&gt; temp = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;();
+        <span class="comment">//不可能成为ip的情况</span>
+        <span class="keyword">if</span>(s.length() &lt; <span class="number">4</span> || s.length() &gt; <span class="number">12</span>){
+            <span class="keyword">return</span> res;
+        }        
+           help(s,res,temp,<span class="number">0</span>);
+           <span class="keyword">return</span> res;
+    }
 
-        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> head;
-
-        ListNode big = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        ListNode dummy_big = big;
-
-        ListNode dummy_small = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        dummy_small.<span class="keyword">next</span> = head;
-
-        head = dummy_small;
-
-        <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            <span class="keyword">if</span>(head.<span class="keyword">next</span>.val &gt;= x){
-                big.<span class="keyword">next</span> = head.<span class="keyword">next</span>;
-                head.<span class="keyword">next</span> = head.<span class="keyword">next</span>.<span class="keyword">next</span>;
-                big = big.<span class="keyword">next</span>;
-                big.<span class="keyword">next</span> = <span class="keyword">null</span>;<span class="comment">//这一步很重要，第二个list的最后一个一定是null'</span>
-            }<span class="keyword">else</span>{
-                head = head.<span class="keyword">next</span>;
-            }    
+    <span class="keyword">private</span> <span class="keyword">void</span> help(<span class="keyword">String</span> s, ArrayList&lt;<span class="keyword">String</span>&gt; res, ArrayList&lt;<span class="keyword">String</span>&gt; temp, <span class="built_in">int</span> start){
+        <span class="keyword">if</span>(temp.<span class="built_in">size</span>() == <span class="number">4</span>){
+            <span class="comment">//不符合</span>
+            <span class="keyword">if</span>(start != s.length()){
+                <span class="keyword">return</span>;
+            }
+            StringBuffer bur = <span class="keyword">new</span> StringBuffer();
+            <span class="keyword">for</span>(<span class="keyword">String</span> i : temp){
+                bur.<span class="built_in">append</span>(i);
+                bur.<span class="built_in">append</span>(<span class="string">"."</span>);
+            }
+            bur.deleteCharAt(bur.length()-<span class="number">1</span>);
+            res.<span class="built_in">add</span>(bur.toString());
+            <span class="keyword">return</span>;
         }
 
-        head.<span class="keyword">next</span> = dummy_big.<span class="keyword">next</span>;
-        <span class="keyword">return</span> dummy_small.<span class="keyword">next</span>;
+        <span class="keyword">for</span>(<span class="built_in">int</span> i=start; i&lt;s.length() &amp;&amp; i&lt;= start+<span class="number">3</span>; i++){
+            <span class="keyword">String</span> tmp = s.substring(start, i+<span class="number">1</span>);
+            <span class="keyword">if</span>(isvalid(tmp)){
+                temp.<span class="built_in">add</span>(tmp);
+                help(s,res, temp, i+<span class="number">1</span>);
+                temp.remove(temp.<span class="built_in">size</span>()-<span class="number">1</span>);
+            }
+        }
+        }
+
+    <span class="keyword">private</span> <span class="built_in">boolean</span> isvalid(<span class="keyword">String</span> s){
+           <span class="keyword">if</span>(s.charAt(<span class="number">0</span>) == <span class="string">'0'</span>)
+            <span class="keyword">return</span> s.equals(<span class="string">"0"</span>); <span class="comment">// to eliminate cases like "00", "10"</span>
+        <span class="built_in">int</span> digit = Integer.valueOf(s);
+        <span class="keyword">return</span> digit &gt;= <span class="number">0</span> &amp;&amp; digit &lt;= <span class="number">255</span>;
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cienb1mh40013wa1umlbf7ble" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/postRestore-IP-Addresses/" data-id="cienb1mgi000cwa1uzs512bmy" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
 
     </footer>
   </div>
@@ -141,19 +152,10 @@ You should preserve the original relative order of the">
     
 <nav id="article-nav">
   
-    <a href="/2015/09/09/strstr/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          strstr
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/03/Palindrome-Linked-List/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/09/11/postEvaluate-Reverse-Polish-Notation/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Palindrome Linked List</div>
+      <div class="article-nav-title">postEvaluate Reverse Polish Notation</div>
     </a>
   
 </nav>
