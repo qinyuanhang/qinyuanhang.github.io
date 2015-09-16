@@ -61,6 +61,99 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linked-List-Cycle-I-II" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/03/Linked-List-Cycle-I-II/" class="article-date">
+  <time datetime="2015-09-03T19:56:16.000Z" itemprop="datePublished">2015-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/03/Linked-List-Cycle-I-II/">Linked List Cycle I&amp;II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Linked List Cycle<br>Given a linked list, determine if it has a cycle in it.</p>
+<p>Follow up:<br>Can you solve it without using extra space?</p>
+<p>Linked List Cycle II<br>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
+<p>Note: Do not modify the linked list.</p>
+<p>Follow up:<br>Can you solve it without using extra space?</p>
+<p>想法：<br>    1：用快慢指针判断是否有将连接的点；（I 解决）<br>    2：如果有连接的点，把快指针放回开头，快慢指针一步一步走，相遇的点就是开始的点</p>
+<hr>
+<p><strong><em> 1 </em></strong></p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> <span class="keyword">boolean</span> hasCycle(ListNode head) {
+        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;
+
+        ListNode fast = head;
+        ListNode slow = head;
+
+        <span class="keyword">while</span>(fast.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
+            slow = slow.<span class="keyword">next</span>;
+
+            <span class="keyword">if</span>(fast == slow) <span class="keyword">return</span> <span class="keyword">true</span>;
+        }
+            <span class="keyword">return</span> <span class="keyword">false</span>;
+    }
+}
+</code></pre><hr>
+<p><strong><em> 2 </em></strong></p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> ListNode detectCycle(ListNode head) {
+
+        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
+        ListNode fast = head;
+        ListNode slow = head;
+
+        <span class="keyword">while</span>(fast.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
+            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
+            slow = slow.<span class="keyword">next</span>;
+            <span class="keyword">if</span>(fast == slow) <span class="keyword">break</span>;
+        }
+
+        <span class="keyword">if</span>(fast.<span class="keyword">next</span> == <span class="keyword">null</span> || fast.<span class="keyword">next</span>.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
+
+        fast = head;
+
+        <span class="keyword">while</span>(fast != slow){
+            fast = fast.<span class="keyword">next</span>;
+            slow = slow.<span class="keyword">next</span>;
+        }
+
+        <span class="keyword">return</span> fast;
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cienc1ad6001fyc1uq1cj7au4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Reorder-List" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/03/Reorder-List/" class="article-date">
@@ -338,7 +431,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -347,7 +440,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -356,7 +449,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LinkedList/" style="font-size: 16.67px;">LinkedList</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/java/" style="font-size: 20px;">java</a>
+      <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LinkedList/" style="font-size: 16.67px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 10px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/java/" style="font-size: 20px;">java</a>
     </div>
   </div>
 
@@ -365,7 +458,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">14</span></li></ul>
     </div>
   </div>
 
@@ -375,6 +468,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/16/postRotate-Image/">postRotate Image</a>
+          </li>
         
           <li>
             <a href="/2015/09/16/postRestore-IP-Addresses/">postRestore IP Addresses</a>
@@ -390,10 +487,6 @@
         
           <li>
             <a href="/2015/09/09/strstr/">strstr</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/04/Partition-List/">Partition List</a>
           </li>
         
       </ul>
