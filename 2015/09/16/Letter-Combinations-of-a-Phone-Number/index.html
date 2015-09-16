@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Remove Duplicates from Sorted List 1&amp;2 | Wondering Doggy</title>
+  <title>Letter Combinations of a Phone Number | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Remove Duplicates from Sorted ListGiven a sorted linked list, delete all duplicates such that each element appear only once.
-For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;">
+  <meta name="description" content="Letter Combinations of a Phone Number My Submissions Question SolutionGiven a digit string, return all possible letter combinations that the number could represent.
+A mapping of digit to letters (just">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Remove Duplicates from Sorted List 1&2">
-<meta property="og:url" content="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/index.html">
+<meta property="og:title" content="Letter Combinations of a Phone Number">
+<meta property="og:url" content="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Remove Duplicates from Sorted ListGiven a sorted linked list, delete all duplicates such that each element appear only once.
-For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;">
-<meta property="og:updated_time" content="2015-09-16T22:04:28.000Z">
+<meta property="og:description" content="Letter Combinations of a Phone Number My Submissions Question SolutionGiven a digit string, return all possible letter combinations that the number could represent.
+A mapping of digit to letters (just">
+<meta property="og:updated_time" content="2015-09-16T22:30:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Remove Duplicates from Sorted List 1&2">
-<meta name="twitter:description" content="Remove Duplicates from Sorted ListGiven a sorted linked list, delete all duplicates such that each element appear only once.
-For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;">
+<meta name="twitter:title" content="Letter Combinations of a Phone Number">
+<meta name="twitter:description" content="Letter Combinations of a Phone Number My Submissions Question SolutionGiven a digit string, return all possible letter combinations that the number could represent.
+A mapping of digit to letters (just">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -63,10 +63,10 @@ For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&a
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Remove-Duplicates-from-Sorted-List-1-2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Letter-Combinations-of-a-Phone-Number" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" class="article-date">
-  <time datetime="2015-09-03T21:55:51.000Z" itemprop="datePublished">2015-09-03</time>
+    <a href="/2015/09/16/Letter-Combinations-of-a-Phone-Number/" class="article-date">
+  <time datetime="2015-09-16T22:28:25.000Z" itemprop="datePublished">2015-09-16</time>
 </a>
     
   <div class="article-category">
@@ -81,7 +81,7 @@ For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&a
         
   
     <h1 class="article-title" itemprop="name">
-      Remove Duplicates from Sorted List 1&amp;2
+      Letter Combinations of a Phone Number
     </h1>
   
 
@@ -89,68 +89,44 @@ For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&a
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Remove Duplicates from Sorted List<br>Given a sorted linked list, delete all duplicates such that each element appear only once.</p>
-<p>For example,<br>Given 1-&gt;1-&gt;2, return 1-&gt;2.<br>Given 1-&gt;1-&gt;2-&gt;3-&gt;3, return 1-&gt;2-&gt;3.</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
-    <span class="keyword">public</span> ListNode deleteDuplicates(ListNode head) {
+        <p>Letter Combinations of a Phone Number My Submissions Question Solution<br>Given a digit string, return all possible letter combinations that the number could represent.</p>
+<p>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
+<p>Input:Digit string “23”<br>Output: [“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
+<hr>
+<pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{
+    <span class="built_in">String</span>[] chars = {<span class="string">""</span>,<span class="string">""</span>,<span class="string">"abc"</span>,<span class="string">"def"</span>,<span class="string">"ghi"</span>,<span class="string">"jkl"</span>,<span class="string">"mno"</span>,<span class="string">"pqrs"</span>,<span class="string">"tuv"</span>,<span class="string">"wxyz"</span>};
 
-    <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;
-
-    ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-    dummy.<span class="keyword">next</span> = head;
-
-    <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="literal">null</span>){
-        <span class="keyword">if</span>(head.<span class="keyword">next</span>.val == head.val){
-            head.<span class="keyword">next</span> = head.<span class="keyword">next</span>.<span class="keyword">next</span>;
-        }<span class="keyword">else</span>{
-            head = head.<span class="keyword">next</span>;
+    public <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; letterCombinations(<span class="built_in">String</span> digits) {
+        <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; res = <span class="keyword">new</span> ArrayList&lt;<span class="built_in">String</span>&gt;();
+        <span class="keyword">if</span>(digits.length() &lt;= <span class="number">0</span>){
+            <span class="keyword">return</span> res;
         }
+        <span class="built_in">StringBuffer</span> s = <span class="keyword">new</span> <span class="built_in">StringBuffer</span>();
+        help(res, s, digits, <span class="number">0</span>);
+        <span class="keyword">return</span> res;
     }
-    <span class="keyword">return</span> dummy.<span class="keyword">next</span>;
-    }
-}
-</code></pre><hr>
-<p>Remove Duplicates from Sorted List II<br>Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.</p>
-<p>For example,<br>Given 1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5, return 1-&gt;2-&gt;5.<br>Given 1-&gt;1-&gt;1-&gt;2-&gt;3, return 2-&gt;3.</p>
-<ul>
-<li>思路：<ul>
-<li>用dummy note</li>
-<li>一次检查后两个的val，因为是sorted的，要有重复只能是相邻</li>
-<li>用一个int来存已经重复的val</li>
-<li>用一个while一直找到下一个不是重复的值为止</li>
-<li>要注意检查是不是null，因为检查的是下两个</li>
-</ul>
-</li>
-</ul>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode deleteDuplicates(ListNode head) {
-        ListNode dummy = <span class="keyword">new</span> ListNode(Integer.MAX_VALUE);
-        dummy.<span class="keyword">next</span> = head;
-        head = dummy;
 
-        <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; head.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            <span class="keyword">if</span>(head.<span class="keyword">next</span>.val == head.<span class="keyword">next</span>.<span class="keyword">next</span>.val){
-                <span class="keyword">int</span> same = head.<span class="keyword">next</span>.val;
-                ListNode <span class="keyword">next</span> = head.<span class="keyword">next</span>;
-                <span class="keyword">while</span>(<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; <span class="keyword">next</span>.val == same){
-                    <span class="keyword">next</span> = <span class="keyword">next</span>.<span class="keyword">next</span>;
-                }
-                head.<span class="keyword">next</span> = <span class="keyword">next</span>;
-            }<span class="keyword">else</span>{
-                head = head.<span class="keyword">next</span>;
-            }
+    private <span class="keyword">void</span> help(<span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; res, <span class="built_in">StringBuffer</span> s, <span class="built_in">String</span> digits, <span class="built_in">int</span> start){
+        <span class="keyword">if</span>(s.length() == digits.length()){
+            res.add(s.toString());
+            <span class="keyword">return</span>;
         }
-    <span class="keyword">return</span> dummy.<span class="keyword">next</span>;
+        <span class="built_in">int</span> <span class="built_in">num</span> = digits.charAt(start) - <span class="string">'0'</span>;
+        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; chars[<span class="built_in">num</span>].length(); i++){
+            s.append(chars[<span class="built_in">num</span>].charAt(i));
+            help(res, s, digits, start + <span class="number">1</span>);
+            s.deleteCharAt(s.length() - <span class="number">1</span>);
+        }
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="ciend4c8f001e341ubaiyu40l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/" data-id="ciend4c91001y341u17c833ty" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BackTracking/">BackTracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
 
     </footer>
   </div>
@@ -158,19 +134,10 @@ For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&a
     
 <nav id="article-nav">
   
-    <a href="/2015/09/03/Palindrome-Linked-List/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Palindrome Linked List
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/03/Merge-Two-Sorted-Lists/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/09/16/postRotate-Image/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Merge Sorted Lists</div>
+      <div class="article-nav-title">postRotate Image</div>
     </a>
   
 </nav>
