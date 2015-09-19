@@ -13,7 +13,7 @@ You may assume that the version st">
 <meta property="og:site_name" content="Wondering Doggy">
 <meta property="og:description" content="Compare Version NumbersCompare two version numbers version1 and version2.If version1 &amp;gt; version2 return 1, if version1 &amp;lt; version2 return -1, otherwise return 0.
 You may assume that the version st">
-<meta property="og:updated_time" content="2015-09-19T07:14:48.000Z">
+<meta property="og:updated_time" content="2015-09-19T07:16:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Compare Version Numbers">
 <meta name="twitter:description" content="Compare Version NumbersCompare two version numbers version1 and version2.If version1 &amp;gt; version2 return 1, if version1 &amp;lt; version2 return -1, otherwise return 0.
@@ -94,6 +94,8 @@ You may assume that the version st">
 <p>Here is an example of version numbers ordering:</p>
 <p>0.1 &lt; 1.1 &lt; 1.2 &lt; 13.37</p>
 <p>想法：<br>把字符串按照“.”拆开，重头到尾比较数字的大小，只要碰到大的那个就返回对应的结果<br>注意可能有“1”和“1.0.0.0.1”这样的情况，所以按照长度短的那个来比较，<br>要是有“1”和“1.0.0.0”这样的贱题目，就要比较长度长的后面的所有数字，要是碰到比0大的，就直接返回对应的结果</p>
+<p><em>*</em>注意</p>
+<p>###java中split小数点的时候，要这样split（”\.”）要转义一下。要不然翻个出来的是空的数组</p>
 <hr>
 <pre><code><span class="label">public</span> class Solution {
     public int compareVersion(<span class="keyword">String </span>version1, <span class="keyword">String </span>version2) {
