@@ -61,6 +61,76 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Compare-Version-Numbers" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/19/Compare-Version-Numbers/" class="article-date">
+  <time datetime="2015-09-19T07:10:19.000Z" itemprop="datePublished">2015-09-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/19/Compare-Version-Numbers/">Compare Version Numbers</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Compare Version Numbers<br>Compare two version numbers version1 and version2.<br>If version1 &gt; version2 return 1, if version1 &lt; version2 return -1, otherwise return 0.</p>
+<p>You may assume that the version strings are non-empty and contain only digits and the . character.<br>The . character does not represent a decimal point and is used to separate number sequences.<br>For instance, 2.5 is not “two and a half” or “half way to version three”, it is the fifth second-level revision of the second first-level revision.</p>
+<p>Here is an example of version numbers ordering:</p>
+<p>0.1 &lt; 1.1 &lt; 1.2 &lt; 13.37</p>
+<p>想法：<br>把字符串按照“.”拆开，重头到尾比较数字的大小，只要碰到大的那个就返回对应的结果<br>注意可能有“1”和“1.0.0.0.1”这样的情况，所以按照长度短的那个来比较，<br>要是有“1”和“1.0.0.0”这样的贱题目，就要比较长度长的后面的所有数字，要是碰到比0大的，就直接返回对应的结果</p>
+<hr>
+<pre><code><span class="label">public</span> class Solution {
+    public int compareVersion(<span class="keyword">String </span>version1, <span class="keyword">String </span>version2) {
+        <span class="keyword">String[] </span><span class="literal">v1</span> = version1.split(<span class="string">"\\."</span>)<span class="comment">;</span>
+        <span class="keyword">String[] </span><span class="literal">v2</span> = version2.split(<span class="string">"\\."</span>)<span class="comment">;</span>
+
+        int l = <span class="literal">v1</span>.length &gt;= <span class="literal">v2</span>.length ? <span class="literal">v2</span>.length : <span class="literal">v1</span>.length<span class="comment">;</span>
+
+        for(int i = <span class="number">0</span><span class="comment">; i &lt; l; i++){</span>
+            <span class="preprocessor">if</span>(Integer.parseInt(<span class="literal">v1</span>[i]) &gt; Integer.parseInt(<span class="literal">v2</span>[i])){
+                return <span class="number">1</span><span class="comment">;</span>
+            }<span class="preprocessor">else</span> <span class="preprocessor">if</span>(Integer.parseInt(<span class="literal">v1</span>[i]) &lt; Integer.parseInt(<span class="literal">v2</span>[i])){
+                return -<span class="number">1</span><span class="comment">;</span>
+            }
+        }
+        int possible = <span class="literal">v1</span>.length &gt; <span class="literal">v2</span>.length ? <span class="number">1</span> : -<span class="number">1</span><span class="comment">;</span>
+        <span class="keyword">String[] </span>longer = <span class="literal">v1</span>.length &gt; <span class="literal">v2</span>.length ? <span class="literal">v1</span> : <span class="literal">v2</span><span class="comment">;</span>
+        for(int i = l<span class="comment">; i &lt; longer.length; i++){</span>
+            <span class="preprocessor">if</span>(Integer.parseInt(longer[i]) &gt; <span class="number">0</span>) return possible<span class="comment">;</span>
+        }
+            return <span class="number">0</span><span class="comment">;</span>
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/19/Compare-Version-Numbers/" data-id="cieqqps200029m11uphs1f6c1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-java-split-小数点的方法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/18/java-split-小数点的方法/" class="article-date">
@@ -101,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/18/java-split-小数点的方法/" data-id="cieqpx8tk000xks1ul9ibijfe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/18/java-split-小数点的方法/" data-id="cieqqpryt000xm11ulbqfkaqb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -173,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/" data-id="cieqpx8ui0023ks1uzi21yd3e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/" data-id="cieqqps1d0023m11u5nylq2v2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BackTracking/">BackTracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -236,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/postRotate-Image/" data-id="cieqpx8t5000eks1uzx8l2rg7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/postRotate-Image/" data-id="cieqqprxe000em11uz1esc4tb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Queue/">Queue</a></li></ul>
@@ -326,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/postRestore-IP-Addresses/" data-id="cieqpx8td000mks1uui067b63" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/postRestore-IP-Addresses/" data-id="cieqqpry1000mm11uztog11tg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -407,7 +477,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/11/postEvaluate-Reverse-Polish-Notation/" data-id="cieqpx8tg000rks1ubn7gmrqq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/11/postEvaluate-Reverse-Polish-Notation/" data-id="cieqqpryf000rm11u8bxiqelw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -482,7 +552,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/10/print-matrix-diagnanlly/" data-id="cieqpx8su0009ks1ux2bw4t1t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/10/print-matrix-diagnanlly/" data-id="cieqqprwf0009m11u6ichbgo8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li></ul>
@@ -614,7 +684,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/09/strstr/" data-id="cieqpx8ro0000ks1ufhfumu8a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/09/strstr/" data-id="cieqqprtz0000m11u40fzjkg8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -693,7 +763,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cieqpx8u6001nks1uiu3xydop" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cieqqps0g001nm11um8aclbfk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -789,106 +859,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="cieqpx8u8001rks1uilol3x7v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="cieqqps0p001rm11uek1sui8x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Remove-Duplicates-from-Sorted-List-1-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" class="article-date">
-  <time datetime="2015-09-03T21:55:51.000Z" itemprop="datePublished">2015-09-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/">Remove Duplicates from Sorted List 1&amp;2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Remove Duplicates from Sorted List<br>Given a sorted linked list, delete all duplicates such that each element appear only once.</p>
-<p>For example,<br>Given 1-&gt;1-&gt;2, return 1-&gt;2.<br>Given 1-&gt;1-&gt;2-&gt;3-&gt;3, return 1-&gt;2-&gt;3.</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
-    <span class="keyword">public</span> ListNode deleteDuplicates(ListNode head) {
-
-    <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;
-
-    ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-    dummy.<span class="keyword">next</span> = head;
-
-    <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="literal">null</span>){
-        <span class="keyword">if</span>(head.<span class="keyword">next</span>.val == head.val){
-            head.<span class="keyword">next</span> = head.<span class="keyword">next</span>.<span class="keyword">next</span>;
-        }<span class="keyword">else</span>{
-            head = head.<span class="keyword">next</span>;
-        }
-    }
-    <span class="keyword">return</span> dummy.<span class="keyword">next</span>;
-    }
-}
-</code></pre><hr>
-<p>Remove Duplicates from Sorted List II<br>Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.</p>
-<p>For example,<br>Given 1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5, return 1-&gt;2-&gt;5.<br>Given 1-&gt;1-&gt;1-&gt;2-&gt;3, return 2-&gt;3.</p>
-<ul>
-<li>思路：<ul>
-<li>用dummy note</li>
-<li>一次检查后两个的val，因为是sorted的，要有重复只能是相邻</li>
-<li>用一个int来存已经重复的val</li>
-<li>用一个while一直找到下一个不是重复的值为止</li>
-<li>要注意检查是不是null，因为检查的是下两个</li>
-</ul>
-</li>
-</ul>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode deleteDuplicates(ListNode head) {
-        ListNode dummy = <span class="keyword">new</span> ListNode(Integer.MAX_VALUE);
-        dummy.<span class="keyword">next</span> = head;
-        head = dummy;
-
-        <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; head.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            <span class="keyword">if</span>(head.<span class="keyword">next</span>.val == head.<span class="keyword">next</span>.<span class="keyword">next</span>.val){
-                <span class="keyword">int</span> same = head.<span class="keyword">next</span>.val;
-                ListNode <span class="keyword">next</span> = head.<span class="keyword">next</span>;
-                <span class="keyword">while</span>(<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; <span class="keyword">next</span>.val == same){
-                    <span class="keyword">next</span> = <span class="keyword">next</span>.<span class="keyword">next</span>;
-                }
-                head.<span class="keyword">next</span> = <span class="keyword">next</span>;
-            }<span class="keyword">else</span>{
-                head = head.<span class="keyword">next</span>;
-            }
-        }
-    <span class="keyword">return</span> dummy.<span class="keyword">next</span>;
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="cieqpx8u1001jks1utkvu40ax" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
 
     </footer>
   </div>
@@ -910,7 +884,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -919,7 +893,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BackTracking/">BackTracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BackTracking/">BackTracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -928,7 +902,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/BackTracking/" style="font-size: 10px;">BackTracking</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Easy/" style="font-size: 12px;">Easy</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 16px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 14px;">String</a> <a href="/tags/java/" style="font-size: 18px;">java</a>
+      <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/BackTracking/" style="font-size: 10px;">BackTracking</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Easy/" style="font-size: 12px;">Easy</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 14px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 14px;">String</a> <a href="/tags/java/" style="font-size: 16px;">java</a>
     </div>
   </div>
 
@@ -937,7 +911,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">17</span></li></ul>
     </div>
   </div>
 
@@ -947,6 +921,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/19/Compare-Version-Numbers/">Compare Version Numbers</a>
+          </li>
         
           <li>
             <a href="/2015/09/18/java-split-小数点的方法/">java split 小数点的方法</a>
@@ -962,10 +940,6 @@
         
           <li>
             <a href="/2015/09/16/postRestore-IP-Addresses/">postRestore IP Addresses</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/11/postEvaluate-Reverse-Polish-Notation/">postEvaluate Reverse Polish Notation</a>
           </li>
         
       </ul>
