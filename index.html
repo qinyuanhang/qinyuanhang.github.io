@@ -61,6 +61,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Word-Search" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/22/Word-Search/" class="article-date">
+  <time datetime="2015-09-23T01:32:51.000Z" itemprop="datePublished">2015-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/22/Word-Search/">Word Search</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a 2D board and a word, find if the word exists in the grid.</p>
+<p>The word can be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.</p>
+<p>For example,<br>Given board =</p>
+<p>[<br>[“ABCE”],<br>[“SFCS”],<br>[“ADEE”]<br>]<br>word = “ABCCED”, -&gt; returns true,<br>word = “SEE”, -&gt; returns true,<br>word = “ABCB”, -&gt; returns false.</p>
+<p>想法：<br>到一个位置，检查上下左右（千万记住，不能往回走），要是有要找的字母，就递归调用。<br>这里有个小技巧， 看注释</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="function"><span class="keyword">public</span> boolean <span class="title">exist</span><span class="params">(<span class="keyword">char</span>[][] board, String word)</span> </span>{
+        <span class="keyword">if</span>(word.length() &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; j++){
+                <span class="keyword">if</span>(board[i][j] == word.charAt(<span class="number">0</span>)){
+                    <span class="keyword">if</span>(help(board, i, j, word, <span class="number">0</span>)) <span class="keyword">return</span> <span class="literal">true</span>;
+                }
+            }
+        }
+
+        <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+
+    <span class="function"><span class="keyword">private</span> boolean <span class="title">help</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> x, <span class="keyword">int</span> y, String word, <span class="keyword">int</span> index)</span></span>{
+        <span class="keyword">if</span>(index &gt;= word.length()) <span class="keyword">return</span> <span class="literal">true</span>;
+
+        <span class="keyword">if</span>(x&lt; <span class="number">0</span> || x &gt;= board.length || y &lt; <span class="number">0</span> || y &gt;= board[<span class="number">0</span>].length ||word.charAt(index) != board[x][y]) <span class="keyword">return</span> <span class="literal">false</span>;
+
+        board[x][y] = <span class="string">'#'</span>;<span class="comment">//这里很重要！！！不能往回走就弄一个别的东西放在这里；</span>
+
+
+            boolean res = help(board, x - <span class="number">1</span>, y, word, index+<span class="number">1</span>) ||
+                            help(board, x + <span class="number">1</span>, y, word, index+<span class="number">1</span>) ||
+                            help(board, x, y - <span class="number">1</span>, word, index+<span class="number">1</span>) ||
+                            help(board, x, y + <span class="number">1</span>, word, index+<span class="number">1</span>);
+
+        board[x][y] = word.charAt(index);<span class="comment">//之前改过的字母，这里要变回来！！</span>
+
+        <span class="keyword">return</span> res;  
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/22/Word-Search/" data-id="ciew4fz590012or1ub8w4s6fy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Number-of-Islands-I-II" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/22/Number-of-Islands-I-II/" class="article-date">
@@ -144,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/22/Number-of-Islands-I-II/" data-id="ciew2ntrr001vml1up8aong8i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/22/Number-of-Islands-I-II/" data-id="ciew4fz60001zor1ulae9tvux" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
@@ -225,7 +305,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/20/First-Missing-Positive/" data-id="ciew2nts7002gml1ufncbxcpy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/20/First-Missing-Positive/" data-id="ciew4fz6h002kor1u0f7wnxse" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hard/">Hard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -297,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/19/Compare-Version-Numbers/" data-id="ciew2ntsa002mml1uqckfi2yy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/19/Compare-Version-Numbers/" data-id="ciew4fz6l002qor1um9g8zaqp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -349,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/18/java-split-小数点的方法/" data-id="ciew2ntr0000xml1ulpf1i253" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/18/java-split-小数点的方法/" data-id="ciew4fz56000xor1ua2mltez6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -421,7 +501,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/" data-id="ciew2nts4002aml1uqf01t7nr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/" data-id="ciew4fz6f002eor1u0c6ek4k1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BackTracking/">BackTracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -484,7 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/postRotate-Image/" data-id="ciew2ntqn000eml1u45ckqe8f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/postRotate-Image/" data-id="ciew4fz4q000eor1uc1esuuxw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Queue/">Queue</a></li></ul>
@@ -574,7 +654,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/postRestore-IP-Addresses/" data-id="ciew2ntqt000mml1u3c40e0of" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/postRestore-IP-Addresses/" data-id="ciew4fz4w000mor1uliiscjcj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -655,7 +735,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/11/postEvaluate-Reverse-Polish-Notation/" data-id="ciew2ntqw000rml1u3wrywhgq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/11/postEvaluate-Reverse-Polish-Notation/" data-id="ciew4fz4z000ror1uaqrobq6s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -730,142 +810,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/10/print-matrix-diagnanlly/" data-id="ciew2ntqe0009ml1ujalrhdb0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/10/print-matrix-diagnanlly/" data-id="ciew4fz4g0009or1utwynmfj7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-strstr" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/09/strstr/" class="article-date">
-  <time datetime="2015-09-09T23:29:27.000Z" itemprop="datePublished">2015-09-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/09/strstr/">strstr</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Implement strStr();</p>
-<p>Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.</p>
-<p>想法：</p>
-<ul>
-<li>最简单的是用substring和equals</li>
-<li>有一些变态的公司，某pock..不让用substring，就用复杂的方法，N^2的复杂度</li>
-<li>想要高端一点，就用kmp算法</li>
-</ul>
-<p>一般方法：</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>{
-        <span class="keyword">if</span>(needle.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; haystack.length(); i ++){
-            <span class="keyword">if</span>(i + needle.length() &gt; haystack.length()) <span class="keyword">break</span>;<span class="comment">//容易忘记这个判断，超出范围</span>
-            <span class="keyword">if</span>(haystack.charAt(i) == needle.charAt(<span class="number">0</span>)){
-                <span class="keyword">int</span> sp = i;                    
-                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; needle.length(); j++){
-                    <span class="keyword">if</span>(needle.charAt(j) == haystack.charAt(sp)){
-                        sp++;
-                        <span class="keyword">if</span>(j == needle.length() - <span class="number">1</span>){
-                            <span class="keyword">return</span> i;
-                        }
-                    }<span class="keyword">else</span>{
-                        <span class="keyword">break</span>;
-                    }
-                }
-            }
-        }
-            <span class="keyword">return</span> -<span class="number">1</span>;
-    }
-}
-</code></pre><hr>
-<p>KMP 方法：</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> KMP {
-    <span class="comment">//test cases</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] arge){    
-        <span class="keyword">int</span> i = getIndexKMP(<span class="string">"ab"</span>, <span class="string">"bllbcb"</span>);
-        System.out.<span class="keyword">println</span>(i);        
-    }
-
-    <span class="comment">/** 获取字符串s的next[]数组 */</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] getNextSeq(String s) {
-        <span class="keyword">int</span> <span class="keyword">size</span> = s.length();
-        <span class="keyword">int</span> i = <span class="number">0</span>;
-        <span class="keyword">int</span> j = -<span class="number">1</span>;
-        <span class="keyword">int</span>[] <span class="keyword">next</span> = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="keyword">size</span>];
-        <span class="keyword">next</span>[<span class="number">0</span>] = -<span class="number">1</span>;
-        <span class="keyword">while</span> (i &lt; <span class="keyword">size</span> - <span class="number">1</span>) {
-            <span class="keyword">if</span> ((j == -<span class="number">1</span>) || (s.charAt(i) == s.charAt(j))) {
-                j++;
-                i++;
-                <span class="keyword">next</span>[i] = j;
-            } <span class="keyword">else</span> {
-                j = <span class="keyword">next</span>[j];
-            }
-        }
-
-        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= <span class="keyword">size</span> - <span class="number">1</span>; k++) {
-            System.out.<span class="keyword">print</span>(<span class="keyword">next</span>[k]);
-            System.out.<span class="keyword">print</span>(<span class="string">", "</span>);
-        }
-        System.out.<span class="keyword">println</span>();
-        <span class="keyword">return</span> <span class="keyword">next</span>;
-    }
-
-    <span class="comment">/**获取index*/</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> getIndexKMP(String s, String t) {
-        <span class="keyword">int</span> sSize = s.length();
-        <span class="keyword">int</span> tSize = t.length();
-        <span class="keyword">int</span> i = <span class="number">0</span>;
-        <span class="keyword">int</span> j = <span class="number">0</span>;
-        <span class="keyword">int</span>[] <span class="keyword">next</span> = getNextSeq(t);
-        <span class="keyword">while</span> (i &lt; sSize &amp;&amp; j &lt; tSize) {
-            <span class="keyword">if</span> ((j == -<span class="number">1</span>) || (s.charAt(i) == t.charAt(j))) {
-                <span class="keyword">if</span> (j &gt; -<span class="number">1</span>) {
-                    System.out.<span class="keyword">println</span>(s.charAt(i) + <span class="string">"="</span> + t.charAt(j));
-                }
-            i++;
-            j++;
-            } <span class="keyword">else</span> {
-                j = <span class="keyword">next</span>[j];
-            }
-        }
-
-        <span class="keyword">if</span> (j &gt;= tSize) {
-            <span class="keyword">return</span> i - tSize;
-        }
-        <span class="keyword">return</span> -<span class="number">1</span>;
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/09/strstr/" data-id="ciew2ntp80000ml1uzy9nivh9" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
 
     </footer>
   </div>
@@ -887,7 +835,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -896,7 +844,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BackTracking/">BackTracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hard/">Hard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BackTracking/">BackTracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hard/">Hard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -905,7 +853,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 11.67px;">Array</a> <a href="/tags/BackTracking/" style="font-size: 10px;">BackTracking</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Breadth-first-Search/" style="font-size: 10px;">Breadth-first Search</a> <a href="/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/tags/Easy/" style="font-size: 13.33px;">Easy</a> <a href="/tags/Hard/" style="font-size: 10px;">Hard</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 18.33px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 16.67px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a>
+      <a href="/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/tags/BackTracking/" style="font-size: 10px;">BackTracking</a> <a href="/tags/Backtracking/" style="font-size: 11.67px;">Backtracking</a> <a href="/tags/Breadth-first-Search/" style="font-size: 10px;">Breadth-first Search</a> <a href="/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/tags/Easy/" style="font-size: 13.33px;">Easy</a> <a href="/tags/Hard/" style="font-size: 10px;">Hard</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 18.33px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 16.67px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a>
     </div>
   </div>
 
@@ -914,7 +862,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">19</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 
@@ -924,6 +872,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/22/Word-Search/">Word Search</a>
+          </li>
         
           <li>
             <a href="/2015/09/22/Number-of-Islands-I-II/">Number of Islands I/II</a>
@@ -939,10 +891,6 @@
         
           <li>
             <a href="/2015/09/18/java-split-小数点的方法/">java split 小数点的方法</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/16/Letter-Combinations-of-a-Phone-Number/">Letter Combinations of a Phone Number</a>
           </li>
         
       </ul>
