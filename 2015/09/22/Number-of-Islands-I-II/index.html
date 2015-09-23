@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Algorithm | Wondering Doggy</title>
+  <title>Number of Islands I/II | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="really?!! like really?!!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wondering Doggy">
-<meta property="og:url" content="http://yoursite.com/categories/Algorithm/index.html">
+  <meta name="description" content="Number of Islands IGiven a 2d grid map of ‘1’s (land) and ‘0’s (water), count the number of islands.An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertical">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Number of Islands I/II">
+<meta property="og:url" content="http://yoursite.com/2015/09/22/Number-of-Islands-I-II/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="really?!! like really?!!">
+<meta property="og:description" content="Number of Islands IGiven a 2d grid map of ‘1’s (land) and ‘0’s (water), count the number of islands.An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertical">
+<meta property="og:updated_time" content="2015-09-23T00:48:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wondering Doggy">
-<meta name="twitter:description" content="really?!! like really?!!">
+<meta name="twitter:title" content="Number of Islands I/II">
+<meta name="twitter:description" content="Number of Islands IGiven a 2d grid map of ‘1’s (land) and ‘0’s (water), count the number of islands.An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertical">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -59,210 +60,111 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/22/Number-of-Islands-I-II/" class="archive-article-date">
-  <time datetime="2015-09-23T00:41:36.000Z" itemprop="datePublished">Sep 22</time>
+        <section id="main"><article id="post-Number-of-Islands-I-II" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/22/Number-of-Islands-I-II/" class="article-date">
+  <time datetime="2015-09-23T00:41:36.000Z" itemprop="datePublished">2015-09-22</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/22/Number-of-Islands-I-II/">Number of Islands I/II</a>
+    <h1 class="article-title" itemprop="name">
+      Number of Islands I/II
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/20/First-Missing-Positive/" class="archive-article-date">
-  <time datetime="2015-09-20T18:54:02.000Z" itemprop="datePublished">Sep 20</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/20/First-Missing-Positive/">First Missing Positive</a>
-    </h1>
-  
+        <p>Number of Islands I<br>Given a 2d grid map of ‘1’s (land) and ‘0’s (water), count the number of islands.<br>An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.<br>You may assume all four edges of the grid are all surrounded by water.</p>
+<p>Example 1:<br>11110<br>11010<br>11000<br>00000<br>Answer: 1</p>
+<p>Example 2:<br>11000<br>11000<br>00100<br>00011<br>Answer: 3</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>{
+        <span class="keyword">int</span> n = grid.length;
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/19/Compare-Version-Numbers/" class="archive-article-date">
-  <time datetime="2015-09-19T07:10:19.000Z" itemprop="datePublished">Sep 19</time>
-</a>
+        <span class="keyword">if</span> (n == <span class="number">0</span>) {
+            <span class="keyword">return</span> <span class="number">0</span>;
+        }
+
+        <span class="keyword">int</span> m = grid[<span class="number">0</span>].length;
+
+        <span class="keyword">if</span> (m == <span class="number">0</span>) {
+            <span class="keyword">return</span> <span class="number">0</span>;
+        }
+
+        <span class="keyword">int</span> count = <span class="number">0</span>;
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].length; j++){
+                <span class="keyword">if</span>(grid[i][j] == <span class="string">'1'</span>){
+                    removeIsland(grid, i, j);
+                    count++;
+                }
+            }
+        }
+        <span class="keyword">return</span> count;
+    }
+    <span class="comment">//递归调用的函数，找到一个1，就用广度优先把所有的1变成0</span>
+    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">removeIsland</span><span class="params">(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>{
+        <span class="keyword">if</span>( grid[x][y] == <span class="string">'1'</span>){
+            grid[x][y] = <span class="string">'0'</span>;
+        }<span class="keyword">else</span>{
+            <span class="keyword">return</span>;
+        }
+
+        <span class="keyword">if</span>(x - <span class="number">1</span> &gt;= <span class="number">0</span>){
+            removeIsland(grid, x - <span class="number">1</span>, y);
+        }
+
+        <span class="keyword">if</span>(x + <span class="number">1</span> &lt; grid.length){
+            removeIsland(grid, x + <span class="number">1</span>, y);
+        }
+
+        <span class="keyword">if</span>(y - <span class="number">1</span> &gt;= <span class="number">0</span>){
+            removeIsland(grid, x, y - <span class="number">1</span>);
+        }
+        <span class="keyword">if</span>(y + <span class="number">1</span> &lt; grid[<span class="number">0</span>].length){
+            removeIsland(grid, x, y + <span class="number">1</span>);
+        }
+    }
+}
+</code></pre>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/19/Compare-Version-Numbers/">Compare Version Numbers</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/16/Letter-Combinations-of-a-Phone-Number/" class="archive-article-date">
-  <time datetime="2015-09-16T22:28:25.000Z" itemprop="datePublished">Sep 16</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/22/Number-of-Islands-I-II/" data-id="ciew2ntrr001vml1up8aong8i" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/16/Letter-Combinations-of-a-Phone-Number/">Letter Combinations of a Phone Number</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/16/postRotate-Image/" class="archive-article-date">
-  <time datetime="2015-09-16T21:57:48.000Z" itemprop="datePublished">Sep 16</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/16/postRotate-Image/">postRotate Image</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/16/postRestore-IP-Addresses/" class="archive-article-date">
-  <time datetime="2015-09-16T20:24:10.000Z" itemprop="datePublished">Sep 16</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/16/postRestore-IP-Addresses/">postRestore IP Addresses</a>
-    </h1>
   
+    <a href="/2015/09/20/First-Missing-Positive/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">First Missing Positive</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/11/postEvaluate-Reverse-Polish-Notation/" class="archive-article-date">
-  <time datetime="2015-09-11T20:32:41.000Z" itemprop="datePublished">Sep 11</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/11/postEvaluate-Reverse-Polish-Notation/">postEvaluate Reverse Polish Notation</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/09/strstr/" class="archive-article-date">
-  <time datetime="2015-09-09T23:29:27.000Z" itemprop="datePublished">Sep 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/09/strstr/">strstr</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/04/Partition-List/" class="archive-article-date">
-  <time datetime="2015-09-05T00:16:44.000Z" itemprop="datePublished">Sep 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/04/Partition-List/">Partition List</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/03/Palindrome-Linked-List/" class="archive-article-date">
-  <time datetime="2015-09-04T00:59:43.000Z" itemprop="datePublished">Sep 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/03/Palindrome-Linked-List/">Palindrome Linked List</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 </section>
         
           <aside id="sidebar">
