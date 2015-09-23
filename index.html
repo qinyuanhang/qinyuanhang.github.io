@@ -61,6 +61,93 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Design-a-URL-shortening-service-like-bit-ly" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/" class="article-date">
+  <time datetime="2015-09-23T19:18:45.000Z" itemprop="datePublished">2015-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/System-Design/">System Design</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/">Design a URL shortening service like bit.ly</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="系统设计入门_1">系统设计入门 1</h2><p>面试的时候遇到系统设计怎么办？这里有个简单的流程和例子，可以照着这个例子来开始学习系统设计：</p>
+<h3 id="Design_a_URL_shortening_service_like_bit-ly">Design a URL shortening service like bit.ly</h3><p>设计一个简化URL的系统，还要维护top n的url。</p>
+<hr>
+<h2 id="1：use_cases:(问面试官这些问题，搞清楚要问的是什么，要解决的是什么问题)">1：use cases:(问面试官这些问题，搞清楚要问的是什么，要解决的是什么问题)</h2><p>就是考虑这个系统的：</p>
+<ol>
+<li>输入输出<strong>（问面试官）</strong></li>
+</ol>
+<ul>
+<li>使用时涉及到的要素<ul>
+<li>数据量大小</li>
+<li>客户访问量（request per minute，respond per minute ect.）</li>
+<li>需要用到什么样的数据结构（hash，stack，queue，tree etc.）<br>比如url简化系统：</li>
+</ul>
+</li>
+</ul>
+<p>1: shortening: take a url to a shorter url<br>2: redirection: shorter url to origin url<br>3: custom url: design url by customers<br>4: analytic: statistic urls<br>5: link expiration<br>6: hign availabitily</p>
+<hr>
+<h2 id="2：Constraints：（考虑这个系统的一些限制条件，内存需求，performance_ect-）">2：Constraints：（考虑这个系统的一些限制条件，内存需求，performance ect.）</h2><p>** 可能需要计算！！！问面试官！！！问过面试官才能自己假设</p>
+<p>1： how many url requests per month? （ 15 BM ）<br>2： all shorten urls per month? 很多一样的urlrequest，所以简化后的url可能是十分之一(1.5 BM)<br>3： 对于top10的url的请求可能占绝大部分（3分之2），其他的只占很邵谊部分（3分之一） 300M<br>4： top10的url我们就维护就行，要处理的是这些没有维护的其他url，300M里面有十分之一到三分之一要简化的，为了题目简单，这里选三分之一100M.</p>
+<h3 id="100M_new_url_per_month">100M new url per month</h3><p>5： 对于这些url的请求，加上简化的请求和redirect的请求，大约是他的十倍 1B request per month<br>6： 这些请求有的是简化（10%），有的是redirect（90%）<br>7： 计算，reque per second (1B request per month / 30 days / 24 hour/ 3600 second per hour) ~ 400 per requests<br>8： 这400个request里面，40是简化，360是redirect；<br>9： （五年，所有url的总和是6B ）如果要求系统要存储5年里面所有的url，所需要的内存是（5年<em>12月</em>100M）~ 6B urls<br>10： （每个url 长 500 byte）每个url的平均长度，这里假设是500byte（有customer url的情况的话，要考虑rewrite url）</p>
+<h3 id="选用hashtable这个数据结构，">选用hashtable这个数据结构，</h3><p>11： （每个key长6byte）如果选用hashtable的话，想想什么key能够mapping 6B的url呢？这里可以考虑（10个数字+26大写字母+26小写字母）= 62个不同的字母，每个字母1byte，这里需要62的6次方就可以mapping 6B 的url。所以这里的key的size是 6byte。<br>12： （6B <em> 500byte = 3TB，6 byte </em> 6B = 36GB）5年内，这个hashtable的总容量应该是所有url和key的总和；<br>13： 每秒钟要写入的数据量是（40个简化 <em> （500byte的url + 6byte的key））~ 20K<br>14： 每秒钟要读的数据（360个redirect </em>（500byte的url + 6byte的key））~ 180K</p>
+<hr>
+<h2 id="3：Abstract_design">3：Abstract design</h2><p>在初步的分析计算，计算出符合要求的数据量，请求量分析之后，可以开始设计系统内容；</p>
+<p><strong> The goal of this is to outline all the important components that your architecture will need。 </strong></p>
+<ol>
+<li>application server layer<ul>
+<li>shorten server<ul>
+<li>把输入的原始url变成 62个字母的 key = converToKey(origin_url);</li>
+<li>存入hashmap，更新static，看是否需要更新top10</li>
+</ul>
+</li>
+<li>redirect server</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Data storage layer(keep tracking of hash =&gt; url mapping) <ul>
+<li>就是一个大的hashtable，把新的mapping加入，要是key存在了，就返回原来的url</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="4:_Understanding_bottlenecks">4: Understanding bottlenecks</h2><p>perhaps bottlenecks:<br>1: needs a load balancer<br>2: many machines behind it to handle the user requests<br>3: data is so huge that you need to distribute your database on multiple machines.<br>4: If the database too slow so need some in-memory caching? how many layers?</p>
+<p><strong> need to be able to identify the weak spots in a system and be able to resolve them. </strong><br><strong> Remember, usually each solution is a trade-off of some kind. Changing something will worsen something else. However, the important thing is to be able to talk about these trade-offs, and to measure their impact on the system given the constraints and use cases defined. </strong></p>
+<p>其实在这个系统里面，400 request per second很轻的请求，500byte + 6byte也很小，<br>但是 3TB 是一个不小的数据量，这里要继续讨论。（scalable system design）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/" data-id="ciexajaip002q6i1uuex1v3rm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-Design/">System Design</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Word-Search" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/22/Word-Search/" class="article-date">
@@ -129,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/22/Word-Search/" data-id="ciew4fz590012or1ub8w4s6fy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/22/Word-Search/" data-id="ciexajahh00126i1utz5qlszy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li></ul>
@@ -224,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/22/Number-of-Islands-I-II/" data-id="ciew4fz60001zor1ulae9tvux" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/22/Number-of-Islands-I-II/" data-id="ciexajai7001z6i1uq48qz2fo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
@@ -305,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/20/First-Missing-Positive/" data-id="ciew4fz6h002kor1u0f7wnxse" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/20/First-Missing-Positive/" data-id="ciexajaim002k6i1uhf4s3mf0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hard/">Hard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -377,7 +464,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/19/Compare-Version-Numbers/" data-id="ciew4fz6l002qor1um9g8zaqp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/19/Compare-Version-Numbers/" data-id="ciexajais002v6i1uojvb5e23" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -429,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/18/java-split-小数点的方法/" data-id="ciew4fz56000xor1ua2mltez6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/18/java-split-小数点的方法/" data-id="ciexajahe000x6i1umroj3j6o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -501,7 +588,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/" data-id="ciew4fz6f002eor1u0c6ek4k1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/" data-id="ciexajaij002e6i1uzedd1zvd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BackTracking/">BackTracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -564,7 +651,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/postRotate-Image/" data-id="ciew4fz4q000eor1uc1esuuxw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/postRotate-Image/" data-id="ciexajah1000e6i1uofd0osfe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Queue/">Queue</a></li></ul>
@@ -654,7 +741,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/postRestore-IP-Addresses/" data-id="ciew4fz4w000mor1uliiscjcj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/postRestore-IP-Addresses/" data-id="ciexajah6000m6i1u6913x8d8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -735,7 +822,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/11/postEvaluate-Reverse-Polish-Notation/" data-id="ciew4fz4z000ror1uaqrobq6s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/11/postEvaluate-Reverse-Polish-Notation/" data-id="ciexajaha000r6i1uqp39v7dq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -747,84 +834,9 @@
 
 
   
-    <article id="post-print-matrix-diagnanlly" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/10/print-matrix-diagnanlly/" class="article-date">
-  <time datetime="2015-09-11T00:00:44.000Z" itemprop="datePublished">2015-09-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Interview/">Interview</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/10/print-matrix-diagnanlly/">print matrix diagnanlly</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  对角线打印二维数组，<br>  例子：<br>1 2  3  4<br>5 6  7  8<br>9 10 11 12</p>
-<p>  打印：<br>  1<br>  2 5<br>  3 6 9<br>  4 7 10<br>  8 11<br>  12 </p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> PrintDia {
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
-    <span class="comment">// TODO Auto-generated method stub        </span>
-        <span class="keyword">int</span>[][] r = {
-                {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>},
-                {<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>},
-                {<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>},
-                        };
-        printDia(r);
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDia</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span></span>{
-    <span class="comment">//first line</span>
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix[<span class="number">0</span>].length; i++){
-            helpPrint(<span class="number">0</span>,i, matrix);
-        }
-    <span class="comment">//last collon</span>
-        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; matrix.length;j++){
-            helpPrint(j, matrix[<span class="number">0</span>].length - <span class="number">1</span>, matrix);
-        }        
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">helpPrint</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span>[][] matrix)</span></span>{
-        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; i &lt; matrix.length){
-            System.out.print(matrix[i][j]);
-            j--;
-            i++;
-        }        
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/10/print-matrix-diagnanlly/" data-id="ciew4fz4g0009or1utwynmfj7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -835,7 +847,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System-Design/">System Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -844,7 +856,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BackTracking/">BackTracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hard/">Hard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BackTracking/">BackTracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hard/">Hard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Design/">System Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -853,7 +865,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/tags/BackTracking/" style="font-size: 10px;">BackTracking</a> <a href="/tags/Backtracking/" style="font-size: 11.67px;">Backtracking</a> <a href="/tags/Breadth-first-Search/" style="font-size: 10px;">Breadth-first Search</a> <a href="/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/tags/Easy/" style="font-size: 13.33px;">Easy</a> <a href="/tags/Hard/" style="font-size: 10px;">Hard</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 18.33px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 16.67px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a>
+      <a href="/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/tags/BackTracking/" style="font-size: 10px;">BackTracking</a> <a href="/tags/Backtracking/" style="font-size: 11.67px;">Backtracking</a> <a href="/tags/Breadth-first-Search/" style="font-size: 10px;">Breadth-first Search</a> <a href="/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/tags/Easy/" style="font-size: 13.33px;">Easy</a> <a href="/tags/Hard/" style="font-size: 10px;">Hard</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 18.33px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 16.67px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/System-Design/" style="font-size: 10px;">System Design</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a>
     </div>
   </div>
 
@@ -862,7 +874,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">21</span></li></ul>
     </div>
   </div>
 
@@ -872,6 +884,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/">Design a URL shortening service like bit.ly</a>
+          </li>
         
           <li>
             <a href="/2015/09/22/Word-Search/">Word Search</a>
@@ -887,10 +903,6 @@
         
           <li>
             <a href="/2015/09/19/Compare-Version-Numbers/">Compare Version Numbers</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/18/java-split-小数点的方法/">java split 小数点的方法</a>
           </li>
         
       </ul>

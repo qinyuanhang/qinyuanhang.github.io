@@ -61,6 +61,81 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-print-matrix-diagnanlly" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/10/print-matrix-diagnanlly/" class="article-date">
+  <time datetime="2015-09-11T00:00:44.000Z" itemprop="datePublished">2015-09-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Interview/">Interview</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/10/print-matrix-diagnanlly/">print matrix diagnanlly</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  对角线打印二维数组，<br>  例子：<br>1 2  3  4<br>5 6  7  8<br>9 10 11 12</p>
+<p>  打印：<br>  1<br>  2 5<br>  3 6 9<br>  4 7 10<br>  8 11<br>  12 </p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> PrintDia {
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+    <span class="comment">// TODO Auto-generated method stub        </span>
+        <span class="keyword">int</span>[][] r = {
+                {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>},
+                {<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>},
+                {<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>},
+                        };
+        printDia(r);
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDia</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span></span>{
+    <span class="comment">//first line</span>
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix[<span class="number">0</span>].length; i++){
+            helpPrint(<span class="number">0</span>,i, matrix);
+        }
+    <span class="comment">//last collon</span>
+        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; matrix.length;j++){
+            helpPrint(j, matrix[<span class="number">0</span>].length - <span class="number">1</span>, matrix);
+        }        
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">helpPrint</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span>[][] matrix)</span></span>{
+        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; i &lt; matrix.length){
+            System.out.print(matrix[i][j]);
+            j--;
+            i++;
+        }        
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/10/print-matrix-diagnanlly/" data-id="ciexajagr00096i1u94z3a9sq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-strstr" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/09/strstr/" class="article-date">
@@ -181,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/09/strstr/" data-id="ciew4fz3q0000or1ug4pfuqkb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/09/strstr/" data-id="ciexajafq00006i1uw2a7sof6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -260,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="ciew4fz5s001ror1uu4thnjzz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="ciexajai0001r6i1uqffovufk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -356,7 +431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="ciew4fz5w001vor1uux5n88pj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="ciexajai3001v6i1uybh9o6jd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -452,7 +527,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="ciew4fz5p001nor1unwg1v0gm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="ciexajahy001n6i1uct2azdpz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
@@ -564,7 +639,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="ciew4fz640026or1ufjjskbpq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="ciexajaib00266i1uar6mcunq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -668,7 +743,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="ciew4fz5g001cor1uh1nj71ly" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="ciexajaho001c6i1utyr93xzy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
@@ -761,7 +836,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="ciew4fz69002aor1ustbrrq43" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="ciexajaig002a6i1uwkrzn87k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -851,7 +926,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="ciew4fz5n001ior1uhjds9f9p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="ciexajahv001i6i1u0fiply3x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
@@ -955,7 +1030,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="ciew4fz6p002vor1uzvtz8yp7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="ciexajaiw00306i1uqye7ycm6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -967,79 +1042,9 @@
 
 
   
-    <article id="post-Rotate-List" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/03/Rotate-List/" class="article-date">
-  <time datetime="2015-09-03T07:57:21.000Z" itemprop="datePublished">2015-09-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Rotate-List/">Rotate List</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a list, rotate the list to the right by k places, where k is non-negative.<br>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2,return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
-<p>思路：<br>    1，找到新的头；<br>    2，找到新的结尾；<br>    3，一前一后接在一起；</p>
-<hr>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode rotateRight(ListNode head, <span class="keyword">int</span> k) {
-
-        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
-
-        <span class="keyword">int</span> tot = <span class="number">1</span>;
-        ListNode head_1 = head;
-        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            tot++;
-            head_1 = head_1.<span class="keyword">next</span>;
-        }
-        ListNode newEnd = head;
-        k = k % tot;
-        <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> head;     
-        k = tot - k;
-
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; i++){
-            newEnd = newEnd.<span class="keyword">next</span>;
-        }
-        ListNode newHead = newEnd.<span class="keyword">next</span>;
-        head_1.<span class="keyword">next</span> = head;
-        newEnd.<span class="keyword">next</span> = <span class="keyword">null</span>;
-        <span class="keyword">return</span> newHead;
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="ciew4fz5d0016or1ux32ic43q" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -1050,7 +1055,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System-Design/">System Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1059,7 +1064,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BackTracking/">BackTracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hard/">Hard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BackTracking/">BackTracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hard/">Hard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Design/">System Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1068,7 +1073,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/tags/BackTracking/" style="font-size: 10px;">BackTracking</a> <a href="/tags/Backtracking/" style="font-size: 11.67px;">Backtracking</a> <a href="/tags/Breadth-first-Search/" style="font-size: 10px;">Breadth-first Search</a> <a href="/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/tags/Easy/" style="font-size: 13.33px;">Easy</a> <a href="/tags/Hard/" style="font-size: 10px;">Hard</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 18.33px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 16.67px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a>
+      <a href="/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/tags/BackTracking/" style="font-size: 10px;">BackTracking</a> <a href="/tags/Backtracking/" style="font-size: 11.67px;">Backtracking</a> <a href="/tags/Breadth-first-Search/" style="font-size: 10px;">Breadth-first Search</a> <a href="/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/tags/Easy/" style="font-size: 13.33px;">Easy</a> <a href="/tags/Hard/" style="font-size: 10px;">Hard</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 18.33px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 16.67px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/System-Design/" style="font-size: 10px;">System Design</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a>
     </div>
   </div>
 
@@ -1077,7 +1082,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">21</span></li></ul>
     </div>
   </div>
 
@@ -1087,6 +1092,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/">Design a URL shortening service like bit.ly</a>
+          </li>
         
           <li>
             <a href="/2015/09/22/Word-Search/">Word Search</a>
@@ -1102,10 +1111,6 @@
         
           <li>
             <a href="/2015/09/19/Compare-Version-Numbers/">Compare Version Numbers</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/18/java-split-小数点的方法/">java split 小数点的方法</a>
           </li>
         
       </ul>

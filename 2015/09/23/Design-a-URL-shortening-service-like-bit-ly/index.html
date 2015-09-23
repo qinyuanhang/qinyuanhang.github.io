@@ -3,21 +3,42 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Compare Version Numbers | Wondering Doggy</title>
+  <title>Design a URL shortening service like bit.ly | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Compare Version NumbersCompare two version numbers version1 and version2.If version1 &amp;gt; version2 return 1, if version1 &amp;lt; version2 return -1, otherwise return 0.
-You may assume that the version st">
+  <meta name="description" content="系统设计入门 1面试的时候遇到系统设计怎么办？这里有个简单的流程和例子，可以照着这个例子来开始学习系统设计：
+Design a URL shortening service like bit.ly设计一个简化URL的系统，还要维护top n的url。
+
+1：use cases:(问面试官这些问题，搞清楚要问的是什么，要解决的是什么问题)就是考虑这个系统的：
+
+输入输出（问面试官）
+
+
+使用时涉及到">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Compare Version Numbers">
-<meta property="og:url" content="http://yoursite.com/2015/09/19/Compare-Version-Numbers/index.html">
+<meta property="og:title" content="Design a URL shortening service like bit.ly">
+<meta property="og:url" content="http://yoursite.com/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Compare Version NumbersCompare two version numbers version1 and version2.If version1 &amp;gt; version2 return 1, if version1 &amp;lt; version2 return -1, otherwise return 0.
-You may assume that the version st">
-<meta property="og:updated_time" content="2015-09-19T07:16:23.000Z">
+<meta property="og:description" content="系统设计入门 1面试的时候遇到系统设计怎么办？这里有个简单的流程和例子，可以照着这个例子来开始学习系统设计：
+Design a URL shortening service like bit.ly设计一个简化URL的系统，还要维护top n的url。
+
+1：use cases:(问面试官这些问题，搞清楚要问的是什么，要解决的是什么问题)就是考虑这个系统的：
+
+输入输出（问面试官）
+
+
+使用时涉及到">
+<meta property="og:updated_time" content="2015-09-23T21:16:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Compare Version Numbers">
-<meta name="twitter:description" content="Compare Version NumbersCompare two version numbers version1 and version2.If version1 &amp;gt; version2 return 1, if version1 &amp;lt; version2 return -1, otherwise return 0.
-You may assume that the version st">
+<meta name="twitter:title" content="Design a URL shortening service like bit.ly">
+<meta name="twitter:description" content="系统设计入门 1面试的时候遇到系统设计怎么办？这里有个简单的流程和例子，可以照着这个例子来开始学习系统设计：
+Design a URL shortening service like bit.ly设计一个简化URL的系统，还要维护top n的url。
+
+1：use cases:(问面试官这些问题，搞清楚要问的是什么，要解决的是什么问题)就是考虑这个系统的：
+
+输入输出（问面试官）
+
+
+使用时涉及到">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -63,14 +84,14 @@ You may assume that the version st">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Compare-Version-Numbers" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Design-a-URL-shortening-service-like-bit-ly" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/19/Compare-Version-Numbers/" class="article-date">
-  <time datetime="2015-09-19T07:10:19.000Z" itemprop="datePublished">2015-09-19</time>
+    <a href="/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/" class="article-date">
+  <time datetime="2015-09-23T19:18:45.000Z" itemprop="datePublished">2015-09-23</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="article-category-link" href="/categories/System-Design/">System Design</a>
   </div>
 
   </div>
@@ -81,7 +102,7 @@ You may assume that the version st">
         
   
     <h1 class="article-title" itemprop="name">
-      Compare Version Numbers
+      Design a URL shortening service like bit.ly
     </h1>
   
 
@@ -89,44 +110,59 @@ You may assume that the version st">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Compare Version Numbers<br>Compare two version numbers version1 and version2.<br>If version1 &gt; version2 return 1, if version1 &lt; version2 return -1, otherwise return 0.</p>
-<p>You may assume that the version strings are non-empty and contain only digits and the . character.<br>The . character does not represent a decimal point and is used to separate number sequences.<br>For instance, 2.5 is not “two and a half” or “half way to version three”, it is the fifth second-level revision of the second first-level revision.</p>
-<p>Here is an example of version numbers ordering:</p>
-<p>0.1 &lt; 1.1 &lt; 1.2 &lt; 13.37</p>
-<p>想法：<br>把字符串按照“.”拆开，重头到尾比较数字的大小，只要碰到大的那个就返回对应的结果<br>注意可能有“1”和“1.0.0.0.1”这样的情况，所以按照长度短的那个来比较，<br>要是有“1”和“1.0.0.0”这样的贱题目，就要比较长度长的后面的所有数字，要是碰到比0大的，就直接返回对应的结果</p>
-<p><em>*</em>注意</p>
-<p>###java中split小数点的时候，要这样split（”\.”）要转义一下。要不然翻个出来的是空的数组</p>
+        <h2 id="系统设计入门_1">系统设计入门 1</h2><p>面试的时候遇到系统设计怎么办？这里有个简单的流程和例子，可以照着这个例子来开始学习系统设计：</p>
+<h3 id="Design_a_URL_shortening_service_like_bit-ly">Design a URL shortening service like bit.ly</h3><p>设计一个简化URL的系统，还要维护top n的url。</p>
 <hr>
-<pre><code><span class="label">public</span> class Solution {
-    public int compareVersion(<span class="keyword">String </span>version1, <span class="keyword">String </span>version2) {
-        <span class="keyword">String[] </span><span class="literal">v1</span> = version1.split(<span class="string">"\\."</span>)<span class="comment">;</span>
-        <span class="keyword">String[] </span><span class="literal">v2</span> = version2.split(<span class="string">"\\."</span>)<span class="comment">;</span>
+<h2 id="1：use_cases:(问面试官这些问题，搞清楚要问的是什么，要解决的是什么问题)">1：use cases:(问面试官这些问题，搞清楚要问的是什么，要解决的是什么问题)</h2><p>就是考虑这个系统的：</p>
+<ol>
+<li>输入输出<strong>（问面试官）</strong></li>
+</ol>
+<ul>
+<li>使用时涉及到的要素<ul>
+<li>数据量大小</li>
+<li>客户访问量（request per minute，respond per minute ect.）</li>
+<li>需要用到什么样的数据结构（hash，stack，queue，tree etc.）<br>比如url简化系统：</li>
+</ul>
+</li>
+</ul>
+<p>1: shortening: take a url to a shorter url<br>2: redirection: shorter url to origin url<br>3: custom url: design url by customers<br>4: analytic: statistic urls<br>5: link expiration<br>6: hign availabitily</p>
+<hr>
+<h2 id="2：Constraints：（考虑这个系统的一些限制条件，内存需求，performance_ect-）">2：Constraints：（考虑这个系统的一些限制条件，内存需求，performance ect.）</h2><p>** 可能需要计算！！！问面试官！！！问过面试官才能自己假设</p>
+<p>1： how many url requests per month? （ 15 BM ）<br>2： all shorten urls per month? 很多一样的urlrequest，所以简化后的url可能是十分之一(1.5 BM)<br>3： 对于top10的url的请求可能占绝大部分（3分之2），其他的只占很邵谊部分（3分之一） 300M<br>4： top10的url我们就维护就行，要处理的是这些没有维护的其他url，300M里面有十分之一到三分之一要简化的，为了题目简单，这里选三分之一100M.</p>
+<h3 id="100M_new_url_per_month">100M new url per month</h3><p>5： 对于这些url的请求，加上简化的请求和redirect的请求，大约是他的十倍 1B request per month<br>6： 这些请求有的是简化（10%），有的是redirect（90%）<br>7： 计算，reque per second (1B request per month / 30 days / 24 hour/ 3600 second per hour) ~ 400 per requests<br>8： 这400个request里面，40是简化，360是redirect；<br>9： （五年，所有url的总和是6B ）如果要求系统要存储5年里面所有的url，所需要的内存是（5年<em>12月</em>100M）~ 6B urls<br>10： （每个url 长 500 byte）每个url的平均长度，这里假设是500byte（有customer url的情况的话，要考虑rewrite url）</p>
+<h3 id="选用hashtable这个数据结构，">选用hashtable这个数据结构，</h3><p>11： （每个key长6byte）如果选用hashtable的话，想想什么key能够mapping 6B的url呢？这里可以考虑（10个数字+26大写字母+26小写字母）= 62个不同的字母，每个字母1byte，这里需要62的6次方就可以mapping 6B 的url。所以这里的key的size是 6byte。<br>12： （6B <em> 500byte = 3TB，6 byte </em> 6B = 36GB）5年内，这个hashtable的总容量应该是所有url和key的总和；<br>13： 每秒钟要写入的数据量是（40个简化 <em> （500byte的url + 6byte的key））~ 20K<br>14： 每秒钟要读的数据（360个redirect </em>（500byte的url + 6byte的key））~ 180K</p>
+<hr>
+<h2 id="3：Abstract_design">3：Abstract design</h2><p>在初步的分析计算，计算出符合要求的数据量，请求量分析之后，可以开始设计系统内容；</p>
+<p><strong> The goal of this is to outline all the important components that your architecture will need。 </strong></p>
+<ol>
+<li>application server layer<ul>
+<li>shorten server<ul>
+<li>把输入的原始url变成 62个字母的 key = converToKey(origin_url);</li>
+<li>存入hashmap，更新static，看是否需要更新top10</li>
+</ul>
+</li>
+<li>redirect server</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Data storage layer(keep tracking of hash =&gt; url mapping) <ul>
+<li>就是一个大的hashtable，把新的mapping加入，要是key存在了，就返回原来的url</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="4:_Understanding_bottlenecks">4: Understanding bottlenecks</h2><p>perhaps bottlenecks:<br>1: needs a load balancer<br>2: many machines behind it to handle the user requests<br>3: data is so huge that you need to distribute your database on multiple machines.<br>4: If the database too slow so need some in-memory caching? how many layers?</p>
+<p><strong> need to be able to identify the weak spots in a system and be able to resolve them. </strong><br><strong> Remember, usually each solution is a trade-off of some kind. Changing something will worsen something else. However, the important thing is to be able to talk about these trade-offs, and to measure their impact on the system given the constraints and use cases defined. </strong></p>
+<p>其实在这个系统里面，400 request per second很轻的请求，500byte + 6byte也很小，<br>但是 3TB 是一个不小的数据量，这里要继续讨论。（scalable system design）</p>
 
-        int l = <span class="literal">v1</span>.length &gt;= <span class="literal">v2</span>.length ? <span class="literal">v2</span>.length : <span class="literal">v1</span>.length<span class="comment">;</span>
-
-        for(int i = <span class="number">0</span><span class="comment">; i &lt; l; i++){</span>
-            <span class="preprocessor">if</span>(Integer.parseInt(<span class="literal">v1</span>[i]) &gt; Integer.parseInt(<span class="literal">v2</span>[i])){
-                return <span class="number">1</span><span class="comment">;</span>
-            }<span class="preprocessor">else</span> <span class="preprocessor">if</span>(Integer.parseInt(<span class="literal">v1</span>[i]) &lt; Integer.parseInt(<span class="literal">v2</span>[i])){
-                return -<span class="number">1</span><span class="comment">;</span>
-            }
-        }
-        int possible = <span class="literal">v1</span>.length &gt; <span class="literal">v2</span>.length ? <span class="number">1</span> : -<span class="number">1</span><span class="comment">;</span>
-        <span class="keyword">String[] </span>longer = <span class="literal">v1</span>.length &gt; <span class="literal">v2</span>.length ? <span class="literal">v1</span> : <span class="literal">v2</span><span class="comment">;</span>
-        for(int i = l<span class="comment">; i &lt; longer.length; i++){</span>
-            <span class="preprocessor">if</span>(Integer.parseInt(longer[i]) &gt; <span class="number">0</span>) return possible<span class="comment">;</span>
-        }
-            return <span class="number">0</span><span class="comment">;</span>
-    }
-}
-</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/19/Compare-Version-Numbers/" data-id="ciexajais002v6i1uojvb5e23" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/" data-id="ciexajaip002q6i1uuex1v3rm" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-Design/">System Design</a></li></ul>
 
     </footer>
   </div>
@@ -134,19 +170,10 @@ You may assume that the version st">
     
 <nav id="article-nav">
   
-    <a href="/2015/09/20/First-Missing-Positive/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          First Missing Positive
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/18/java-split-小数点的方法/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/09/22/Word-Search/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">java split 小数点的方法</div>
+      <div class="article-nav-title">Word Search</div>
     </a>
   
 </nav>
