@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Scalability Fundamentals | Wondering Doggy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习scalability，解决系统规模化的问题，这是下面这个视屏的总结，不全面，大家要是有兴趣还是去看原版的吧！！！“ 系统设计就是：解决一个问题又会有新的问题出现，所以我们要做的是权衡利弊做取舍，而并不是寻找最优解!!! ” 视频 professor David Malan from Harvard  
+what if your little app booms overnight?? sca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scalability Fundamentals">
+<meta property="og:url" content="http://yoursite.com/2015/09/23/Scalability-Fundamentals/index.html">
+<meta property="og:site_name" content="Wondering Doggy">
+<meta property="og:description" content="学习scalability，解决系统规模化的问题，这是下面这个视屏的总结，不全面，大家要是有兴趣还是去看原版的吧！！！“ 系统设计就是：解决一个问题又会有新的问题出现，所以我们要做的是权衡利弊做取舍，而并不是寻找最优解!!! ” 视频 professor David Malan from Harvard  
+what if your little app booms overnight?? sca">
+<meta property="og:updated_time" content="2015-09-24T20:45:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scalability Fundamentals">
+<meta name="twitter:description" content="学习scalability，解决系统规模化的问题，这是下面这个视屏的总结，不全面，大家要是有兴趣还是去看原版的吧！！！“ 系统设计就是：解决一个问题又会有新的问题出现，所以我们要做的是权衡利弊做取舍，而并不是寻找最优解!!! ” 视频 professor David Malan from Harvard  
+what if your little app booms overnight?? sca">
+  
+    <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Wondering Doggy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Scalability-Fundamentals" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/23/Scalability-Fundamentals/" class="article-date">
+  <time datetime="2015-09-23T21:45:38.000Z" itemprop="datePublished">2015-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/System-Design/">System Design</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Scalability Fundamentals
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="学习scalability，解决系统规模化的问题，这是下面这个视屏的总结，不全面，大家要是有兴趣还是去看原版的吧！！！">学习scalability，解决系统规模化的问题，这是下面这个视屏的总结，不全面，大家要是有兴趣还是去看原版的吧！！！</h1><h1 id="“_系统设计就是：解决一个问题又会有新的问题出现，所以我们要做的是权衡利弊做取舍，而并不是寻找最优解!!!_”">“ 系统设计就是：解决一个问题又会有新的问题出现，所以我们要做的是权衡利弊做取舍，而并不是寻找最优解!!! ”</h1><p><a href="https://www.youtube.com/watch?v=-W9F__D3oY4&amp;feature=youtu.be" target="_blank" rel="external"><strong> 视频 professor David Malan from Harvard </strong></a> </p>
+<h2 id="what_if_your_little_app_booms_overnight??_scaling!!!">what if your little app booms overnight?? scaling!!!</h2><p>当你的网站突然爆红，请求量，数据量爆增，你的服务器不能负载。这时候第一个想法就是：买更多的硬件来满足需求。但是这明显增加了我们的成本，买来的硬件花很多钱，而且这时候需要多，当网站不火的时候，不再需要这么多硬件之后，这就造成浪费。。。。怎么办呢？</p>
+<hr>
+<h3 id="Vertical_Scaling">Vertical Scaling</h3><ul>
+<li>CUP</li>
+<li>DISK</li>
+<li>RAM</li>
+<li>CATCH</li>
+<li><p>…</p>
+<h4 id="硬件科技，把硬件弄得很牛逼！！！">硬件科技，把硬件弄得很牛逼！！！</h4></li>
+<li><p>利用 multiple-thread or multiple-processes</p>
+<ul>
+<li>现在我们的cup都是多核（core），意味着同时可以进行多个任务，（simultaneously）</li>
+<li>同时，每个core可以进行多线程（multiple-thread），每一个小线程可以分到小部分cpu的时钟周期来工作。</li>
+</ul>
+</li>
+<li>随着硬件的发展，我们现在可以拥有功能很强大的多核（ multiple-cores ）CPU，存储速度很快的硬盘，</li>
+</ul>
+<hr>
+<h3 id="Horizontal_scaling">Horizontal scaling</h3><p>虽然硬件越来越牛逼，但是价钱也越来越贵，我们能不能找到一个方法，既节省开支也能达到预期要求？ </p>
+<h4 id="组装各种现有的资源">组装各种现有的资源</h4><ul>
+<li>用很多很多个不这么牛逼的硬件，拼装成一个很牛逼的大硬件<ul>
+<li>像AWS，就把很大的server，chop成很多小的server，这样，当我的公司规模小的时候，可以只租用小的server，当公司规模变大，我们就可以租用更多的servers，这样我们用的服务器就会有弹性，不会去买大的服务器，同时也可以按需求调整我需要的服务器的大小，节省资源，避免浪费。</li>
+<li>AWS里面也提供存储服务（S3），所有客户都使用同一个硬件内存，但是这个内存被区分成很多小块，所以只用取我们需要的大小就行，同时也可以</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Load_balancing">Load balancing</h3><p>当我们把越来越多的server拼在一起的时候，那么问题来了！！？？要知道，我们要登录一个网站，输入网址的时候，会用到一个DNS（ domain name server 域名服务器，他是把你输入的网址和ip对应起来）。当然，我们现在把很多很多server拼在一起，也就会有很多很多IP地址，所以，要是我有十万个请求都指向服务器A， 但是服务器B却一个都没有，这就是说，服务器A超级忙，而且速度会很慢因为太多请求要处理，但是服务器B这个资源就浪费了。这时候我们就引入一个概念 <strong> Load Balancing </strong></p>
+<p>有了这个 Load balancing 之后，所有客户端的请求不再直接给服务器了，会先给到这个 Load Balancing，它来决定这个请求是给哪个服务器来处理。那么问题又来了！！</p>
+<ul>
+<li><p>怎么决定给哪个服务器呢？</p>
+<ul>
+<li><p>1：每个server有一个计数器，来计算它当前正在处理的请求。 Load balancing 只要找出请求数最少的那个，把请求给他就好了</p>
+<ul>
+<li>问题1：这就意味着每个服务器就要都有一个相同的的数据库，这样会很浪费空间（ redundancy ）也不易于管理数据库（ maintaining ），因为只要其中一个数据库改了，就要更新所有的数据库。</li>
+<li>问题2：你可能会说：那所有的服务器连接到同一个的后端大数据库就好了。我觉得也可以。。。。但是！！！！！这样做的话就会出现新的问题（ 数据安全 ）：如果服务器A想改一个数据 salary = 1000；同时服务器B想改成 salary = 5000；要是等待A做完了，B才能access to data，那就延长了等待时间； 要是 A 和 B 可以同时修改同一个数据，就会造成数据不准确。</li>
+</ul>
+</li>
+<li><p>2：每个服务器专门管理一种特别的请求： 请求要图片的去A， 要文本的去B， 要视频的去C。。。</p>
+<ul>
+<li>问题1： 要是像 youtube 这样的网站，所有人都要视频怎么办？？？。。。。</li>
+<li>问题2： 要是管理视频的服务器 down 掉了，那 youtube。。。。就完了。。。。</li>
+</ul>
+</li>
+<li><p>3：当我们输入一个网址的时候，要到 router to DNS，然后返回对应的 ip 地址，我们可以利用这个 load balancing 来充当 DNS 的功能。第一个来的请求我们给 A 处理，第二个给 B。。。然后再从 A 开始，这个叫做 （ Round Robin ），可以用一个很简单的技术实现（ Load Balancing with BIND ）,下面的例子就可以实现，不同的 ip 都指向同一个服务器 A。同时，load balancing就可以顺序的返回 ip 地址 23.345.345.X 从1开始，最后又回到1，rounding。    </p>
+<ul>
+<li>www in A 23.345.345.1</li>
+<li>www in A 23.345.345.2</li>
+<li>www in A 23.345.345.3</li>
+<li>…</li>
+<li>问题1：这个方法实行起来很简单，但是也有问题：要是服务器 A 一直得到最难的请求，而服务器 B 只用处理很简单的请求，那么 A 还是会很忙，B 还是会很清闲。</li>
+<li>问题2： 我们的浏览器有一个东西叫做 catch ，他会把我们之前请求过的网址和对应的 ip 地址存起来，当我们再次请求同一个网址的时候，浏览器会先检查这个 catch 的记录，当发现已经存在对应的 IP 地址的时候，浏览器就不会在发送请求到 DNS ， 而是直接使用这个 IP 地址。发现问题了吗？？？如果我这台电脑之前查过这个网址那么我之后就只会把请求送到之前的 IP 地址，也就是说我跳过了 load balancing 直接找到服务器。要是全世界是有我上这个网站，那么我只会把请求送到同一个服务器，其他服务器就会空着，这样也没有起到 balancing 的作用。<ul>
+<li>解决2：可以设定一个（ TTL time to leave ），规定到一定时间，我的浏览器的 catch 就会清空，所以就要重新获取一次 IP 地址，这样就可以避免 catch 造成的同一个 ip 的问题，下一次我就可能去到别的服务器上。<ul>
+<li>导致的新问题：比如说我在服务器 A 上把一本书放高到了购物车，退出了，第二次我再登录同一个网站，请求到了服务器 B ，这个服务器上的购物车上没有我昨天的记录，我就得重新再找我昨天想买的那本书。（ session break ）<ul>
+<li>解决：cookies: 服务器可以给你一个cookie，存下你之前去的那个 server 的 ID，下一次你再去同一个网站就可以直接要求同一个 server。</li>
+<li>解决：有一个专门的服务器，来存储 statue ，就是说我昨天的的 statue （ 购物车里有本书 ）存到了这个服务器上，下次我再来，我就会接着昨天的 statue 继续购物；<ul>
+<li>新问题：如果这个存 statue 的服务器坏了呢？我就丢失一切了！！！<ul>
+<li>解决：### RAID（ Redundant Arry of independent Disk ）假设你有 multiple hard driver，RAID 的基本原理是把多个便宜的小磁盘组合到一起，成为一个磁盘组，使性能达到或超过一个容量巨大、价格昂贵的磁盘。<ul>
+<li>RAID 0 也称为条带模式（striped），即把连续的数据分散到多个磁盘上存。当系统有数据请求就可以被多个磁盘并行的执行，每个磁盘执行属于它自己的那部分数据请求。这种数据上的并行操作可以充分利用总线的带宽，显著提高磁盘整体存取性能。因为读取和写入是在设备上并行完成的，读取和写入性能将会增加，这通常是运行 RAID 0 的主要原因。但 RAID0 没有数据冗余，如果驱动器出现故障，那么将无法恢复任何数据。 RAID可以提高数据传输速率，比如所需读取的文件分布在两个硬盘上，这两个硬盘可以同时读取</li>
+<li>RAID 1 称为镜像（Mirroring），一个具有全冗余的模式。RAID 1可以用于两个或2xN个磁盘，并使用0块或更多的备用磁盘，每次写数据时会同时写入镜像盘。这种阵列可靠性很高，但其有效容量减小到总容量的一半，同时这些磁盘的大小应该相等，否则总容量只具有最小磁盘的大小。磁盘的利用率却只有50%，是所有RAID级别中最低的。</li>
+<li>RAID 10: 结合0和1一起。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="http://blog.163.com/hlz_2599/blog/static/14237847420141610112127/" target="_blank" rel="external"><strong> RAID 跟多信息 </strong></a> </p>
+<hr>
+<ul>
+<li>速度： hard disk (要旋转磁盘来找数据 spin，慢）&lt; RAM &lt; Catch</li>
+</ul>
+<hr>
+<h3 id="Database_replication">Database replication</h3><p>就是 backup 一个或多个 database，一个坏了好的就上。</p>
+<ul>
+<li>读的多，写的少怎么办？<ul>
+<li>用 slaver server 去处理 redundancy。</li>
+<li>balance read 请求。</li>
+<li>缺点是：<ul>
+<li>要是其中一个坏了，（master - master） 两个 server 都是 master server。</li>
+<li>也可以用 load balancing + master database。 load balancing 是对于 read，</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Database_partitioning">Database partitioning</h3><p>多个 master 数据库管理多个 slave 数据库。<br>不同的请求，送到不同的服务器，然后找到对应的数据库。</p>
+<h3 id="High_availability">High availability</h3><p>两个或多个 master server，互相听对方心跳，能随时替换对方完成对方的工作。</p>
+<hr>
+<h3 id="DATA_Center">DATA Center</h3><ul>
+<li>有data center之后，怎么使用load balancing？？<ul>
+<li>global ip access.</li>
+<li>这时候的 traffic 要考虑什么？安全问题？<ul>
+<li>只开放 port 80 和 443，不让使用 ssh。</li>
+<li>不知道 port number的时候，。。。。。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/23/Scalability-Fundamentals/" data-id="cieyow9wi0016op1uutwr1zpu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-Design/">System Design</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Design a URL shortening service like bit.ly</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System-Design/">System Design</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BackTracking/">BackTracking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hard/">Hard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Design/">System Design</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/tags/BackTracking/" style="font-size: 10px;">BackTracking</a> <a href="/tags/Backtracking/" style="font-size: 11.67px;">Backtracking</a> <a href="/tags/Breadth-first-Search/" style="font-size: 10px;">Breadth-first Search</a> <a href="/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/tags/Easy/" style="font-size: 13.33px;">Easy</a> <a href="/tags/Hard/" style="font-size: 10px;">Hard</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 18.33px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 16.67px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/System-Design/" style="font-size: 11.67px;">System Design</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">22</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/09/23/Scalability-Fundamentals/">Scalability Fundamentals</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/">Design a URL shortening service like bit.ly</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/22/Word-Search/">Word Search</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/22/Number-of-Islands-I-II/">Number of Islands I/II</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/20/First-Missing-Positive/">First Missing Positive</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Yuanhang Qin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
