@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Interview | Wondering Doggy</title>
+  <title>Generate Parentheses | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="really?!! like really?!!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wondering Doggy">
-<meta property="og:url" content="http://yoursite.com/categories/Interview/index.html">
+  <meta name="description" content="Generate ParenthesesGiven n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.For example, given n = 3, a solution set is:
+“((()))”, “(()())”, “(())()”, “(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generate Parentheses">
+<meta property="og:url" content="http://yoursite.com/2015/09/27/Generate-Parentheses/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="really?!! like really?!!">
+<meta property="og:description" content="Generate ParenthesesGiven n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.For example, given n = 3, a solution set is:
+“((()))”, “(()())”, “(())()”, “(">
+<meta property="og:updated_time" content="2015-09-27T08:31:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wondering Doggy">
-<meta name="twitter:description" content="really?!! like really?!!">
+<meta name="twitter:title" content="Generate Parentheses">
+<meta name="twitter:description" content="Generate ParenthesesGiven n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.For example, given n = 3, a solution set is:
+“((()))”, “(()())”, “(())()”, “(">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -59,39 +63,98 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/10/print-matrix-diagnanlly/" class="archive-article-date">
-  <time datetime="2015-09-11T00:00:44.000Z" itemprop="datePublished">Sep 10</time>
+        <section id="main"><article id="post-Generate-Parentheses" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/27/Generate-Parentheses/" class="article-date">
+  <time datetime="2015-09-27T08:24:15.000Z" itemprop="datePublished">2015-09-27</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/10/print-matrix-diagnanlly/">print matrix diagnanlly</a>
+    <h1 class="article-title" itemprop="name">
+      Generate Parentheses
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Generate Parentheses<br>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.<br>For example, given n = 3, a solution set is:</p>
+<p>“((()))”, “(()())”, “(())()”, “()(())”, “()()()”</p>
+<p>想法：<br>1：很明显是要看各种组合的可能性，用的是递归；<br>2：左括号和右括号的数量相同时，一定只放左括号；<br>3：左括号比右括号的数量多，<em> 并且左括号的数量小于总长度的一半时 </em>，可加左也可加右；<br>4：当左括号数量到达总长度一半时，只能用右括号<br><strong> 这里要注意，stringbuffer 也是immune型的数据，每次向下传入一个stringbuffer的时候都要new一个新的stringbuffer </strong></p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="keyword">public</span> List&lt;<span class="built_in">String</span>&gt; generateParenthesis(<span class="built_in">int</span> n) {
+
+        ArrayList&lt;<span class="built_in">String</span>&gt; res = <span class="keyword">new</span> ArrayList&lt;<span class="built_in">String</span>&gt;();
+        StringBuffer sb = <span class="keyword">new</span> StringBuffer();
+        help(<span class="number">2</span>*n, sb, <span class="number">0</span>, <span class="number">0</span>,res);
+        return res;
+    }
+
+    <span class="keyword">private</span> void help(<span class="built_in">int</span> totLength, StringBuffer sb, <span class="built_in">int</span> <span class="built_in">left</span>, <span class="built_in">int</span> <span class="built_in">right</span>, ArrayList&lt;<span class="built_in">String</span>&gt; res){
+        <span class="keyword">if</span>(sb.length() == totLength) {
+            res.add(<span class="keyword">new</span> <span class="built_in">String</span>(sb.toString()));
+            return;
+        }
+
+        <span class="keyword">if</span>(<span class="built_in">left</span> == <span class="built_in">right</span>){
+            sb.append(<span class="comment">'(');</span>
+            <span class="built_in">left</span>++;
+            help(totLength, sb, <span class="built_in">left</span>,<span class="built_in">right</span>,res);
+        }<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">left</span> &gt; <span class="built_in">right</span> &amp;&amp; <span class="built_in">left</span> &lt; totLength/<span class="number">2</span>){
+            sb.append(<span class="comment">'(');</span>
+            <span class="built_in">left</span>++;
+            StringBuffer sb1 = <span class="keyword">new</span> StringBuffer(sb);
+            help(totLength, sb1, <span class="built_in">left</span>,<span class="built_in">right</span>,res);
+            sb.deleteCharAt(sb.length() - <span class="number">1</span>);
+            <span class="built_in">left</span>--;
+            sb.append(<span class="comment">')');</span>
+            <span class="built_in">right</span>++;
+            StringBuffer sb2 = <span class="keyword">new</span> StringBuffer(sb);
+            help(totLength, sb2, <span class="built_in">left</span>,<span class="built_in">right</span>,res);
+        }<span class="keyword">else</span>{
+            sb.append(<span class="comment">')');</span>
+            <span class="built_in">right</span>++;
+            help(totLength, sb, <span class="built_in">left</span>,<span class="built_in">right</span>,res);
+        }
+    }    
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/27/Generate-Parentheses/" data-id="cif28yvyo002ih61uoicgr0su" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/09/24/Text-Justification/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Text Justification</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">
