@@ -61,6 +61,132 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Surrounded-Regions" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/28/Surrounded-Regions/" class="article-date">
+  <time datetime="2015-09-28T18:18:11.000Z" itemprop="datePublished">2015-09-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/28/Surrounded-Regions/">Surrounded Regions</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a 2D board containing ‘X’ and ‘O’, capture all regions surrounded by ‘X’.</p>
+<p>A region is captured by flipping all ‘O’s into ‘X’s in that surrounded region.</p>
+<p>For example,<br>X X X X<br>X O O X<br>X X O X<br>X O X X<br>After running your function, the board should be:</p>
+<p>X X X X<br>X X X X<br>X X X X<br>X O X X</p>
+<hr>
+<p>想法：<br>1：先走一遍，看看有没有X，要是没有X就直接退出<br>2：走一遍外围，碰到O就用广度优先把O变成1，<br>3：然后在走一遍，把剩下的O变成X<br>4：再走一遍，把剩下的1变成O就可以了</p>
+<p>leedcode上会超出范围：</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>{
+        boolean hasX = <span class="literal">false</span>;
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; j++){
+                <span class="keyword">if</span>(board[i][j] == <span class="string">'X'</span>){
+                    hasX = <span class="literal">true</span>;
+                    <span class="keyword">break</span>;
+                }
+            }
+        }
+
+        <span class="keyword">if</span>(!hasX) <span class="keyword">return</span>;
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board[<span class="number">0</span>].length; i++){
+            <span class="keyword">if</span>(board[<span class="number">0</span>][i] == <span class="string">'O'</span>){
+                change(board, <span class="number">0</span>, i);
+            }
+        }
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">if</span>(board[i][<span class="number">0</span>] == <span class="string">'O'</span>){
+                change(board, i, <span class="number">0</span>);
+            }
+        }
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">if</span>(board[i][board[<span class="number">0</span>].length - <span class="number">1</span>] == <span class="string">'0'</span>){
+                change(board, i, board[<span class="number">0</span>].length - <span class="number">1</span>);
+            }
+        }
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board[<span class="number">0</span>].length; i++){
+            <span class="keyword">if</span>(board[board.length - <span class="number">1</span>][i] == <span class="string">'O'</span>){
+                change(board, board.length - <span class="number">1</span>, i);
+            }
+        }
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; j++){
+                <span class="keyword">if</span>(board[i][j] == <span class="string">'O'</span>){
+                board[i][j] = <span class="string">'X'</span>;
+                }
+            }
+        }
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; j++){
+                <span class="keyword">if</span>(board[i][j] == <span class="string">'1'</span>){
+                    board[i][j] = <span class="string">'O'</span>;
+                }
+            }
+        }
+    }
+
+    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>{
+        <span class="keyword">if</span>(board[i][j] == <span class="string">'O'</span>){
+            board[i][j] = <span class="string">'1'</span>;
+        }<span class="keyword">else</span>{
+            <span class="keyword">return</span>;
+        }
+
+        <span class="keyword">if</span>(i - <span class="number">1</span> &gt;= <span class="number">0</span>){
+            change(board, i - <span class="number">1</span>, j);
+        }
+        <span class="keyword">if</span>(i + <span class="number">1</span> &lt; board.length){
+            change(board, i + <span class="number">1</span>, j);
+        }
+        <span class="keyword">if</span>(j - <span class="number">1</span> &gt;= <span class="number">0</span>){
+            change(board, i, j - <span class="number">1</span>);    
+        }
+        <span class="keyword">if</span>(j + <span class="number">1</span> &lt; board[<span class="number">0</span>].length){
+            change(board, i, j + <span class="number">1</span>);
+        }
+    }
+
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/28/Surrounded-Regions/" data-id="cif49naad0018zg1unhap8cl1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Generate-Parentheses" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/27/Generate-Parentheses/" class="article-date">
@@ -131,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/27/Generate-Parentheses/" data-id="cif28yvyo002ih61uoicgr0su" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/27/Generate-Parentheses/" data-id="cif49nabh002mzg1u8n5y0pqa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -251,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/24/Text-Justification/" data-id="cif28yvxg0013h61u4sboubh1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/24/Text-Justification/" data-id="cif49naa80013zg1uj85wd1ow" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hard/">Hard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -406,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/23/Scalability-Fundamentals/" data-id="cif28yvxk0018h61uy6zubk76" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/23/Scalability-Fundamentals/" data-id="cif49naaj001dzg1uepeqex38" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-Design/">System Design</a></li></ul>
@@ -493,7 +619,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/" data-id="cif28yvyt002rh61uqf29mwlr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/" data-id="cif49nabn002vzg1uwm32bb57" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-Design/">System Design</a></li></ul>
@@ -573,7 +699,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/22/Word-Search/" data-id="cif28yvxd000zh61u1b1l4de1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/22/Word-Search/" data-id="cif49naa5000zzg1uf0o5abz1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li></ul>
@@ -668,7 +794,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/22/Number-of-Islands-I-II/" data-id="cif28yvy90020h61ufjk1ianc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/22/Number-of-Islands-I-II/" data-id="cif49nab50025zg1u75s8oxtz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
@@ -749,7 +875,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/20/First-Missing-Positive/" data-id="cif28yvyq002nh61u9cd3m0mh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/20/First-Missing-Positive/" data-id="cif49nabk002rzg1ukpw5ui0a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hard/">Hard</a></li></ul>
@@ -821,7 +947,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/19/Compare-Version-Numbers/" data-id="cif28yvyw002uh61urgdacg1e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/19/Compare-Version-Numbers/" data-id="cif49nabq002yzg1ub0l4m8p8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -873,82 +999,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/18/java-split-小数点的方法/" data-id="cif28yvxa000th61usgxexhqa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/18/java-split-小数点的方法/" data-id="cif49naa1000tzg1u3nxd1ump" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Letter-Combinations-of-a-Phone-Number" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/16/Letter-Combinations-of-a-Phone-Number/" class="article-date">
-  <time datetime="2015-09-16T22:28:25.000Z" itemprop="datePublished">2015-09-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/16/Letter-Combinations-of-a-Phone-Number/">Letter Combinations of a Phone Number</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Letter Combinations of a Phone Number My Submissions Question Solution<br>Given a digit string, return all possible letter combinations that the number could represent.</p>
-<p>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
-<p>Input:Digit string “23”<br>Output: [“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
-<hr>
-<pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{
-    <span class="built_in">String</span>[] chars = {<span class="string">""</span>,<span class="string">""</span>,<span class="string">"abc"</span>,<span class="string">"def"</span>,<span class="string">"ghi"</span>,<span class="string">"jkl"</span>,<span class="string">"mno"</span>,<span class="string">"pqrs"</span>,<span class="string">"tuv"</span>,<span class="string">"wxyz"</span>};
-
-    public <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; letterCombinations(<span class="built_in">String</span> digits) {
-        <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; res = <span class="keyword">new</span> ArrayList&lt;<span class="built_in">String</span>&gt;();
-        <span class="keyword">if</span>(digits.length() &lt;= <span class="number">0</span>){
-            <span class="keyword">return</span> res;
-        }
-        <span class="built_in">StringBuffer</span> s = <span class="keyword">new</span> <span class="built_in">StringBuffer</span>();
-        help(res, s, digits, <span class="number">0</span>);
-        <span class="keyword">return</span> res;
-    }
-
-    private <span class="keyword">void</span> help(<span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; res, <span class="built_in">StringBuffer</span> s, <span class="built_in">String</span> digits, <span class="built_in">int</span> start){
-        <span class="keyword">if</span>(s.length() == digits.length()){
-            res.add(s.toString());
-            <span class="keyword">return</span>;
-        }
-        <span class="built_in">int</span> <span class="built_in">num</span> = digits.charAt(start) - <span class="string">'0'</span>;
-        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; chars[<span class="built_in">num</span>].length(); i++){
-            s.append(chars[<span class="built_in">num</span>].charAt(i));
-            help(res, s, digits, start + <span class="number">1</span>);
-            s.deleteCharAt(s.length() - <span class="number">1</span>);
-        }
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/" data-id="cif28yvyl002dh61ubs6rv9x8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
 
     </footer>
   </div>
@@ -970,7 +1024,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System-Design/">System Design</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System-Design/">System Design</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tips/">Tips</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -979,7 +1033,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hard/">Hard</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Design/">System Design</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Easy/">Easy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hard/">Hard</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Medium/">Medium</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Design/">System Design</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -988,7 +1042,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 14px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 16px;">Backtracking</a> <a href="/tags/Breadth-first-Search/" style="font-size: 10px;">Breadth-first Search</a> <a href="/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/tags/Easy/" style="font-size: 14px;">Easy</a> <a href="/tags/Hard/" style="font-size: 12px;">Hard</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 18px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 18px;">String</a> <a href="/tags/System-Design/" style="font-size: 12px;">System Design</a>
+      <a href="/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 15px;">Backtracking</a> <a href="/tags/Breadth-first-Search/" style="font-size: 11.67px;">Breadth-first Search</a> <a href="/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/tags/Easy/" style="font-size: 13.33px;">Easy</a> <a href="/tags/Hard/" style="font-size: 11.67px;">Hard</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LinkedList/" style="font-size: 20px;">LinkedList</a> <a href="/tags/Medium/" style="font-size: 18.33px;">Medium</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/String/" style="font-size: 16.67px;">String</a> <a href="/tags/System-Design/" style="font-size: 11.67px;">System Design</a>
     </div>
   </div>
 
@@ -997,7 +1051,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">24</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -1007,6 +1061,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/28/Surrounded-Regions/">Surrounded Regions</a>
+          </li>
         
           <li>
             <a href="/2015/09/27/Generate-Parentheses/">Generate Parentheses</a>
@@ -1022,10 +1080,6 @@
         
           <li>
             <a href="/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/">Design a URL shortening service like bit.ly</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/22/Word-Search/">Word Search</a>
           </li>
         
       </ul>

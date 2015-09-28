@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Reorder List | Wondering Doggy</title>
+  <title>Surrounded Regions | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Reorder ListGiven a singly linked list L: L0→L1→…→Ln-1→Ln,reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
-You must do this in-place without altering the nodes’ values.
-For example,Given {1,2,3,4}, reorder it t">
+  <meta name="description" content="Given a 2D board containing ‘X’ and ‘O’, capture all regions surrounded by ‘X’.
+A region is captured by flipping all ‘O’s into ‘X’s in that surrounded region.
+For example,X X X XX O O XX X O XX O X XA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Reorder List">
-<meta property="og:url" content="http://yoursite.com/2015/09/03/Reorder-List/index.html">
+<meta property="og:title" content="Surrounded Regions">
+<meta property="og:url" content="http://yoursite.com/2015/09/28/Surrounded-Regions/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Reorder ListGiven a singly linked list L: L0→L1→…→Ln-1→Ln,reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
-You must do this in-place without altering the nodes’ values.
-For example,Given {1,2,3,4}, reorder it t">
-<meta property="og:updated_time" content="2015-09-26T02:08:13.000Z">
+<meta property="og:description" content="Given a 2D board containing ‘X’ and ‘O’, capture all regions surrounded by ‘X’.
+A region is captured by flipping all ‘O’s into ‘X’s in that surrounded region.
+For example,X X X XX O O XX X O XX O X XA">
+<meta property="og:updated_time" content="2015-09-28T18:25:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reorder List">
-<meta name="twitter:description" content="Reorder ListGiven a singly linked list L: L0→L1→…→Ln-1→Ln,reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
-You must do this in-place without altering the nodes’ values.
-For example,Given {1,2,3,4}, reorder it t">
+<meta name="twitter:title" content="Surrounded Regions">
+<meta name="twitter:description" content="Given a 2D board containing ‘X’ and ‘O’, capture all regions surrounded by ‘X’.
+A region is captured by flipping all ‘O’s into ‘X’s in that surrounded region.
+For example,X X X XX O O XX X O XX O X XA">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -66,10 +66,10 @@ For example,Given {1,2,3,4}, reorder it t">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Reorder-List" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Surrounded-Regions" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/03/Reorder-List/" class="article-date">
-  <time datetime="2015-09-03T19:41:43.000Z" itemprop="datePublished">2015-09-03</time>
+    <a href="/2015/09/28/Surrounded-Regions/" class="article-date">
+  <time datetime="2015-09-28T18:18:11.000Z" itemprop="datePublished">2015-09-28</time>
 </a>
     
   <div class="article-category">
@@ -84,7 +84,7 @@ For example,Given {1,2,3,4}, reorder it t">
         
   
     <h1 class="article-title" itemprop="name">
-      Reorder List
+      Surrounded Regions
     </h1>
   
 
@@ -92,62 +92,98 @@ For example,Given {1,2,3,4}, reorder it t">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Reorder List<br>Given a singly linked list L: L0→L1→…→Ln-1→Ln,<br>reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
-<p>You must do this in-place without altering the nodes’ values.</p>
-<p>For example,<br>Given {1,2,3,4}, reorder it to {1,4,2,3}.</p>
-<p>想法：</p>
-<ul>
-<li>找到中点；</li>
-<li>把中点后面的所有点：<ul>
-<li>存到stack里面</li>
-<li>反转</li>
-</ul>
-</li>
-<li>merge两个链表在一起<br><strong>记得吧中点的后面一个设置成null</strong></li>
-</ul>
+        <p>Given a 2D board containing ‘X’ and ‘O’, capture all regions surrounded by ‘X’.</p>
+<p>A region is captured by flipping all ‘O’s into ‘X’s in that surrounded region.</p>
+<p>For example,<br>X X X X<br>X O O X<br>X X O X<br>X O X X<br>After running your function, the board should be:</p>
+<p>X X X X<br>X X X X<br>X X X X<br>X O X X</p>
 <hr>
+<p>想法：<br>1：先走一遍，看看有没有X，要是没有X就直接退出<br>2：走一遍外围，碰到O就用广度优先把O变成1，<br>3：然后在走一遍，把剩下的O变成X<br>4：再走一遍，把剩下的1变成O就可以了</p>
+<p>leedcode上会超出范围：</p>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> <span class="keyword">void</span> reorderList(ListNode head) {
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>{
+        boolean hasX = <span class="literal">false</span>;
 
-            <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span>;
-
-               ListNode dummy = head;
-
-            ListNode fast = head, slow = head;
-        <span class="keyword">while</span>(fast != <span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            slow = slow.<span class="keyword">next</span>;
-            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; j++){
+                <span class="keyword">if</span>(board[i][j] == <span class="string">'X'</span>){
+                    hasX = <span class="literal">true</span>;
+                    <span class="keyword">break</span>;
+                }
+            }
         }
 
-        Stack&lt;ListNode&gt; stack = <span class="keyword">new</span> Stack&lt;ListNode&gt;();
-        ListNode end = slow;
-        slow = slow.<span class="keyword">next</span>;
+        <span class="keyword">if</span>(!hasX) <span class="keyword">return</span>;
 
-        <span class="keyword">while</span>(slow != <span class="keyword">null</span>){
-            stack.<span class="keyword">push</span>(slow);
-            slow = slow.<span class="keyword">next</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board[<span class="number">0</span>].length; i++){
+            <span class="keyword">if</span>(board[<span class="number">0</span>][i] == <span class="string">'O'</span>){
+                change(board, <span class="number">0</span>, i);
+            }
         }
 
-           end.<span class="keyword">next</span> = <span class="keyword">null</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">if</span>(board[i][<span class="number">0</span>] == <span class="string">'O'</span>){
+                change(board, i, <span class="number">0</span>);
+            }
+        }
 
-        <span class="keyword">while</span>(!stack.empty()){
-            ListNode temp = stack.<span class="keyword">pop</span>();
-            temp.<span class="keyword">next</span> = head.<span class="keyword">next</span>;
-            head.<span class="keyword">next</span> = temp;
-            head = temp.<span class="keyword">next</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">if</span>(board[i][board[<span class="number">0</span>].length - <span class="number">1</span>] == <span class="string">'0'</span>){
+                change(board, i, board[<span class="number">0</span>].length - <span class="number">1</span>);
+            }
+        }
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board[<span class="number">0</span>].length; i++){
+            <span class="keyword">if</span>(board[board.length - <span class="number">1</span>][i] == <span class="string">'O'</span>){
+                change(board, board.length - <span class="number">1</span>, i);
+            }
+        }
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; j++){
+                <span class="keyword">if</span>(board[i][j] == <span class="string">'O'</span>){
+                board[i][j] = <span class="string">'X'</span>;
+                }
+            }
+        }
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; j++){
+                <span class="keyword">if</span>(board[i][j] == <span class="string">'1'</span>){
+                    board[i][j] = <span class="string">'O'</span>;
+                }
+            }
         }
     }
-}
-</code></pre><hr>
-<p><a href="https://leetcode.com/problems/reorder-list/" target="_blank" rel="external"><strong><em>origin problem</em></strong></a></p>
 
+    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>{
+        <span class="keyword">if</span>(board[i][j] == <span class="string">'O'</span>){
+            board[i][j] = <span class="string">'1'</span>;
+        }<span class="keyword">else</span>{
+            <span class="keyword">return</span>;
+        }
+
+        <span class="keyword">if</span>(i - <span class="number">1</span> &gt;= <span class="number">0</span>){
+            change(board, i - <span class="number">1</span>, j);
+        }
+        <span class="keyword">if</span>(i + <span class="number">1</span> &lt; board.length){
+            change(board, i + <span class="number">1</span>, j);
+        }
+        <span class="keyword">if</span>(j - <span class="number">1</span> &gt;= <span class="number">0</span>){
+            change(board, i, j - <span class="number">1</span>);    
+        }
+        <span class="keyword">if</span>(j + <span class="number">1</span> &lt; board[<span class="number">0</span>].length){
+            change(board, i, j + <span class="number">1</span>);
+        }
+    }
+
+}
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cif49naau001szg1usceuh12i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/28/Surrounded-Regions/" data-id="cif49naad0018zg1unhap8cl1" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
 
     </footer>
   </div>
@@ -155,19 +191,10 @@ For example,Given {1,2,3,4}, reorder it t">
     
 <nav id="article-nav">
   
-    <a href="/2015/09/03/Linked-List-Cycle-I-II/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Linked List Cycle I&amp;II
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/03/Add-Two-Numbers/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/09/27/Generate-Parentheses/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Add Two Numbers</div>
+      <div class="article-nav-title">Generate Parentheses</div>
     </a>
   
 </nav>
