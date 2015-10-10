@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Text Justification | Wondering Doggy</title>
+  <title>NF英文解释 | Wondering Doggy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.
-You should pack your words in a greedy approach; that is,">
+  <meta name="description" content="First normal form (1NF)the domain of each attribute contains only atomic values, and the value of each attribute contains only a single value from that domain.
+Second normal form (2NF)a table is in 2N">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Text Justification">
-<meta property="og:url" content="http://yoursite.com/2015/09/24/Text-Justification/index.html">
+<meta property="og:title" content="NF英文解释">
+<meta property="og:url" content="http://yoursite.com/2015/10/09/NF英文解释/index.html">
 <meta property="og:site_name" content="Wondering Doggy">
-<meta property="og:description" content="Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.
-You should pack your words in a greedy approach; that is,">
-<meta property="og:updated_time" content="2015-09-26T02:04:28.000Z">
+<meta property="og:description" content="First normal form (1NF)the domain of each attribute contains only atomic values, and the value of each attribute contains only a single value from that domain.
+Second normal form (2NF)a table is in 2N">
+<meta property="og:updated_time" content="2015-10-09T23:24:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Text Justification">
-<meta name="twitter:description" content="Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.
-You should pack your words in a greedy approach; that is,">
+<meta name="twitter:title" content="NF英文解释">
+<meta name="twitter:description" content="First normal form (1NF)the domain of each attribute contains only atomic values, and the value of each attribute contains only a single value from that domain.
+Second normal form (2NF)a table is in 2N">
   
     <link rel="alternative" href="/atom.xml" title="Wondering Doggy" type="application/atom+xml">
   
@@ -63,14 +63,14 @@ You should pack your words in a greedy approach; that is,">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Text-Justification" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-NF英文解释" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/24/Text-Justification/" class="article-date">
-  <time datetime="2015-09-25T01:38:46.000Z" itemprop="datePublished">2015-09-24</time>
+    <a href="/2015/10/09/NF英文解释/" class="article-date">
+  <time datetime="2015-10-09T17:01:31.000Z" itemprop="datePublished">2015-10-09</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="article-category-link" href="/categories/Database/">Database</a>
   </div>
 
   </div>
@@ -81,7 +81,7 @@ You should pack your words in a greedy approach; that is,">
         
   
     <h1 class="article-title" itemprop="name">
-      Text Justification
+      NF英文解释
     </h1>
   
 
@@ -89,92 +89,18 @@ You should pack your words in a greedy approach; that is,">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.</p>
-<p>You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ‘ ‘ when necessary so that each line has exactly L characters.</p>
-<p>Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line do not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.</p>
-<p>For the last line of text, it should be left justified and no extra space is inserted between words.</p>
-<p>For example,<br>words: [“This”, “is”, “an”, “example”, “of”, “text”, “justification.”]<br>L: 16.</p>
-<p>Return the formatted lines as:<br>[<br>“This    is    an”,<br>“example  of text”,<br>“justification.  “<br>]</p>
-<p>想法：<br>1：当前字符串长度加下一个单词的长度是否超过范围？</p>
-<pre><code><span class="keyword">*</span> 小于范围，把下一个单词加上，再在后面加一个空格；
-<span class="keyword">*</span> 等于范围，直接加到答案上；
-<span class="keyword">*</span> 大于范围，就在当前的字符串上：
-    <span class="keyword">*</span> 要是有多个单词并且不是最后一行，就从头到尾平均放空格
-    <span class="keyword">*</span> 要是只有一个单词或者是最后一行，就直接在后面加空格
-</code></pre><hr>
-<pre><code>public class Solution {
-    public List&lt;String&gt; fullJustify<span class="params">(String[] words, int w)</span> {
+        <h2 id="First_normal_form_(1NF)">First normal form (1NF)</h2><p>the domain of each attribute contains only atomic values, and the value of each attribute contains only a single value from that domain.</p>
+<h2 id="Second_normal_form_(2NF)">Second normal form (2NF)</h2><p>a table is in 2NF if it is in 1NF and no non-prime attribute is dependent on any proper subset of any candidate key of the table. A non-prime attribute of a table is an attribute that is not a part of any candidate key of the table.</p>
+<h2 id="Third_normal_form">Third normal form</h2><p>the entity is in second normal form and<br>all the attributes in a table are determined only by the candidate keys of that table and not by any non-prime attributes.</p>
+<h2 id="BCNF">BCNF</h2><p>比第三范式要严格一点，</p>
 
-        ArrayList&lt;String&gt; res = new ArrayList&lt;String&gt;<span class="params">()</span>;
-        <span class="keyword">if</span><span class="params">(words.length &lt;= <span class="number">0</span>)</span> return res;
-
-        int num = <span class="number">0</span>;
-        StringBuffer sb = new StringBuffer<span class="params">()</span>;
-
-        <span class="keyword">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; words.length; i++)</span>{
-            <span class="keyword">if</span><span class="params">(sb.length<span class="params">()</span> + words[i].length<span class="params">()</span> &lt; w)</span>{
-                sb.append<span class="params">(words[i] + <span class="string">" "</span>)</span>;
-                num++;
-            }<span class="keyword">else</span> <span class="keyword">if</span><span class="params">(sb.length<span class="params">()</span> + words[i].length<span class="params">()</span> == w)</span>{
-                sb.append<span class="params">(words[i])</span>;
-                res.add<span class="params">(new String<span class="params">(sb.toString<span class="params">()</span>)</span>)</span>;
-                sb = new StringBuffer<span class="params">()</span>;
-                num = <span class="number">0</span>;
-            }<span class="keyword">else</span>{
-                i--;
-                <span class="keyword">if</span><span class="params">(num == <span class="number">1</span>)</span>{
-                    while<span class="params">(sb.length<span class="params">()</span> &lt; w)</span>{
-                        sb.append<span class="params">(<span class="string">" "</span>)</span>;
-                    }
-                }<span class="keyword">else</span>{
-                    sb.deleteCharAt<span class="params">(sb.length<span class="params">()</span> - <span class="number">1</span>)</span>;
-                    int spaces = w - sb.length<span class="params">()</span>;
-                    sb = evenSpaces<span class="params">(sb, spaces)</span>;
-                }
-                res.add<span class="params">(new String<span class="params">(sb.toString<span class="params">()</span>)</span>)</span>;
-                sb = new StringBuffer<span class="params">()</span>;    
-                num = <span class="number">0</span>;
-            }
-        }
-
-            <span class="keyword">if</span><span class="params">(sb.length<span class="params">()</span> &gt; <span class="number">0</span>)</span>{
-                while<span class="params">(sb.length<span class="params">()</span> &lt; w)</span>{
-                    sb.append<span class="params">(<span class="string">" "</span>)</span>;
-                }
-                res.add<span class="params">(new String<span class="params">(sb.toString<span class="params">()</span>)</span>)</span>;
-            }
-
-            return res;
-        }
-
-    private StringBuffer evenSpaces<span class="params">(StringBuffer sb, int spaces)</span>{
-        int i = <span class="number">0</span>;
-        boolean meetSpace = <span class="literal">false</span>;
-        while<span class="params">(spaces &gt; <span class="number">0</span>)</span>{
-            <span class="keyword">if</span><span class="params">(sb.charAt<span class="params">(i)</span> == ' ' &amp;&amp; !meetSpace)</span>{
-                sb.insert<span class="params">(i, ' ')</span>;
-                spaces --;
-                meetSpace = <span class="literal">true</span>;
-
-            }<span class="keyword">else</span> <span class="keyword">if</span><span class="params">(sb.charAt<span class="params">(i)</span> != ' ' &amp;&amp; meetSpace)</span>{
-                meetSpace = <span class="literal">false</span>;
-            }
-                i++;
-            <span class="keyword">if</span><span class="params">(i == sb.length<span class="params">()</span>)</span>{
-                i = <span class="number">0</span>;
-            }
-        }    
-        return sb;
-    }
-}
-</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/24/Text-Justification/" data-id="cifkj46bx0018kk1u0zwyis27" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/09/NF英文解释/" data-id="cifkj46cw002kkk1u8xekn0m1" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hard/">Hard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dtabase/">Dtabase</a></li></ul>
 
     </footer>
   </div>
@@ -182,19 +108,10 @@ You should pack your words in a greedy approach; that is,">
     
 <nav id="article-nav">
   
-    <a href="/2015/09/27/Generate-Parentheses/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Generate Parentheses
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/23/Scalability-Fundamentals/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/10/06/Software-Test-Interview-Questions/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Scalability Fundamentals</div>
+      <div class="article-nav-title">Software Test Interview Questions</div>
     </a>
   
 </nav>
