@@ -61,10 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Palindrome-Linked-List" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-First-Missing-Positive" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/03/Palindrome-Linked-List/" class="article-date">
-  <time datetime="2015-09-04T00:59:43.000Z" itemprop="datePublished">2015-09-03</time>
+    <a href="/2015/09/20/First-Missing-Positive/" class="article-date">
+  <time datetime="2015-09-20T18:54:02.000Z" itemprop="datePublished">2015-09-20</time>
 </a>
     
   <div class="article-category">
@@ -79,7 +79,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Palindrome-Linked-List/">Palindrome Linked List</a>
+      <a class="article-title" href="/2015/09/20/First-Missing-Positive/">First Missing Positive</a>
     </h1>
   
 
@@ -87,164 +87,53 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Palindrome Linked List<br>Given a singly linked list, determine if it is a palindrome.</p>
-<p>Follow up:<br>Could you do it in O(n) time and O(1) space?</p>
-<p>想法：</p>
-<ul>
-<li>简单的算法是用stack重头到尾存一遍，再从头到尾和stack里面pop出来的对比，都相等就可以，空间O（n） 和 时间O（n）</li>
-<li>复杂的是快慢指针找中点，后半段反过来，前半段和后半段一个一个对。</li>
-</ul>
+        <p>First Missing Positive My Submissions Question Solution<br>Given an unsorted integer array, find the first missing positive integer.</p>
+<p>For example,<br>Given [1,2,0] return 3,<br>and [3,4,-1,1] return 2.</p>
+<p>Your algorithm should run in O(n) time and uses constant space.</p>
 <hr>
+<p>想法：</p>
+<p>###排列，O(NlogN)</p>
+<p>###因为要找positive的数，所以负数就过</p>
+<p>###找到第一个正数</p>
+<p>####第一个正数要是1</p>
+<p>#####就比较下一个数是不是比前一个数大1或者等于前一个数</p>
+<p>#####要是一直到最后都没少，就直接返回最后一个数加1</p>
+<p>####第一个数要不是1就直接返回一</p>
+<p>####这个算法由于有一个排列，所以时间不是O（N）；</p>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> <span class="keyword">boolean</span> isPalindrome(ListNode head) {
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>{
+        <span class="keyword">if</span>(nums.length &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;
 
-        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span>==<span class="keyword">null</span>)
-            <span class="keyword">return</span> <span class="keyword">true</span>;
+        <span class="keyword">int</span> start = <span class="number">0</span>;
+        Arrays.sort(nums);
 
-        <span class="comment">//find list center</span>
-        ListNode fast = head;
-        ListNode slow = head;
-
-        <span class="keyword">while</span>(fast.<span class="keyword">next</span>!=<span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span>.<span class="keyword">next</span>!=<span class="keyword">null</span>){
-            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
-            slow = slow.<span class="keyword">next</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length; i++){
+            <span class="keyword">if</span>(nums[i] &gt;= <span class="number">1</span>){
+                start = i;
+                <span class="keyword">break</span>;
+            }
         }
 
-        ListNode secondHead = slow.<span class="keyword">next</span>;
-        slow.<span class="keyword">next</span> = <span class="keyword">null</span>;
+        <span class="keyword">if</span>(nums[start] != <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;
 
-        <span class="comment">//reverse second part of the list</span>
-        ListNode p1 = secondHead;
-        ListNode p2 = p1.<span class="keyword">next</span>;
-
-        <span class="keyword">while</span>(p1!=<span class="keyword">null</span> &amp;&amp; p2!=<span class="keyword">null</span>){
-            ListNode temp = p2.<span class="keyword">next</span>;
-            p2.<span class="keyword">next</span> = p1;
-            p1 = p2;
-            p2 = temp;
-        }
-
-        secondHead.<span class="keyword">next</span> = <span class="keyword">null</span>;
-
-        <span class="comment">//compare two sublists now</span>
-        ListNode p = (p2==<span class="keyword">null</span>?p1:p2);
-        ListNode q = head;
-        <span class="keyword">while</span>(p!=<span class="keyword">null</span>){
-            <span class="keyword">if</span>(p.val != q.val)
-            <span class="keyword">return</span> <span class="keyword">false</span>;
-
-            p = p.<span class="keyword">next</span>;
-            q = q.<span class="keyword">next</span>;
-        }
-
-        <span class="keyword">return</span> <span class="keyword">true</span>;
-
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Palindrome-Linked-List/" data-id="cifkj46cq002bkk1umj5e1mnb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Remove-Duplicates-from-Sorted-List-1-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" class="article-date">
-  <time datetime="2015-09-03T21:55:51.000Z" itemprop="datePublished">2015-09-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/">Remove Duplicates from Sorted List 1&amp;2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Remove Duplicates from Sorted List<br>Given a sorted linked list, delete all duplicates such that each element appear only once.</p>
-<p>For example,<br>Given 1-&gt;1-&gt;2, return 1-&gt;2.<br>Given 1-&gt;1-&gt;2-&gt;3-&gt;3, return 1-&gt;2-&gt;3.</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
-    <span class="keyword">public</span> ListNode deleteDuplicates(ListNode head) {
-
-    <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;
-
-    ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-    dummy.<span class="keyword">next</span> = head;
-
-    <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="literal">null</span>){
-        <span class="keyword">if</span>(head.<span class="keyword">next</span>.val == head.val){
-            head.<span class="keyword">next</span> = head.<span class="keyword">next</span>.<span class="keyword">next</span>;
-        }<span class="keyword">else</span>{
-            head = head.<span class="keyword">next</span>;
-        }
-    }
-    <span class="keyword">return</span> dummy.<span class="keyword">next</span>;
-    }
-}
-</code></pre><hr>
-<p>Remove Duplicates from Sorted List II<br>Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.</p>
-<p>For example,<br>Given 1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5, return 1-&gt;2-&gt;5.<br>Given 1-&gt;1-&gt;1-&gt;2-&gt;3, return 2-&gt;3.</p>
-<ul>
-<li>思路：<ul>
-<li>用dummy note</li>
-<li>一次检查后两个的val，因为是sorted的，要有重复只能是相邻</li>
-<li>用一个int来存已经重复的val</li>
-<li>用一个while一直找到下一个不是重复的值为止</li>
-<li>要注意检查是不是null，因为检查的是下两个</li>
-</ul>
-</li>
-</ul>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode deleteDuplicates(ListNode head) {
-        ListNode dummy = <span class="keyword">new</span> ListNode(Integer.MAX_VALUE);
-        dummy.<span class="keyword">next</span> = head;
-        head = dummy;
-
-        <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; head.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            <span class="keyword">if</span>(head.<span class="keyword">next</span>.val == head.<span class="keyword">next</span>.<span class="keyword">next</span>.val){
-                <span class="keyword">int</span> same = head.<span class="keyword">next</span>.val;
-                ListNode <span class="keyword">next</span> = head.<span class="keyword">next</span>;
-                <span class="keyword">while</span>(<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; <span class="keyword">next</span>.val == same){
-                    <span class="keyword">next</span> = <span class="keyword">next</span>.<span class="keyword">next</span>;
+            <span class="keyword">while</span>(start + <span class="number">1</span> &lt; nums.length){
+                <span class="keyword">if</span>(nums[start]+<span class="number">1</span>==nums[start+<span class="number">1</span>] || nums[start] == nums[start + <span class="number">1</span>]){
+                    start++;
+                }<span class="keyword">else</span>{
+                    <span class="keyword">return</span> nums[start] + <span class="number">1</span>;
                 }
-                head.<span class="keyword">next</span> = <span class="keyword">next</span>;
-            }<span class="keyword">else</span>{
-                head = head.<span class="keyword">next</span>;
             }
-        }
-    <span class="keyword">return</span> dummy.<span class="keyword">next</span>;
+        <span class="keyword">return</span> nums[nums.length - <span class="number">1</span>] + <span class="number">1</span>;
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Remove-Duplicates-from-Sorted-List-1-2/" data-id="cifkj46ck0025kk1ufk4jg7yg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/20/First-Missing-Positive/" data-id="cir6uweuz0032gq1ucc6dtt8o" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hard/">Hard</a></li></ul>
 
     </footer>
   </div>
@@ -253,10 +142,10 @@
 
 
   
-    <article id="post-Merge-Two-Sorted-Lists" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Compare-Version-Numbers" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/03/Merge-Two-Sorted-Lists/" class="article-date">
-  <time datetime="2015-09-03T20:59:36.000Z" itemprop="datePublished">2015-09-03</time>
+    <a href="/2015/09/19/Compare-Version-Numbers/" class="article-date">
+  <time datetime="2015-09-19T07:10:19.000Z" itemprop="datePublished">2015-09-19</time>
 </a>
     
   <div class="article-category">
@@ -271,7 +160,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Merge-Two-Sorted-Lists/">Merge Sorted Lists</a>
+      <a class="article-title" href="/2015/09/19/Compare-Version-Numbers/">Compare Version Numbers</a>
     </h1>
   
 
@@ -279,475 +168,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Merge Two Sorted Lists<br>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p>
-<pre><code>    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
-        <span class="keyword">public</span> ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        <span class="keyword">if</span>(l1 == <span class="literal">null</span>) <span class="keyword">return</span> l2;
-        <span class="keyword">if</span>(l2 == <span class="literal">null</span>) <span class="keyword">return</span> l1;
-        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        ListNode res = dummy;
-
-        <span class="keyword">while</span>(l1 != <span class="literal">null</span> &amp;&amp; l2 != <span class="literal">null</span>){
-            <span class="keyword">if</span>(l1.val &lt;= l2.val){
-                dummy.<span class="keyword">next</span> = l1;
-                l1 = l1.<span class="keyword">next</span>;
-            }<span class="keyword">else</span>{
-                dummy.<span class="keyword">next</span> = l2;
-                l2 = l2.<span class="keyword">next</span>;
-            }
-            dummy = dummy.<span class="keyword">next</span>;
-        }
-
-        <span class="keyword">if</span>(l1 == <span class="literal">null</span>){
-            dummy.<span class="keyword">next</span> = l2;
-        }<span class="keyword">else</span>{
-            dummy.<span class="keyword">next</span> = l1;
-        }
-
-        <span class="keyword">return</span> res.<span class="keyword">next</span>;
-    }
-}
-</code></pre><hr>
-<p>Merge k Sorted Lists<br>Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.</p>
-<ul>
-<li>想法：<ul>
-<li>用PriorityQueue，取queue中最小的那个<br>*记得要改写Comparator</li>
-</ul>
-</li>
-</ul>
-<h4 id="用法示范:">用法示范:</h4><pre><code><span class="type">PriorityQueue</span>&lt;<span class="type">ListNode</span>&gt; queue = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;<span class="type">ListNode</span>&gt;(<span class="symbol">'queue</span>的size', <span class="keyword">new</span> <span class="type">Comparator</span><span class="literal">()</span>{
-    public <span class="built_in">int</span> compare(<span class="type">ListNode</span> l1, <span class="type">ListNode</span> l2){
-        return l1.<span class="keyword">val</span> - l2.<span class="keyword">val</span>;
-    }
-});
-</code></pre><hr>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span><span class="params">(ListNode[] lists)</span> </span>{
-        <span class="keyword">if</span>(lists.length == <span class="number">0</span>) <span class="keyword">return</span> null;
-
-        PriorityQueue&lt;ListNode&gt; <span class="built_in">queue</span> = <span class="keyword">new</span> PriorityQueue&lt;ListNode&gt;(lists.length, <span class="keyword">new</span> Comparator&lt;ListNode&gt;(){
-                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(ListNode l1, ListNode l2)</span></span>{
-                    <span class="keyword">return</span> l1.val - l2.val;
-                }
-        });
-
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lists.length; i++){
-            <span class="keyword">if</span>(lists[i] != null) <span class="built_in">queue</span>.add(lists[i]);
-        }
-
-        ListNode head = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        ListNode p = head;
-
-        <span class="keyword">while</span>(!<span class="built_in">queue</span>.isEmpty()){
-            ListNode temp = <span class="built_in">queue</span>.poll();
-            p.next = temp;
-            <span class="keyword">if</span>(temp.next != null){
-                <span class="built_in">queue</span>.add(temp.next);
-            }
-            p = p.next;
-        }
-    <span class="keyword">return</span> head.next;
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Merge-Two-Sorted-Lists/" data-id="cifkj46cy002pkk1um2nd4gq5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Reverse-Linked-List-1-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/03/Reverse-Linked-List-1-2/" class="article-date">
-  <time datetime="2015-09-03T20:13:36.000Z" itemprop="datePublished">2015-09-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Reverse-Linked-List-1-2/">Reverse Linked List 1&amp;2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Reverse Linked List 1<br>Reverse a singly linked list.</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode reverseList(ListNode head) {
-
-    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
-    <span class="keyword">if</span>(head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> head;
-
-    ListNode pre = head, cur = pre.<span class="keyword">next</span>, nex;
-    <span class="comment">//这句话很重要，没有就会死循环：</span>
-    pre.<span class="keyword">next</span> = <span class="keyword">null</span>;
-
-        <span class="keyword">while</span>(cur.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            nex = cur.<span class="keyword">next</span>;
-            cur.<span class="keyword">next</span> = pre;
-            pre = cur;
-            cur = nex;
-        }
-        cur.<span class="keyword">next</span> = pre;
-        <span class="keyword">return</span> cur;
-    }
-}
-</code></pre><hr>
-<p>Reverse Linked List II<br>Reverse a linked list from position m to n. Do it in-place and in one-pass.</p>
-<p>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, m = 2 and n = 4,</p>
-<p>return 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;NULL.</p>
-<p>想法：</p>
-<ul>
-<li>找到m前一个位置</li>
-<li>把他之后的n - m + 1 个node存到stack里面</li>
-<li>再一个一个pop出来，有反转的效果</li>
-</ul>
-<p>Note:<br>Given m, n satisfy the following condition:<br>1 ≤ m ≤ n ≤ length of list.</p>
-<pre><code>    <span class="keyword">public</span> <span class="keyword">class</span> Solution {
-        <span class="keyword">public</span> ListNode reverseBetween(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n) {
-
-        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
-        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        dummy.<span class="keyword">next</span> = head;
-        ListNode start = dummy;
-        Stack&lt;ListNode&gt; stack = <span class="keyword">new</span> Stack&lt;ListNode&gt;();
-
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m - <span class="number">1</span>; i++){
-            start = start.<span class="keyword">next</span>;
-        }
-
-        ListNode toPush = start.<span class="keyword">next</span>;
-
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - m + <span class="number">1</span>; i++){
-            stack.<span class="keyword">push</span>(toPush);
-            toPush = toPush.<span class="keyword">next</span>;
-        }
-
-        <span class="keyword">while</span>(!stack.empty()){
-            ListNode temp = stack.<span class="keyword">pop</span>();
-            start.<span class="keyword">next</span> = temp;
-            start = temp;
-        }
-
-        start.<span class="keyword">next</span> = toPush;
-        <span class="keyword">return</span> dummy.<span class="keyword">next</span>;   
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reverse-Linked-List-1-2/" data-id="cifkj46cf001wkk1um3n05mus" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Linked-List-Cycle-I-II" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/03/Linked-List-Cycle-I-II/" class="article-date">
-  <time datetime="2015-09-03T19:56:16.000Z" itemprop="datePublished">2015-09-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Linked-List-Cycle-I-II/">Linked List Cycle I&amp;II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Linked List Cycle<br>Given a linked list, determine if it has a cycle in it.</p>
-<p>Follow up:<br>Can you solve it without using extra space?</p>
-<p>Linked List Cycle II<br>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
-<p>Note: Do not modify the linked list.</p>
-<p>Follow up:<br>Can you solve it without using extra space?</p>
-<p>想法：<br>    1：用快慢指针判断是否有将连接的点；（I 解决）<br>    2：如果有连接的点，把快指针放回开头，快慢指针一步一步走，相遇的点就是开始的点</p>
+        <p>Compare Version Numbers<br>Compare two version numbers version1 and version2.<br>If version1 &gt; version2 return 1, if version1 &lt; version2 return -1, otherwise return 0.</p>
+<p>You may assume that the version strings are non-empty and contain only digits and the . character.<br>The . character does not represent a decimal point and is used to separate number sequences.<br>For instance, 2.5 is not “two and a half” or “half way to version three”, it is the fifth second-level revision of the second first-level revision.</p>
+<p>Here is an example of version numbers ordering:</p>
+<p>0.1 &lt; 1.1 &lt; 1.2 &lt; 13.37</p>
+<p>想法：<br>把字符串按照“.”拆开，重头到尾比较数字的大小，只要碰到大的那个就返回对应的结果<br>注意可能有“1”和“1.0.0.0.1”这样的情况，所以按照长度短的那个来比较，<br>要是有“1”和“1.0.0.0”这样的贱题目，就要比较长度长的后面的所有数字，要是碰到比0大的，就直接返回对应的结果</p>
+<p><em>*</em>注意</p>
+<p>###java中split小数点的时候，要这样split（”\.”）要转义一下。要不然翻个出来的是空的数组</p>
 <hr>
-<p><strong><em> 1 </em></strong></p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> <span class="keyword">boolean</span> hasCycle(ListNode head) {
-        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;
+<pre><code><span class="label">public</span> class Solution {
+    public int compareVersion(<span class="keyword">String </span>version1, <span class="keyword">String </span>version2) {
+        <span class="keyword">String[] </span><span class="literal">v1</span> = version1.split(<span class="string">"\\."</span>)<span class="comment">;</span>
+        <span class="keyword">String[] </span><span class="literal">v2</span> = version2.split(<span class="string">"\\."</span>)<span class="comment">;</span>
 
-        ListNode fast = head;
-        ListNode slow = head;
+        int l = <span class="literal">v1</span>.length &gt;= <span class="literal">v2</span>.length ? <span class="literal">v2</span>.length : <span class="literal">v1</span>.length<span class="comment">;</span>
 
-        <span class="keyword">while</span>(fast.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
-            slow = slow.<span class="keyword">next</span>;
-
-            <span class="keyword">if</span>(fast == slow) <span class="keyword">return</span> <span class="keyword">true</span>;
-        }
-            <span class="keyword">return</span> <span class="keyword">false</span>;
-    }
-}
-</code></pre><hr>
-<p><strong><em> 2 </em></strong></p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode detectCycle(ListNode head) {
-
-        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
-        ListNode fast = head;
-        ListNode slow = head;
-
-        <span class="keyword">while</span>(fast.<span class="keyword">next</span> != <span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span>.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
-            slow = slow.<span class="keyword">next</span>;
-            <span class="keyword">if</span>(fast == slow) <span class="keyword">break</span>;
-        }
-
-        <span class="keyword">if</span>(fast.<span class="keyword">next</span> == <span class="keyword">null</span> || fast.<span class="keyword">next</span>.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
-
-        fast = head;
-
-        <span class="keyword">while</span>(fast != slow){
-            fast = fast.<span class="keyword">next</span>;
-            slow = slow.<span class="keyword">next</span>;
-        }
-
-        <span class="keyword">return</span> fast;
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Linked-List-Cycle-I-II/" data-id="cifkj46d1002skk1upqbzuf9n" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Reorder-List" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/03/Reorder-List/" class="article-date">
-  <time datetime="2015-09-03T19:41:43.000Z" itemprop="datePublished">2015-09-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Reorder-List/">Reorder List</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Reorder List<br>Given a singly linked list L: L0→L1→…→Ln-1→Ln,<br>reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
-<p>You must do this in-place without altering the nodes’ values.</p>
-<p>For example,<br>Given {1,2,3,4}, reorder it to {1,4,2,3}.</p>
-<p>想法：</p>
-<ul>
-<li>找到中点；</li>
-<li>把中点后面的所有点：<ul>
-<li>存到stack里面</li>
-<li>反转</li>
-</ul>
-</li>
-<li>merge两个链表在一起<br><strong>记得吧中点的后面一个设置成null</strong></li>
-</ul>
-<hr>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> <span class="keyword">void</span> reorderList(ListNode head) {
-
-            <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span>;
-
-               ListNode dummy = head;
-
-            ListNode fast = head, slow = head;
-        <span class="keyword">while</span>(fast != <span class="keyword">null</span> &amp;&amp; fast.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            slow = slow.<span class="keyword">next</span>;
-            fast = fast.<span class="keyword">next</span>.<span class="keyword">next</span>;
-        }
-
-        Stack&lt;ListNode&gt; stack = <span class="keyword">new</span> Stack&lt;ListNode&gt;();
-        ListNode end = slow;
-        slow = slow.<span class="keyword">next</span>;
-
-        <span class="keyword">while</span>(slow != <span class="keyword">null</span>){
-            stack.<span class="keyword">push</span>(slow);
-            slow = slow.<span class="keyword">next</span>;
-        }
-
-           end.<span class="keyword">next</span> = <span class="keyword">null</span>;
-
-        <span class="keyword">while</span>(!stack.empty()){
-            ListNode temp = stack.<span class="keyword">pop</span>();
-            temp.<span class="keyword">next</span> = head.<span class="keyword">next</span>;
-            head.<span class="keyword">next</span> = temp;
-            head = temp.<span class="keyword">next</span>;
-        }
-    }
-}
-</code></pre><hr>
-<p><a href="https://leetcode.com/problems/reorder-list/" target="_blank" rel="external"><strong><em>origin problem</em></strong></a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Reorder-List/" data-id="cifkj46ch0021kk1ubcroditr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Add-Two-Numbers" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/03/Add-Two-Numbers/" class="article-date">
-  <time datetime="2015-09-03T19:08:52.000Z" itemprop="datePublished">2015-09-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Add-Two-Numbers/">Add Two Numbers</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Add Two Numbers Total Accepted: 85380 Total Submissions: 421576 My Submissions Question Solution<br>You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
-<p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8</p>
-<p>想法：<br>    1：类似两个字符串相加那道题；<br>    2：注意每一次指针的移动；<br>    3：判断是否有进位；<br>    4：最后一个一个进位要记得考虑；</p>
-<hr>
-<pre><code><span class="keyword">public</span> class Solution {
-    <span class="keyword">public</span> ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        <span class="keyword">if</span>(l1 == <span class="keyword">null</span>) <span class="keyword">return</span> l2;
-        <span class="keyword">if</span>(l2 == <span class="keyword">null</span>) <span class="keyword">return</span> l1;
-
-
-        <span class="built_in">int</span> carry = <span class="number">0</span>, <span class="built_in">add</span> = <span class="number">0</span>;
-        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        ListNode head = dummy;
-
-
-    <span class="keyword">while</span>(l1 != <span class="keyword">null</span> &amp;&amp; l2 != <span class="keyword">null</span>){
-        <span class="built_in">add</span> = l1.val + l2.val + carry;
-        <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
-            carry = <span class="number">1</span>;
-            <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
-        }<span class="keyword">else</span>{
-            carry = <span class="number">0</span>;
-        }
-
-        head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
-        head = head.next;
-        l1 = l1.next;
-        l2 = l2.next;
-    }
-
-    <span class="keyword">if</span>(l1 == <span class="keyword">null</span>){
-        <span class="keyword">while</span>(l2 != <span class="keyword">null</span>){
-            <span class="built_in">add</span> = l2.val + carry;
-            <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
-                carry = <span class="number">1</span>;
-                <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
-            }<span class="keyword">else</span>{
-                carry = <span class="number">0</span>;
+        for(int i = <span class="number">0</span><span class="comment">; i &lt; l; i++){</span>
+            <span class="preprocessor">if</span>(Integer.parseInt(<span class="literal">v1</span>[i]) &gt; Integer.parseInt(<span class="literal">v2</span>[i])){
+                return <span class="number">1</span><span class="comment">;</span>
+            }<span class="preprocessor">else</span> <span class="preprocessor">if</span>(Integer.parseInt(<span class="literal">v1</span>[i]) &lt; Integer.parseInt(<span class="literal">v2</span>[i])){
+                return -<span class="number">1</span><span class="comment">;</span>
             }
-            head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
-            head = head.next;
-            l2 = l2.next;
         }
-    }<span class="keyword">else</span>{
-         <span class="keyword">while</span>(l1 != <span class="keyword">null</span>){
-            <span class="built_in">add</span> = l1.val + carry;
-            <span class="keyword">if</span>(<span class="built_in">add</span> &gt;= <span class="number">10</span>){
-                carry = <span class="number">1</span>;
-                <span class="built_in">add</span> = <span class="built_in">add</span> % <span class="number">10</span>;
-            }<span class="keyword">else</span>{
-                carry = <span class="number">0</span>;
-            }
-            head.next = <span class="keyword">new</span> ListNode(<span class="built_in">add</span>);
-            head = head.next;
-            l1 = l1.next;
+        int possible = <span class="literal">v1</span>.length &gt; <span class="literal">v2</span>.length ? <span class="number">1</span> : -<span class="number">1</span><span class="comment">;</span>
+        <span class="keyword">String[] </span>longer = <span class="literal">v1</span>.length &gt; <span class="literal">v2</span>.length ? <span class="literal">v1</span> : <span class="literal">v2</span><span class="comment">;</span>
+        for(int i = l<span class="comment">; i &lt; longer.length; i++){</span>
+            <span class="preprocessor">if</span>(Integer.parseInt(longer[i]) &gt; <span class="number">0</span>) return possible<span class="comment">;</span>
         }
-    }
-
-    <span class="keyword">if</span>(carry == <span class="number">1</span>) head.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);        
-    <span class="keyword">return</span> dummy.next;
+            return <span class="number">0</span><span class="comment">;</span>
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Add-Two-Numbers/" data-id="cifkj46ds003kkk1uitc925v1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/19/Compare-Version-Numbers/" data-id="cir6uwev30039gq1ur1kozdyh" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
 
     </footer>
   </div>
@@ -756,10 +214,62 @@
 
 
   
-    <article id="post-Rotate-List" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-java-split-小数点的方法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/03/Rotate-List/" class="article-date">
-  <time datetime="2015-09-03T07:57:21.000Z" itemprop="datePublished">2015-09-03</time>
+    <a href="/2015/09/18/java-split-小数点的方法/" class="article-date">
+  <time datetime="2015-09-19T06:48:52.000Z" itemprop="datePublished">2015-09-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tips/">Tips</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/18/java-split-小数点的方法/">java split 小数点的方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自己在用java来分割小数点的时候，发现“a.a.a.a” 用split（“.”）的方法来做，最后得到的数组长度是0</p>
+<p>解决的方法是：</p>
+<pre><code><span class="keyword">public</span> class Test {
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) {
+        <span class="keyword">String</span> s=<span class="string">"aaa.bbb.ccc"</span>;
+        <span class="comment">//这里要转义一下。具体为什么我不知道</span>
+        <span class="keyword">String</span>[] ss=s.<span class="built_in">split</span>(<span class="string">"\\."</span>);
+        System.out.<span class="built_in">println</span>(ss.length);
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/18/java-split-小数点的方法/" data-id="cir6uwesw000zgq1uf6xtfxpi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Letter-Combinations-of-a-Phone-Number" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/16/Letter-Combinations-of-a-Phone-Number/" class="article-date">
+  <time datetime="2015-09-16T22:28:25.000Z" itemprop="datePublished">2015-09-16</time>
 </a>
     
   <div class="article-category">
@@ -774,7 +284,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/03/Rotate-List/">Rotate List</a>
+      <a class="article-title" href="/2015/09/16/Letter-Combinations-of-a-Phone-Number/">Letter Combinations of a Phone Number</a>
     </h1>
   
 
@@ -782,42 +292,107 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given a list, rotate the list to the right by k places, where k is non-negative.<br>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2,return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
-<p>思路：<br>    1，找到新的头；<br>    2，找到新的结尾；<br>    3，一前一后接在一起；</p>
+        <p>Letter Combinations of a Phone Number My Submissions Question Solution<br>Given a digit string, return all possible letter combinations that the number could represent.</p>
+<p>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
+<p>Input:Digit string “23”<br>Output: [“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
 <hr>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode rotateRight(ListNode head, <span class="keyword">int</span> k) {
+<pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{
+    <span class="built_in">String</span>[] chars = {<span class="string">""</span>,<span class="string">""</span>,<span class="string">"abc"</span>,<span class="string">"def"</span>,<span class="string">"ghi"</span>,<span class="string">"jkl"</span>,<span class="string">"mno"</span>,<span class="string">"pqrs"</span>,<span class="string">"tuv"</span>,<span class="string">"wxyz"</span>};
 
-        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;
-
-        <span class="keyword">int</span> tot = <span class="number">1</span>;
-        ListNode head_1 = head;
-        <span class="keyword">while</span>(head_1.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            tot++;
-            head_1 = head_1.<span class="keyword">next</span>;
+    public <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; letterCombinations(<span class="built_in">String</span> digits) {
+        <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; res = <span class="keyword">new</span> ArrayList&lt;<span class="built_in">String</span>&gt;();
+        <span class="keyword">if</span>(digits.length() &lt;= <span class="number">0</span>){
+            <span class="keyword">return</span> res;
         }
-        ListNode newEnd = head;
-        k = k % tot;
-        <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> head;     
-        k = tot - k;
+        <span class="built_in">StringBuffer</span> s = <span class="keyword">new</span> <span class="built_in">StringBuffer</span>();
+        help(res, s, digits, <span class="number">0</span>);
+        <span class="keyword">return</span> res;
+    }
 
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; i++){
-            newEnd = newEnd.<span class="keyword">next</span>;
+    private <span class="keyword">void</span> help(<span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; res, <span class="built_in">StringBuffer</span> s, <span class="built_in">String</span> digits, <span class="built_in">int</span> start){
+        <span class="keyword">if</span>(s.length() == digits.length()){
+            res.add(s.toString());
+            <span class="keyword">return</span>;
         }
-        ListNode newHead = newEnd.<span class="keyword">next</span>;
-        head_1.<span class="keyword">next</span> = head;
-        newEnd.<span class="keyword">next</span> = <span class="keyword">null</span>;
-        <span class="keyword">return</span> newHead;
+        <span class="built_in">int</span> <span class="built_in">num</span> = digits.charAt(start) - <span class="string">'0'</span>;
+        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; chars[<span class="built_in">num</span>].length(); i++){
+            s.append(chars[<span class="built_in">num</span>].charAt(i));
+            help(res, s, digits, start + <span class="number">1</span>);
+            s.deleteCharAt(s.length() - <span class="number">1</span>);
+        }
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/03/Rotate-List/" data-id="cifkj46cb001rkk1uo6ls2n4c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/" data-id="cir6uweuk002sgq1u35l8tedc" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-postRotate-Image" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/16/postRotate-Image/" class="article-date">
+  <time datetime="2015-09-16T21:57:48.000Z" itemprop="datePublished">2015-09-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/16/postRotate-Image/">postRotate Image</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Rotate Image My Submissions Question Solution<br>Difficulty: Medium<br>You are given an n x n 2D matrix representing an image.</p>
+<p>Rotate the image by 90 degrees (clockwise).</p>
+<p>Follow up:<br>Could you do this in-place?</p>
+<hr>
+<p>想法：<br>第一行变最后一列</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>{
+           Queue&lt;Integer&gt; <span class="built_in">queue</span> = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; j++){
+                <span class="built_in">queue</span>.offer(matrix[i][j]);
+            }
+        }
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = matrix[<span class="number">0</span>].length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix.length; j++){
+                matrix[j][i] = <span class="built_in">queue</span>.poll();
+            }
+        }
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/16/postRotate-Image/" data-id="cir6uwesh000igq1uvg8p89st" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Queue/">Queue</a></li></ul>
 
     </footer>
   </div>
@@ -828,7 +403,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -909,7 +484,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Yuanhang Qin<br>
+      &copy; 2016 Yuanhang Qin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

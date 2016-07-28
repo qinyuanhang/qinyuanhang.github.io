@@ -61,10 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-First-Missing-Positive" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Text-Justification" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/20/First-Missing-Positive/" class="article-date">
-  <time datetime="2015-09-20T18:54:02.000Z" itemprop="datePublished">2015-09-20</time>
+    <a href="/2015/09/24/Text-Justification/" class="article-date">
+  <time datetime="2015-09-25T01:38:46.000Z" itemprop="datePublished">2015-09-24</time>
 </a>
     
   <div class="article-category">
@@ -79,7 +79,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/20/First-Missing-Positive/">First Missing Positive</a>
+      <a class="article-title" href="/2015/09/24/Text-Justification/">Text Justification</a>
     </h1>
   
 
@@ -87,483 +87,92 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>First Missing Positive My Submissions Question Solution<br>Given an unsorted integer array, find the first missing positive integer.</p>
-<p>For example,<br>Given [1,2,0] return 3,<br>and [3,4,-1,1] return 2.</p>
-<p>Your algorithm should run in O(n) time and uses constant space.</p>
-<hr>
-<p>想法：</p>
-<p>###排列，O(NlogN)</p>
-<p>###因为要找positive的数，所以负数就过</p>
-<p>###找到第一个正数</p>
-<p>####第一个正数要是1</p>
-<p>#####就比较下一个数是不是比前一个数大1或者等于前一个数</p>
-<p>#####要是一直到最后都没少，就直接返回最后一个数加1</p>
-<p>####第一个数要不是1就直接返回一</p>
-<p>####这个算法由于有一个排列，所以时间不是O（N）；</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>{
-        <span class="keyword">if</span>(nums.length &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;
+        <p>Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.</p>
+<p>You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ‘ ‘ when necessary so that each line has exactly L characters.</p>
+<p>Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line do not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.</p>
+<p>For the last line of text, it should be left justified and no extra space is inserted between words.</p>
+<p>For example,<br>words: [“This”, “is”, “an”, “example”, “of”, “text”, “justification.”]<br>L: 16.</p>
+<p>Return the formatted lines as:<br>[<br>“This    is    an”,<br>“example  of text”,<br>“justification.  “<br>]</p>
+<p>想法：<br>1：当前字符串长度加下一个单词的长度是否超过范围？</p>
+<pre><code><span class="keyword">*</span> 小于范围，把下一个单词加上，再在后面加一个空格；
+<span class="keyword">*</span> 等于范围，直接加到答案上；
+<span class="keyword">*</span> 大于范围，就在当前的字符串上：
+    <span class="keyword">*</span> 要是有多个单词并且不是最后一行，就从头到尾平均放空格
+    <span class="keyword">*</span> 要是只有一个单词或者是最后一行，就直接在后面加空格
+</code></pre><hr>
+<pre><code>public class Solution {
+    public List&lt;String&gt; fullJustify<span class="params">(String[] words, int w)</span> {
 
-        <span class="keyword">int</span> start = <span class="number">0</span>;
-        Arrays.sort(nums);
+        ArrayList&lt;String&gt; res = new ArrayList&lt;String&gt;<span class="params">()</span>;
+        <span class="keyword">if</span><span class="params">(words.length &lt;= <span class="number">0</span>)</span> return res;
 
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length; i++){
-            <span class="keyword">if</span>(nums[i] &gt;= <span class="number">1</span>){
-                start = i;
-                <span class="keyword">break</span>;
-            }
-        }
+        int num = <span class="number">0</span>;
+        StringBuffer sb = new StringBuffer<span class="params">()</span>;
 
-        <span class="keyword">if</span>(nums[start] != <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;
-
-            <span class="keyword">while</span>(start + <span class="number">1</span> &lt; nums.length){
-                <span class="keyword">if</span>(nums[start]+<span class="number">1</span>==nums[start+<span class="number">1</span>] || nums[start] == nums[start + <span class="number">1</span>]){
-                    start++;
-                }<span class="keyword">else</span>{
-                    <span class="keyword">return</span> nums[start] + <span class="number">1</span>;
-                }
-            }
-        <span class="keyword">return</span> nums[nums.length - <span class="number">1</span>] + <span class="number">1</span>;
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/20/First-Missing-Positive/" data-id="cifkj46dh0035kk1u0e5ztfkz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hard/">Hard</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Compare-Version-Numbers" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/19/Compare-Version-Numbers/" class="article-date">
-  <time datetime="2015-09-19T07:10:19.000Z" itemprop="datePublished">2015-09-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/19/Compare-Version-Numbers/">Compare Version Numbers</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Compare Version Numbers<br>Compare two version numbers version1 and version2.<br>If version1 &gt; version2 return 1, if version1 &lt; version2 return -1, otherwise return 0.</p>
-<p>You may assume that the version strings are non-empty and contain only digits and the . character.<br>The . character does not represent a decimal point and is used to separate number sequences.<br>For instance, 2.5 is not “two and a half” or “half way to version three”, it is the fifth second-level revision of the second first-level revision.</p>
-<p>Here is an example of version numbers ordering:</p>
-<p>0.1 &lt; 1.1 &lt; 1.2 &lt; 13.37</p>
-<p>想法：<br>把字符串按照“.”拆开，重头到尾比较数字的大小，只要碰到大的那个就返回对应的结果<br>注意可能有“1”和“1.0.0.0.1”这样的情况，所以按照长度短的那个来比较，<br>要是有“1”和“1.0.0.0”这样的贱题目，就要比较长度长的后面的所有数字，要是碰到比0大的，就直接返回对应的结果</p>
-<p><em>*</em>注意</p>
-<p>###java中split小数点的时候，要这样split（”\.”）要转义一下。要不然翻个出来的是空的数组</p>
-<hr>
-<pre><code><span class="label">public</span> class Solution {
-    public int compareVersion(<span class="keyword">String </span>version1, <span class="keyword">String </span>version2) {
-        <span class="keyword">String[] </span><span class="literal">v1</span> = version1.split(<span class="string">"\\."</span>)<span class="comment">;</span>
-        <span class="keyword">String[] </span><span class="literal">v2</span> = version2.split(<span class="string">"\\."</span>)<span class="comment">;</span>
-
-        int l = <span class="literal">v1</span>.length &gt;= <span class="literal">v2</span>.length ? <span class="literal">v2</span>.length : <span class="literal">v1</span>.length<span class="comment">;</span>
-
-        for(int i = <span class="number">0</span><span class="comment">; i &lt; l; i++){</span>
-            <span class="preprocessor">if</span>(Integer.parseInt(<span class="literal">v1</span>[i]) &gt; Integer.parseInt(<span class="literal">v2</span>[i])){
-                return <span class="number">1</span><span class="comment">;</span>
-            }<span class="preprocessor">else</span> <span class="preprocessor">if</span>(Integer.parseInt(<span class="literal">v1</span>[i]) &lt; Integer.parseInt(<span class="literal">v2</span>[i])){
-                return -<span class="number">1</span><span class="comment">;</span>
-            }
-        }
-        int possible = <span class="literal">v1</span>.length &gt; <span class="literal">v2</span>.length ? <span class="number">1</span> : -<span class="number">1</span><span class="comment">;</span>
-        <span class="keyword">String[] </span>longer = <span class="literal">v1</span>.length &gt; <span class="literal">v2</span>.length ? <span class="literal">v1</span> : <span class="literal">v2</span><span class="comment">;</span>
-        for(int i = l<span class="comment">; i &lt; longer.length; i++){</span>
-            <span class="preprocessor">if</span>(Integer.parseInt(longer[i]) &gt; <span class="number">0</span>) return possible<span class="comment">;</span>
-        }
-            return <span class="number">0</span><span class="comment">;</span>
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/19/Compare-Version-Numbers/" data-id="cifkj46dm003ckk1u3ojhw59o" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-java-split-小数点的方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/18/java-split-小数点的方法/" class="article-date">
-  <time datetime="2015-09-19T06:48:52.000Z" itemprop="datePublished">2015-09-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Tips/">Tips</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/18/java-split-小数点的方法/">java split 小数点的方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>自己在用java来分割小数点的时候，发现“a.a.a.a” 用split（“.”）的方法来做，最后得到的数组长度是0</p>
-<p>解决的方法是：</p>
-<pre><code><span class="keyword">public</span> class Test {
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) {
-        <span class="keyword">String</span> s=<span class="string">"aaa.bbb.ccc"</span>;
-        <span class="comment">//这里要转义一下。具体为什么我不知道</span>
-        <span class="keyword">String</span>[] ss=s.<span class="built_in">split</span>(<span class="string">"\\."</span>);
-        System.out.<span class="built_in">println</span>(ss.length);
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/18/java-split-小数点的方法/" data-id="cifkj46bq000ykk1urm1vszpu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Letter-Combinations-of-a-Phone-Number" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/16/Letter-Combinations-of-a-Phone-Number/" class="article-date">
-  <time datetime="2015-09-16T22:28:25.000Z" itemprop="datePublished">2015-09-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/16/Letter-Combinations-of-a-Phone-Number/">Letter Combinations of a Phone Number</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Letter Combinations of a Phone Number My Submissions Question Solution<br>Given a digit string, return all possible letter combinations that the number could represent.</p>
-<p>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
-<p>Input:Digit string “23”<br>Output: [“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
-<hr>
-<pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{
-    <span class="built_in">String</span>[] chars = {<span class="string">""</span>,<span class="string">""</span>,<span class="string">"abc"</span>,<span class="string">"def"</span>,<span class="string">"ghi"</span>,<span class="string">"jkl"</span>,<span class="string">"mno"</span>,<span class="string">"pqrs"</span>,<span class="string">"tuv"</span>,<span class="string">"wxyz"</span>};
-
-    public <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; letterCombinations(<span class="built_in">String</span> digits) {
-        <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; res = <span class="keyword">new</span> ArrayList&lt;<span class="built_in">String</span>&gt;();
-        <span class="keyword">if</span>(digits.length() &lt;= <span class="number">0</span>){
-            <span class="keyword">return</span> res;
-        }
-        <span class="built_in">StringBuffer</span> s = <span class="keyword">new</span> <span class="built_in">StringBuffer</span>();
-        help(res, s, digits, <span class="number">0</span>);
-        <span class="keyword">return</span> res;
-    }
-
-    private <span class="keyword">void</span> help(<span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; res, <span class="built_in">StringBuffer</span> s, <span class="built_in">String</span> digits, <span class="built_in">int</span> start){
-        <span class="keyword">if</span>(s.length() == digits.length()){
-            res.add(s.toString());
-            <span class="keyword">return</span>;
-        }
-        <span class="built_in">int</span> <span class="built_in">num</span> = digits.charAt(start) - <span class="string">'0'</span>;
-        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; chars[<span class="built_in">num</span>].length(); i++){
-            s.append(chars[<span class="built_in">num</span>].charAt(i));
-            help(res, s, digits, start + <span class="number">1</span>);
-            s.deleteCharAt(s.length() - <span class="number">1</span>);
-        }
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/Letter-Combinations-of-a-Phone-Number/" data-id="cifkj46d6002vkk1uu6zk06sl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-postRotate-Image" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/16/postRotate-Image/" class="article-date">
-  <time datetime="2015-09-16T21:57:48.000Z" itemprop="datePublished">2015-09-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/16/postRotate-Image/">postRotate Image</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Rotate Image My Submissions Question Solution<br>Difficulty: Medium<br>You are given an n x n 2D matrix representing an image.</p>
-<p>Rotate the image by 90 degrees (clockwise).</p>
-<p>Follow up:<br>Could you do this in-place?</p>
-<hr>
-<p>想法：<br>第一行变最后一列</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>{
-           Queue&lt;Integer&gt; <span class="built_in">queue</span> = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++){
-            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; j++){
-                <span class="built_in">queue</span>.offer(matrix[i][j]);
-            }
-        }
-
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = matrix[<span class="number">0</span>].length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--){
-            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix.length; j++){
-                matrix[j][i] = <span class="built_in">queue</span>.poll();
-            }
-        }
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/postRotate-Image/" data-id="cifkj46be000hkk1us7zbwrwm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Queue/">Queue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-postRestore-IP-Addresses" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/16/postRestore-IP-Addresses/" class="article-date">
-  <time datetime="2015-09-16T20:24:10.000Z" itemprop="datePublished">2015-09-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/16/postRestore-IP-Addresses/">postRestore IP Addresses</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Restore IP Addresses My Submissions Question Solution<br>Difficulty: Medium<br>Given a string containing only digits, restore it by returning all possible valid IP address combinations.</p>
-<p>For example:<br>Given “25525511135”,</p>
-<p>return [“255.255.11.135”, “255.255.111.35”]. (Order does not matter)<br>想法：<br>要自己的help方法，每次取一个数字，两个数字和三个数字，<br>记得判断：不是0开始的，并且小于255的数字</p>
-<h2 id="当有四个数段并且原来的字符串也分割完了就是一个合法的ip">当有四个数段并且原来的字符串也分割完了就是一个合法的ip</h2><pre><code><span class="keyword">public</span> class Solution {
-    <span class="keyword">public</span> List&lt;<span class="keyword">String</span>&gt; restoreIpAddresses(<span class="keyword">String</span> s) {
-        ArrayList&lt;<span class="keyword">String</span>&gt; res = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;();
-         ArrayList&lt;<span class="keyword">String</span>&gt; temp = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;();
-        <span class="comment">//不可能成为ip的情况</span>
-        <span class="keyword">if</span>(s.length() &lt; <span class="number">4</span> || s.length() &gt; <span class="number">12</span>){
-            <span class="keyword">return</span> res;
-        }        
-           help(s,res,temp,<span class="number">0</span>);
-           <span class="keyword">return</span> res;
-    }
-
-    <span class="keyword">private</span> <span class="keyword">void</span> help(<span class="keyword">String</span> s, ArrayList&lt;<span class="keyword">String</span>&gt; res, ArrayList&lt;<span class="keyword">String</span>&gt; temp, <span class="built_in">int</span> start){
-        <span class="keyword">if</span>(temp.<span class="built_in">size</span>() == <span class="number">4</span>){
-            <span class="comment">//不符合</span>
-            <span class="keyword">if</span>(start != s.length()){
-                <span class="keyword">return</span>;
-            }
-            StringBuffer bur = <span class="keyword">new</span> StringBuffer();
-            <span class="keyword">for</span>(<span class="keyword">String</span> i : temp){
-                bur.<span class="built_in">append</span>(i);
-                bur.<span class="built_in">append</span>(<span class="string">"."</span>);
-            }
-            bur.deleteCharAt(bur.length()-<span class="number">1</span>);
-            res.<span class="built_in">add</span>(bur.toString());
-            <span class="keyword">return</span>;
-        }
-
-        <span class="keyword">for</span>(<span class="built_in">int</span> i=start; i&lt;s.length() &amp;&amp; i&lt;= start+<span class="number">3</span>; i++){
-            <span class="keyword">String</span> tmp = s.substring(start, i+<span class="number">1</span>);
-            <span class="keyword">if</span>(isvalid(tmp)){
-                temp.<span class="built_in">add</span>(tmp);
-                help(s,res, temp, i+<span class="number">1</span>);
-                temp.remove(temp.<span class="built_in">size</span>()-<span class="number">1</span>);
-            }
-        }
-        }
-
-    <span class="keyword">private</span> <span class="built_in">boolean</span> isvalid(<span class="keyword">String</span> s){
-           <span class="keyword">if</span>(s.charAt(<span class="number">0</span>) == <span class="string">'0'</span>)
-            <span class="keyword">return</span> s.equals(<span class="string">"0"</span>); <span class="comment">// to eliminate cases like "00", "10"</span>
-        <span class="built_in">int</span> digit = Integer.valueOf(s);
-        <span class="keyword">return</span> digit &gt;= <span class="number">0</span> &amp;&amp; digit &lt;= <span class="number">255</span>;
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/16/postRestore-IP-Addresses/" data-id="cifkj46bh000pkk1u0wedy38r" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-postEvaluate-Reverse-Polish-Notation" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/11/postEvaluate-Reverse-Polish-Notation/" class="article-date">
-  <time datetime="2015-09-11T20:32:41.000Z" itemprop="datePublished">2015-09-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/11/postEvaluate-Reverse-Polish-Notation/">postEvaluate Reverse Polish Notation</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Evaluate Reverse Polish Notation<br>Evaluate the value of an arithmetic expression in Reverse Polish Notation.<br>Valid operators are +, -, *, /. Each operand may be an integer or another expression.</p>
-<p>Some examples:<br>[“2”, “1”, “+”, “3”, “<em>“] -&gt; ((2 + 1) </em> 3) -&gt; 9<br>[“4”, “13”, “5”, “/“, “+”] -&gt; (4 + (13 / 5)) -&gt; 6</p>
-<p>想法：<br><em>用栈的方法从前到后
-</em>注意string 和 int时间的转换</p>
-<pre><code>public class <span class="type">Solution</span> {
-    public <span class="type">int</span> evalRPN(<span class="type">String</span>[] tokens) {
-        <span class="keyword">if</span>(tokens.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;
-
-        <span class="type">Stack</span>&lt;<span class="type">String</span>&gt; stack = new <span class="type">Stack</span>&lt;<span class="type">String</span>&gt;();
-
-        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; tokens.length; i++){
-
-            <span class="keyword">if</span>(!tokens[i].equals(<span class="string">"+"</span>) &amp;&amp; !tokens[i].equals(<span class="string">"-"</span>) &amp;&amp; !tokens[i].equals(<span class="string">"*"</span>) &amp;&amp; !tokens[i].equals(<span class="string">"/"</span>) ){
-                    stack.push(tokens[i]);
+        <span class="keyword">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; words.length; i++)</span>{
+            <span class="keyword">if</span><span class="params">(sb.length<span class="params">()</span> + words[i].length<span class="params">()</span> &lt; w)</span>{
+                sb.append<span class="params">(words[i] + <span class="string">" "</span>)</span>;
+                num++;
+            }<span class="keyword">else</span> <span class="keyword">if</span><span class="params">(sb.length<span class="params">()</span> + words[i].length<span class="params">()</span> == w)</span>{
+                sb.append<span class="params">(words[i])</span>;
+                res.add<span class="params">(new String<span class="params">(sb.toString<span class="params">()</span>)</span>)</span>;
+                sb = new StringBuffer<span class="params">()</span>;
+                num = <span class="number">0</span>;
             }<span class="keyword">else</span>{
-                <span class="type">int</span> post = <span class="type">Integer</span>.parseInt(stack.pop());
-                <span class="type">int</span> pre = <span class="type">Integer</span>.parseInt(stack.pop());
-                <span class="type">int</span> <span class="literal">result</span> = <span class="number">0</span>;
-            switch(tokens[i]){
+                i--;
+                <span class="keyword">if</span><span class="params">(num == <span class="number">1</span>)</span>{
+                    while<span class="params">(sb.length<span class="params">()</span> &lt; w)</span>{
+                        sb.append<span class="params">(<span class="string">" "</span>)</span>;
+                    }
+                }<span class="keyword">else</span>{
+                    sb.deleteCharAt<span class="params">(sb.length<span class="params">()</span> - <span class="number">1</span>)</span>;
+                    int spaces = w - sb.length<span class="params">()</span>;
+                    sb = evenSpaces<span class="params">(sb, spaces)</span>;
+                }
+                res.add<span class="params">(new String<span class="params">(sb.toString<span class="params">()</span>)</span>)</span>;
+                sb = new StringBuffer<span class="params">()</span>;    
+                num = <span class="number">0</span>;
+            }
+        }
 
-                <span class="keyword">case</span> <span class="string">"+"</span>: <span class="literal">result</span> = post+pre;
-                        <span class="keyword">break</span>;
-
-                <span class="keyword">case</span> <span class="string">"-"</span>: <span class="literal">result</span> = pre-post;
-                        <span class="keyword">break</span>;
-
-                <span class="keyword">case</span> <span class="string">"*"</span>: <span class="literal">result</span> = post*pre;
-                        <span class="keyword">break</span>;             
-
-                <span class="keyword">case</span> <span class="string">"/"</span>: <span class="literal">result</span> = pre/post;
-                        <span class="keyword">break</span>;             
+            <span class="keyword">if</span><span class="params">(sb.length<span class="params">()</span> &gt; <span class="number">0</span>)</span>{
+                while<span class="params">(sb.length<span class="params">()</span> &lt; w)</span>{
+                    sb.append<span class="params">(<span class="string">" "</span>)</span>;
+                }
+                res.add<span class="params">(new String<span class="params">(sb.toString<span class="params">()</span>)</span>)</span>;
             }
 
-            stack.push(<span class="literal">result</span>+<span class="string">""</span>);
+            return res;
+        }
+
+    private StringBuffer evenSpaces<span class="params">(StringBuffer sb, int spaces)</span>{
+        int i = <span class="number">0</span>;
+        boolean meetSpace = <span class="literal">false</span>;
+        while<span class="params">(spaces &gt; <span class="number">0</span>)</span>{
+            <span class="keyword">if</span><span class="params">(sb.charAt<span class="params">(i)</span> == ' ' &amp;&amp; !meetSpace)</span>{
+                sb.insert<span class="params">(i, ' ')</span>;
+                spaces --;
+                meetSpace = <span class="literal">true</span>;
+
+            }<span class="keyword">else</span> <span class="keyword">if</span><span class="params">(sb.charAt<span class="params">(i)</span> != ' ' &amp;&amp; meetSpace)</span>{
+                meetSpace = <span class="literal">false</span>;
+            }
+                i++;
+            <span class="keyword">if</span><span class="params">(i == sb.length<span class="params">()</span>)</span>{
+                i = <span class="number">0</span>;
             }
         }    
-        <span class="keyword">return</span> <span class="type">Integer</span>.parseInt(stack.pop());
+        return sb;
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/11/postEvaluate-Reverse-Polish-Notation/" data-id="cifkj46bn000ukk1uitvttdhv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/24/Text-Justification/" data-id="cir6uwet60019gq1u303z5lq6" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hard/">Hard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
 
     </footer>
   </div>
@@ -572,14 +181,14 @@
 
 
   
-    <article id="post-print-matrix-diagnanlly" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Scalability-Fundamentals" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/10/print-matrix-diagnanlly/" class="article-date">
-  <time datetime="2015-09-11T00:00:44.000Z" itemprop="datePublished">2015-09-10</time>
+    <a href="/2015/09/23/Scalability-Fundamentals/" class="article-date">
+  <time datetime="2015-09-23T21:45:38.000Z" itemprop="datePublished">2015-09-23</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Interview/">Interview</a>
+    <a class="article-category-link" href="/categories/System-Design/">System Design</a>
   </div>
 
   </div>
@@ -590,7 +199,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/10/print-matrix-diagnanlly/">print matrix diagnanlly</a>
+      <a class="article-title" href="/2015/09/23/Scalability-Fundamentals/">Scalability Fundamentals</a>
     </h1>
   
 
@@ -598,258 +207,389 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  对角线打印二维数组，<br>  例子：<br>1 2  3  4<br>5 6  7  8<br>9 10 11 12</p>
-<p>  打印：<br>  1<br>  2 5<br>  3 6 9<br>  4 7 10<br>  8 11<br>  12 </p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> PrintDia {
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
-    <span class="comment">// TODO Auto-generated method stub        </span>
-        <span class="keyword">int</span>[][] r = {
-                {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>},
-                {<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>},
-                {<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>},
-                        };
-        printDia(r);
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDia</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span></span>{
-    <span class="comment">//first line</span>
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix[<span class="number">0</span>].length; i++){
-            helpPrint(<span class="number">0</span>,i, matrix);
-        }
-    <span class="comment">//last collon</span>
-        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; matrix.length;j++){
-            helpPrint(j, matrix[<span class="number">0</span>].length - <span class="number">1</span>, matrix);
-        }        
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">helpPrint</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span>[][] matrix)</span></span>{
-        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; i &lt; matrix.length){
-            System.out.print(matrix[i][j]);
-            j--;
-            i++;
-        }        
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/10/print-matrix-diagnanlly/" data-id="cifkj46ba000ckk1uruqzaa4m" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-strstr" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/09/strstr/" class="article-date">
-  <time datetime="2015-09-09T23:29:27.000Z" itemprop="datePublished">2015-09-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/09/strstr/">strstr</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Implement strStr();</p>
-<p>Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.</p>
-<p>想法：</p>
+        <h1 id="学习scalability，解决系统规模化的问题，这是下面这个视屏的总结，不全面，大家要是有兴趣还是去看原版的吧！！！">学习scalability，解决系统规模化的问题，这是下面这个视屏的总结，不全面，大家要是有兴趣还是去看原版的吧！！！</h1><h1 id="“_系统设计就是：解决一个问题又会有新的问题出现，所以我们要做的是权衡利弊做取舍，而并不是寻找最优解!!!_”">“ 系统设计就是：解决一个问题又会有新的问题出现，所以我们要做的是权衡利弊做取舍，而并不是寻找最优解!!! ”</h1><p><a href="https://www.youtube.com/watch?v=-W9F__D3oY4&amp;feature=youtu.be" target="_blank" rel="external"><strong> 视频 professor David Malan from Harvard </strong></a> </p>
+<h2 id="what_if_your_little_app_booms_overnight??_scaling!!!">what if your little app booms overnight?? scaling!!!</h2><p>当你的网站突然爆红，请求量，数据量爆增，你的服务器不能负载。这时候第一个想法就是：买更多的硬件来满足需求。但是这明显增加了我们的成本，买来的硬件花很多钱，而且这时候需要多，当网站不火的时候，不再需要这么多硬件之后，这就造成浪费。。。。怎么办呢？</p>
+<hr>
+<h3 id="Vertical_Scaling">Vertical Scaling</h3><ul>
+<li>CUP</li>
+<li>DISK</li>
+<li>RAM</li>
+<li>CATCH</li>
+<li><p>…</p>
+<h4 id="硬件科技，把硬件弄得很牛逼！！！">硬件科技，把硬件弄得很牛逼！！！</h4></li>
+<li><p>利用 multiple-thread or multiple-processes</p>
 <ul>
-<li>最简单的是用substring和equals</li>
-<li>有一些变态的公司，某pock..不让用substring，就用复杂的方法，N^2的复杂度</li>
-<li>想要高端一点，就用kmp算法</li>
+<li>现在我们的cup都是多核（core），意味着同时可以进行多个任务，（simultaneously）</li>
+<li>同时，每个core可以进行多线程（multiple-thread），每一个小线程可以分到小部分cpu的时钟周期来工作。</li>
 </ul>
-<p>一般方法：</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>{
-        <span class="keyword">if</span>(needle.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; haystack.length(); i ++){
-            <span class="keyword">if</span>(i + needle.length() &gt; haystack.length()) <span class="keyword">break</span>;<span class="comment">//容易忘记这个判断，超出范围</span>
-            <span class="keyword">if</span>(haystack.charAt(i) == needle.charAt(<span class="number">0</span>)){
-                <span class="keyword">int</span> sp = i;                    
-                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; needle.length(); j++){
-                    <span class="keyword">if</span>(needle.charAt(j) == haystack.charAt(sp)){
-                        sp++;
-                        <span class="keyword">if</span>(j == needle.length() - <span class="number">1</span>){
-                            <span class="keyword">return</span> i;
-                        }
-                    }<span class="keyword">else</span>{
-                        <span class="keyword">break</span>;
-                    }
-                }
-            }
-        }
-            <span class="keyword">return</span> -<span class="number">1</span>;
-    }
-}
-</code></pre><hr>
-<p>KMP 方法：</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> KMP {
-    <span class="comment">//test cases</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] arge){    
-        <span class="keyword">int</span> i = getIndexKMP(<span class="string">"ab"</span>, <span class="string">"bllbcb"</span>);
-        System.out.<span class="keyword">println</span>(i);        
-    }
-
-    <span class="comment">/** 获取字符串s的next[]数组 */</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] getNextSeq(String s) {
-        <span class="keyword">int</span> <span class="keyword">size</span> = s.length();
-        <span class="keyword">int</span> i = <span class="number">0</span>;
-        <span class="keyword">int</span> j = -<span class="number">1</span>;
-        <span class="keyword">int</span>[] <span class="keyword">next</span> = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="keyword">size</span>];
-        <span class="keyword">next</span>[<span class="number">0</span>] = -<span class="number">1</span>;
-        <span class="keyword">while</span> (i &lt; <span class="keyword">size</span> - <span class="number">1</span>) {
-            <span class="keyword">if</span> ((j == -<span class="number">1</span>) || (s.charAt(i) == s.charAt(j))) {
-                j++;
-                i++;
-                <span class="keyword">next</span>[i] = j;
-            } <span class="keyword">else</span> {
-                j = <span class="keyword">next</span>[j];
-            }
-        }
-
-        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= <span class="keyword">size</span> - <span class="number">1</span>; k++) {
-            System.out.<span class="keyword">print</span>(<span class="keyword">next</span>[k]);
-            System.out.<span class="keyword">print</span>(<span class="string">", "</span>);
-        }
-        System.out.<span class="keyword">println</span>();
-        <span class="keyword">return</span> <span class="keyword">next</span>;
-    }
-
-    <span class="comment">/**获取index*/</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> getIndexKMP(String s, String t) {
-        <span class="keyword">int</span> sSize = s.length();
-        <span class="keyword">int</span> tSize = t.length();
-        <span class="keyword">int</span> i = <span class="number">0</span>;
-        <span class="keyword">int</span> j = <span class="number">0</span>;
-        <span class="keyword">int</span>[] <span class="keyword">next</span> = getNextSeq(t);
-        <span class="keyword">while</span> (i &lt; sSize &amp;&amp; j &lt; tSize) {
-            <span class="keyword">if</span> ((j == -<span class="number">1</span>) || (s.charAt(i) == t.charAt(j))) {
-                <span class="keyword">if</span> (j &gt; -<span class="number">1</span>) {
-                    System.out.<span class="keyword">println</span>(s.charAt(i) + <span class="string">"="</span> + t.charAt(j));
-                }
-            i++;
-            j++;
-            } <span class="keyword">else</span> {
-                j = <span class="keyword">next</span>[j];
-            }
-        }
-
-        <span class="keyword">if</span> (j &gt;= tSize) {
-            <span class="keyword">return</span> i - tSize;
-        }
-        <span class="keyword">return</span> -<span class="number">1</span>;
-    }
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/09/strstr/" data-id="cifkj46az0005kk1umifai1y6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Easy/">Easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Partition-List" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/04/Partition-List/" class="article-date">
-  <time datetime="2015-09-05T00:16:44.000Z" itemprop="datePublished">2015-09-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/04/Partition-List/">Partition List</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Partition List Total<br>Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.</p>
-<p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
-<p>For example,<br>Given 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2 and x = 3,<br>return 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5.</p>
-<p>想法：</p>
-<ul>
-<li>一个简单的问题是用两个queue来分别装合适的node，最后在从小接到大（空间不够）</li>
-<li>开另外一个list，把大的接到这个list里面，最后把剩下的两端接起来。</li>
+</li>
+<li>随着硬件的发展，我们现在可以拥有功能很强大的多核（ multiple-cores ）CPU，存储速度很快的硬盘，</li>
 </ul>
 <hr>
+<h3 id="Horizontal_scaling">Horizontal scaling</h3><p>虽然硬件越来越牛逼，但是价钱也越来越贵，我们能不能找到一个方法，既节省开支也能达到预期要求？ </p>
+<h4 id="组装各种现有的资源">组装各种现有的资源</h4><ul>
+<li>用很多很多个不这么牛逼的硬件，拼装成一个很牛逼的大硬件<ul>
+<li>像AWS，就把很大的server，chop成很多小的server，这样，当我的公司规模小的时候，可以只租用小的server，当公司规模变大，我们就可以租用更多的servers，这样我们用的服务器就会有弹性，不会去买大的服务器，同时也可以按需求调整我需要的服务器的大小，节省资源，避免浪费。</li>
+<li>AWS里面也提供存储服务（S3），所有客户都使用同一个硬件内存，但是这个内存被区分成很多小块，所以只用取我们需要的大小就行，同时也可以</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Load_balancing">Load balancing</h3><p>当我们把越来越多的server拼在一起的时候，那么问题来了！！？？要知道，我们要登录一个网站，输入网址的时候，会用到一个DNS（ domain name server 域名服务器，他是把你输入的网址和ip对应起来）。当然，我们现在把很多很多server拼在一起，也就会有很多很多IP地址，所以，要是我有十万个请求都指向服务器A， 但是服务器B却一个都没有，这就是说，服务器A超级忙，而且速度会很慢因为太多请求要处理，但是服务器B这个资源就浪费了。这时候我们就引入一个概念 <strong> Load Balancing </strong></p>
+<p>有了这个 Load balancing 之后，所有客户端的请求不再直接给服务器了，会先给到这个 Load Balancing，它来决定这个请求是给哪个服务器来处理。那么问题又来了！！</p>
+<ul>
+<li><p>怎么决定给哪个服务器呢？</p>
+<ul>
+<li><p>1：每个server有一个计数器，来计算它当前正在处理的请求。 Load balancing 只要找出请求数最少的那个，把请求给他就好了</p>
+<ul>
+<li>问题1：这就意味着每个服务器就要都有一个相同的的数据库，这样会很浪费空间（ redundancy ）也不易于管理数据库（ maintaining ），因为只要其中一个数据库改了，就要更新所有的数据库。</li>
+<li>问题2：你可能会说：那所有的服务器连接到同一个的后端大数据库就好了。我觉得也可以。。。。但是！！！！！这样做的话就会出现新的问题（ 数据安全 ）：如果服务器A想改一个数据 salary = 1000；同时服务器B想改成 salary = 5000；要是等待A做完了，B才能access to data，那就延长了等待时间； 要是 A 和 B 可以同时修改同一个数据，就会造成数据不准确。</li>
+</ul>
+</li>
+<li><p>2：每个服务器专门管理一种特别的请求： 请求要图片的去A， 要文本的去B， 要视频的去C。。。</p>
+<ul>
+<li>问题1： 要是像 youtube 这样的网站，所有人都要视频怎么办？？？。。。。</li>
+<li>问题2： 要是管理视频的服务器 down 掉了，那 youtube。。。。就完了。。。。</li>
+</ul>
+</li>
+<li><p>3：当我们输入一个网址的时候，要到 router to DNS，然后返回对应的 ip 地址，我们可以利用这个 load balancing 来充当 DNS 的功能。第一个来的请求我们给 A 处理，第二个给 B。。。然后再从 A 开始，这个叫做 （ Round Robin ），可以用一个很简单的技术实现（ Load Balancing with BIND ）,下面的例子就可以实现，不同的 ip 都指向同一个服务器 A。同时，load balancing就可以顺序的返回 ip 地址 23.345.345.X 从1开始，最后又回到1，rounding。    </p>
+<ul>
+<li>www in A 23.345.345.1</li>
+<li>www in A 23.345.345.2</li>
+<li>www in A 23.345.345.3</li>
+<li>…</li>
+<li>问题1：这个方法实行起来很简单，但是也有问题：要是服务器 A 一直得到最难的请求，而服务器 B 只用处理很简单的请求，那么 A 还是会很忙，B 还是会很清闲。</li>
+<li>问题2： 我们的浏览器有一个东西叫做 catch ，他会把我们之前请求过的网址和对应的 ip 地址存起来，当我们再次请求同一个网址的时候，浏览器会先检查这个 catch 的记录，当发现已经存在对应的 IP 地址的时候，浏览器就不会在发送请求到 DNS ， 而是直接使用这个 IP 地址。发现问题了吗？？？如果我这台电脑之前查过这个网址那么我之后就只会把请求送到之前的 IP 地址，也就是说我跳过了 load balancing 直接找到服务器。要是全世界是有我上这个网站，那么我只会把请求送到同一个服务器，其他服务器就会空着，这样也没有起到 balancing 的作用。<ul>
+<li>解决2：可以设定一个（ TTL time to leave ），规定到一定时间，我的浏览器的 catch 就会清空，所以就要重新获取一次 IP 地址，这样就可以避免 catch 造成的同一个 ip 的问题，下一次我就可能去到别的服务器上。<ul>
+<li>导致的新问题：比如说我在服务器 A 上把一本书放高到了购物车，退出了，第二次我再登录同一个网站，请求到了服务器 B ，这个服务器上的购物车上没有我昨天的记录，我就得重新再找我昨天想买的那本书。（ session break ）<ul>
+<li>解决：cookies: 服务器可以给你一个cookie，存下你之前去的那个 server 的 ID，下一次你再去同一个网站就可以直接要求同一个 server。</li>
+<li>解决：有一个专门的服务器，来存储 statue ，就是说我昨天的的 statue （ 购物车里有本书 ）存到了这个服务器上，下次我再来，我就会接着昨天的 statue 继续购物；<ul>
+<li>新问题：如果这个存 statue 的服务器坏了呢？我就丢失一切了！！！<ul>
+<li>解决：### RAID（ Redundant Arry of independent Disk ）假设你有 multiple hard driver，RAID 的基本原理是把多个便宜的小磁盘组合到一起，成为一个磁盘组，使性能达到或超过一个容量巨大、价格昂贵的磁盘。<ul>
+<li>RAID 0 也称为条带模式（striped），即把连续的数据分散到多个磁盘上存。当系统有数据请求就可以被多个磁盘并行的执行，每个磁盘执行属于它自己的那部分数据请求。这种数据上的并行操作可以充分利用总线的带宽，显著提高磁盘整体存取性能。因为读取和写入是在设备上并行完成的，读取和写入性能将会增加，这通常是运行 RAID 0 的主要原因。但 RAID0 没有数据冗余，如果驱动器出现故障，那么将无法恢复任何数据。 RAID可以提高数据传输速率，比如所需读取的文件分布在两个硬盘上，这两个硬盘可以同时读取</li>
+<li>RAID 1 称为镜像（Mirroring），一个具有全冗余的模式。RAID 1可以用于两个或2xN个磁盘，并使用0块或更多的备用磁盘，每次写数据时会同时写入镜像盘。这种阵列可靠性很高，但其有效容量减小到总容量的一半，同时这些磁盘的大小应该相等，否则总容量只具有最小磁盘的大小。磁盘的利用率却只有50%，是所有RAID级别中最低的。</li>
+<li>RAID 10: 结合0和1一起。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="http://blog.163.com/hlz_2599/blog/static/14237847420141610112127/" target="_blank" rel="external"><strong> RAID 跟多信息 </strong></a> </p>
+<hr>
+<ul>
+<li>速度： hard disk (要旋转磁盘来找数据 spin，慢）&lt; RAM &lt; Catch</li>
+</ul>
+<hr>
+<h3 id="Database_replication">Database replication</h3><p>就是 backup 一个或多个 database，一个坏了好的就上。</p>
+<ul>
+<li>读的多，写的少怎么办？<ul>
+<li>用 slaver server 去处理 redundancy。</li>
+<li>balance read 请求。</li>
+<li>缺点是：<ul>
+<li>要是其中一个坏了，（master - master） 两个 server 都是 master server。</li>
+<li>也可以用 load balancing + master database。 load balancing 是对于 read，</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Database_partitioning">Database partitioning</h3><p>多个 master 数据库管理多个 slave 数据库。<br>不同的请求，送到不同的服务器，然后找到对应的数据库。</p>
+<h3 id="High_availability">High availability</h3><p>两个或多个 master server，互相听对方心跳，能随时替换对方完成对方的工作。</p>
+<hr>
+<h3 id="DATA_Center">DATA Center</h3><ul>
+<li>有data center之后，怎么使用load balancing？？<ul>
+<li>global ip access.</li>
+<li>这时候的 traffic 要考虑什么？安全问题？<ul>
+<li>只开放 port 80 和 443，不让使用 ssh。</li>
+<li>不知道 port number的时候，。。。。。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/23/Scalability-Fundamentals/" data-id="cir6uweth001jgq1uy3t6frzb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-Design/">System Design</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Design-a-URL-shortening-service-like-bit-ly" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/" class="article-date">
+  <time datetime="2015-09-23T19:18:45.000Z" itemprop="datePublished">2015-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/System-Design/">System Design</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/">Design a URL shortening service like bit.ly</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="系统设计入门_1">系统设计入门 1</h2><p>面试的时候遇到系统设计怎么办？这里有个简单的流程和例子，可以照着这个例子来开始学习系统设计：</p>
+<h3 id="Design_a_URL_shortening_service_like_bit-ly">Design a URL shortening service like bit.ly</h3><p>设计一个简化URL的系统，还要维护top n的url。</p>
+<hr>
+<h2 id="1：use_cases:(问面试官这些问题，搞清楚要问的是什么，要解决的是什么问题)">1：use cases:(问面试官这些问题，搞清楚要问的是什么，要解决的是什么问题)</h2><p>就是考虑这个系统的：</p>
+<ol>
+<li>输入输出<strong>（问面试官）</strong></li>
+</ol>
+<ul>
+<li>使用时涉及到的要素<ul>
+<li>数据量大小</li>
+<li>客户访问量（request per minute，respond per minute ect.）</li>
+<li>需要用到什么样的数据结构（hash，stack，queue，tree etc.）<br>比如url简化系统：</li>
+</ul>
+</li>
+</ul>
+<p>1: shortening: take a url to a shorter url<br>2: redirection: shorter url to origin url<br>3: custom url: design url by customers<br>4: analytic: statistic urls<br>5: link expiration<br>6: hign availabitily</p>
+<hr>
+<h2 id="2：Constraints：（考虑这个系统的一些限制条件，内存需求，performance_ect-）">2：Constraints：（考虑这个系统的一些限制条件，内存需求，performance ect.）</h2><p>** 可能需要计算！！！问面试官！！！问过面试官才能自己假设</p>
+<p>1： how many url requests per month? （ 15 BM ）<br>2： all shorten urls per month? 很多一样的urlrequest，所以简化后的url可能是十分之一(1.5 BM)<br>3： 对于top10的url的请求可能占绝大部分（3分之2），其他的只占很邵谊部分（3分之一） 300M<br>4： top10的url我们就维护就行，要处理的是这些没有维护的其他url，300M里面有十分之一到三分之一要简化的，为了题目简单，这里选三分之一100M.</p>
+<h3 id="100M_new_url_per_month">100M new url per month</h3><p>5： 对于这些url的请求，加上简化的请求和redirect的请求，大约是他的十倍 1B request per month<br>6： 这些请求有的是简化（10%），有的是redirect（90%）<br>7： 计算，reque per second (1B request per month / 30 days / 24 hour/ 3600 second per hour) ~ 400 per requests<br>8： 这400个request里面，40是简化，360是redirect；<br>9： （五年，所有url的总和是6B ）如果要求系统要存储5年里面所有的url，所需要的内存是（5年<em>12月</em>100M）~ 6B urls<br>10： （每个url 长 500 byte）每个url的平均长度，这里假设是500byte（有customer url的情况的话，要考虑rewrite url）</p>
+<h3 id="选用hashtable这个数据结构，">选用hashtable这个数据结构，</h3><p>11： （每个key长6byte）如果选用hashtable的话，想想什么key能够mapping 6B的url呢？这里可以考虑（10个数字+26大写字母+26小写字母）= 62个不同的字母，每个字母1byte，这里需要62的6次方就可以mapping 6B 的url。所以这里的key的size是 6byte。<br>12： （6B <em> 500byte = 3TB，6 byte </em> 6B = 36GB）5年内，这个hashtable的总容量应该是所有url和key的总和；<br>13： 每秒钟要写入的数据量是（40个简化 <em> （500byte的url + 6byte的key））~ 20K<br>14： 每秒钟要读的数据（360个redirect </em>（500byte的url + 6byte的key））~ 180K</p>
+<hr>
+<h2 id="3：Abstract_design">3：Abstract design</h2><p>在初步的分析计算，计算出符合要求的数据量，请求量分析之后，可以开始设计系统内容；</p>
+<p><strong> The goal of this is to outline all the important components that your architecture will need。 </strong></p>
+<ol>
+<li>application server layer<ul>
+<li>shorten server<ul>
+<li>把输入的原始url变成 62个字母的 key = converToKey(origin_url);</li>
+<li>存入hashmap，更新static，看是否需要更新top10</li>
+</ul>
+</li>
+<li>redirect server</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Data storage layer(keep tracking of hash =&gt; url mapping) <ul>
+<li>就是一个大的hashtable，把新的mapping加入，要是key存在了，就返回原来的url</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="4:_Understanding_bottlenecks">4: Understanding bottlenecks</h2><p>perhaps bottlenecks:<br>1: needs a load balancer<br>2: many machines behind it to handle the user requests<br>3: data is so huge that you need to distribute your database on multiple machines.<br>4: If the database too slow so need some in-memory caching? how many layers?</p>
+<p><strong> need to be able to identify the weak spots in a system and be able to resolve them. </strong><br><strong> Remember, usually each solution is a trade-off of some kind. Changing something will worsen something else. However, the important thing is to be able to talk about these trade-offs, and to measure their impact on the system given the constraints and use cases defined. </strong></p>
+<p>其实在这个系统里面，400 request per second很轻的请求，500byte + 6byte也很小，<br>但是 3TB 是一个不小的数据量，这里要继续讨论。（scalable system design）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/23/Design-a-URL-shortening-service-like-bit-ly/" data-id="cir6uwev10036gq1ud1t03tnp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-Design/">System Design</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Word-Search" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/22/Word-Search/" class="article-date">
+  <time datetime="2015-09-23T01:32:51.000Z" itemprop="datePublished">2015-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/22/Word-Search/">Word Search</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a 2D board and a word, find if the word exists in the grid.</p>
+<p>The word can be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.</p>
+<p>For example,<br>Given board =</p>
+<p>[<br>[“ABCE”],<br>[“SFCS”],<br>[“ADEE”]<br>]<br>word = “ABCCED”, -&gt; returns true,<br>word = “SEE”, -&gt; returns true,<br>word = “ABCB”, -&gt; returns false.</p>
+<p>想法：<br>到一个位置，检查上下左右（千万记住，不能往回走），要是有要找的字母，就递归调用。<br>这里有个小技巧， 看注释</p>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
-    <span class="keyword">public</span> ListNode partition(ListNode head, <span class="keyword">int</span> x) {
+    <span class="function"><span class="keyword">public</span> boolean <span class="title">exist</span><span class="params">(<span class="keyword">char</span>[][] board, String word)</span> </span>{
+        <span class="keyword">if</span>(word.length() &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;
 
-        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>) <span class="keyword">return</span> head;
-
-        ListNode big = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        ListNode dummy_big = big;
-
-        ListNode dummy_small = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
-        dummy_small.<span class="keyword">next</span> = head;
-
-        head = dummy_small;
-
-        <span class="keyword">while</span>(head.<span class="keyword">next</span> != <span class="keyword">null</span>){
-            <span class="keyword">if</span>(head.<span class="keyword">next</span>.val &gt;= x){
-                big.<span class="keyword">next</span> = head.<span class="keyword">next</span>;
-                head.<span class="keyword">next</span> = head.<span class="keyword">next</span>.<span class="keyword">next</span>;
-                big = big.<span class="keyword">next</span>;
-                big.<span class="keyword">next</span> = <span class="keyword">null</span>;<span class="comment">//这一步很重要，第二个list的最后一个一定是null'</span>
-            }<span class="keyword">else</span>{
-                head = head.<span class="keyword">next</span>;
-            }    
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; j++){
+                <span class="keyword">if</span>(board[i][j] == word.charAt(<span class="number">0</span>)){
+                    <span class="keyword">if</span>(help(board, i, j, word, <span class="number">0</span>)) <span class="keyword">return</span> <span class="literal">true</span>;
+                }
+            }
         }
 
-        head.<span class="keyword">next</span> = dummy_big.<span class="keyword">next</span>;
-        <span class="keyword">return</span> dummy_small.<span class="keyword">next</span>;
+        <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+
+    <span class="function"><span class="keyword">private</span> boolean <span class="title">help</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> x, <span class="keyword">int</span> y, String word, <span class="keyword">int</span> index)</span></span>{
+        <span class="keyword">if</span>(index &gt;= word.length()) <span class="keyword">return</span> <span class="literal">true</span>;
+
+        <span class="keyword">if</span>(x&lt; <span class="number">0</span> || x &gt;= board.length || y &lt; <span class="number">0</span> || y &gt;= board[<span class="number">0</span>].length ||word.charAt(index) != board[x][y]) <span class="keyword">return</span> <span class="literal">false</span>;
+
+        board[x][y] = <span class="string">'#'</span>;<span class="comment">//这里很重要！！！不能往回走就弄一个别的东西放在这里；</span>
+
+
+            boolean res = help(board, x - <span class="number">1</span>, y, word, index+<span class="number">1</span>) ||
+                            help(board, x + <span class="number">1</span>, y, word, index+<span class="number">1</span>) ||
+                            help(board, x, y - <span class="number">1</span>, word, index+<span class="number">1</span>) ||
+                            help(board, x, y + <span class="number">1</span>, word, index+<span class="number">1</span>);
+
+        board[x][y] = word.charAt(index);<span class="comment">//之前改过的字母，这里要变回来！！</span>
+
+        <span class="keyword">return</span> res;  
     }
 }
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/04/Partition-List/" data-id="cifkj46cn0028kk1ulji897bp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/22/Word-Search/" data-id="cir6uwet20015gq1u6atrau0b" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Number-of-Islands-I-II" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/22/Number-of-Islands-I-II/" class="article-date">
+  <time datetime="2015-09-23T00:41:36.000Z" itemprop="datePublished">2015-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/22/Number-of-Islands-I-II/">Number of Islands I/II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Number of Islands I<br>Given a 2d grid map of ‘1’s (land) and ‘0’s (water), count the number of islands.<br>An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.<br>You may assume all four edges of the grid are all surrounded by water.</p>
+<p>Example 1:<br>11110<br>11010<br>11000<br>00000<br>Answer: 1</p>
+<p>Example 2:<br>11000<br>11000<br>00100<br>00011<br>Answer: 3</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Solution {
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>{
+        <span class="keyword">int</span> n = grid.length;
+
+        <span class="keyword">if</span> (n == <span class="number">0</span>) {
+            <span class="keyword">return</span> <span class="number">0</span>;
+        }
+
+        <span class="keyword">int</span> m = grid[<span class="number">0</span>].length;
+
+        <span class="keyword">if</span> (m == <span class="number">0</span>) {
+            <span class="keyword">return</span> <span class="number">0</span>;
+        }
+
+        <span class="keyword">int</span> count = <span class="number">0</span>;
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].length; j++){
+                <span class="keyword">if</span>(grid[i][j] == <span class="string">'1'</span>){
+                    removeIsland(grid, i, j);
+                    count++;
+                }
+            }
+        }
+        <span class="keyword">return</span> count;
+    }
+    <span class="comment">//递归调用的函数，找到一个1，就用广度优先把所有的1变成0</span>
+    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">removeIsland</span><span class="params">(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>{
+        <span class="keyword">if</span>( grid[x][y] == <span class="string">'1'</span>){
+            grid[x][y] = <span class="string">'0'</span>;
+        }<span class="keyword">else</span>{
+            <span class="keyword">return</span>;
+        }
+
+        <span class="keyword">if</span>(x - <span class="number">1</span> &gt;= <span class="number">0</span>){
+            removeIsland(grid, x - <span class="number">1</span>, y);
+        }
+
+        <span class="keyword">if</span>(x + <span class="number">1</span> &lt; grid.length){
+            removeIsland(grid, x + <span class="number">1</span>, y);
+        }
+
+        <span class="keyword">if</span>(y - <span class="number">1</span> &gt;= <span class="number">0</span>){
+            removeIsland(grid, x, y - <span class="number">1</span>);
+        }
+        <span class="keyword">if</span>(y + <span class="number">1</span> &lt; grid[<span class="number">0</span>].length){
+            removeIsland(grid, x, y + <span class="number">1</span>);
+        }
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/22/Number-of-Islands-I-II/" data-id="cir6uweu7002bgq1u54apkfyv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Breadth-first-Search/">Breadth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Depth-first-Search/">Depth-first Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/">Medium</a></li></ul>
 
     </footer>
   </div>
@@ -860,7 +600,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -941,7 +681,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Yuanhang Qin<br>
+      &copy; 2016 Yuanhang Qin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
